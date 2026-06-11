@@ -1,12 +1,3 @@
 {
-  "rewrites": [
-    { "source": "/leistungen", "destination": "/leistungen.html" },
-    { "source": "/leistungen/", "destination": "/leistungen.html" },
-    { "source": "/uber-mich", "destination": "/uber-mich.html" },
-    { "source": "/kontakt", "destination": "/kontakt.html" },
-    { "source": "/podcast", "destination": "/podcast.html" },
-    { "source": "/meine-methode", "destination": "/meine-methode.html" },
-    { "source": "/impressum", "destination": "/impressum.html" },
-    { "source": "/datenschutz", "destination": "/datenschutz.html" }
-  ]
+  "cleanUrls": true
 }
