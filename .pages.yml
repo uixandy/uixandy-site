@@ -54,7 +54,7 @@ components:
         type: text
 
   steps:
-    label: Schritte
+    label: Schritte (gestapelte Karten)
     type: object
     list: true
     fields:
@@ -68,6 +68,21 @@ components:
         label: Beispiel-Nachricht (optional)
         type: string
         description: "Erscheint als Chat-Blase unter dem Schritt. Leer lassen = keine Blase."
+      - name: visual
+        label: Grafik auf der Karte
+        type: select
+        options:
+          values:
+            - { value: check, label: Website-Check (Fragebogen) }
+            - { value: build, label: Website wird gebaut }
+            - { value: connect, label: KI wird verbunden }
+            - { value: live, label: Änderung geht live }
+            - { value: pay, label: Anzahlung oder Gespräch }
+            - { value: review, label: Prüfung des Projekts }
+      - name: tags
+        label: Schwebende Stichworte auf der Grafik (max. 2)
+        type: string
+        list: true
 
   faq:
     label: Fragen und Antworten
@@ -173,10 +188,6 @@ content:
                   - { name: statusPending, label: Status während Veröffentlichung, type: string }
                   - { name: statusLive, label: Status nach Veröffentlichung, type: string }
                   - { name: caption, label: Bildunterschrift, type: string }
-              - name: chips
-                label: Schwebende Hinweise neben der Chat-Animation (max. 3)
-                type: string
-                list: true
           - name: prompts
             label: Bereich Beispiel-Nachrichten (Laufband)
             type: object
@@ -200,21 +211,7 @@ content:
               - { name: kicker, label: Kleine Überschrift, type: string }
               - { name: heading, label: Überschrift, type: string }
               - { name: lead, label: Einleitungstext, type: text }
-              - name: items
-                label: Schritte (gestapelte Karten)
-                type: object
-                list: true
-                fields:
-                  - { name: title, label: Titel, type: string }
-                  - { name: text, label: Text, type: text }
-                  - name: example
-                    label: Beispiel-Nachricht (optional)
-                    type: string
-                    description: "Erscheint als Chat-Blase. Leer lassen = keine Blase."
-                  - name: tags
-                    label: Schwebende Stichworte auf der Grafik (max. 4)
-                    type: string
-                    list: true
+              - { name: items, component: steps }
               - { name: linkLabel, label: Link-Text zur Detailseite, type: string }
           - name: video
             label: Bereich Video
@@ -241,7 +238,6 @@ content:
                 type: object
                 list: true
                 fields:
-                  - { name: icon, component: icon }
                   - { name: title, label: Titel, type: string }
                   - { name: text, label: Text, type: text }
                   - name: visual
@@ -443,10 +439,16 @@ content:
             label: Bereich Persönlich
             type: object
             fields:
-              - { name: image, label: Foto, type: image }
-              - { name: imageAlt, label: Bildbeschreibung, type: string }
+              - { name: kicker, label: Kleine Überschrift, type: string }
               - { name: heading, label: Überschrift, type: string }
               - { name: text, label: Text, type: text }
+              - name: images
+                label: Fotos (genau 3, das mittlere steht gerade)
+                type: object
+                list: true
+                fields:
+                  - { name: image, label: Foto, type: image }
+                  - { name: alt, label: Bildbeschreibung, type: string }
           - { name: cta, component: cta }
 
       - name: website-check
@@ -463,8 +465,16 @@ content:
             type: object
             description: "Nur die sichtbaren Texte. Die Werte (value) der Antworten bitte nicht ändern, daran hängt die Paket-Empfehlung."
             fields:
+              - name: progressLabel
+                label: Fortschritt
+                type: string
+                description: "{n} = aktuelle Frage, {total} = Anzahl Fragen. Beispiel: Frage {n} von {total}"
+              - { name: nextLabel, label: Button Weiter, type: string }
+              - { name: backLabel, label: Link Zurück, type: string }
               - { name: websiteLabel, label: Frage 1, type: string }
+              - { name: websiteHint, label: Frage 1 Hinweis, type: string }
               - { name: websitePlaceholder, label: Frage 1 Platzhalter, type: string }
+              - { name: noWebsiteLabel, label: Frage 1 Link ohne Website, type: string }
               - { name: pagesLabel, label: Frage 2, type: string }
               - name: pagesOptions
                 label: Frage 2 Antworten
@@ -475,6 +485,7 @@ content:
                   - { name: label, label: Text, type: string }
               - { name: featuresLabel, label: Frage 3, type: string }
               - { name: featuresHint, label: Frage 3 Hinweis, type: string }
+              - { name: featuresNoneLabel, label: Frage 3 Button ohne Auswahl, type: string }
               - name: featuresOptions
                 label: Frage 3 Antworten
                 type: object
@@ -491,6 +502,7 @@ content:
                   - { name: value, label: Interner Wert (nicht ändern), type: string }
                   - { name: label, label: Text, type: string }
               - { name: contactLabel, label: Überschrift Kontaktdaten, type: string }
+              - { name: moreLabel, label: Aufklapper für Firma und Nachricht, type: string }
               - { name: nameLabel, label: Feld Name, type: string }
               - { name: emailLabel, label: Feld E-Mail, type: string }
               - { name: companyLabel, label: Feld Firma, type: string }

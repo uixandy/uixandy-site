@@ -11,7 +11,8 @@ export interface Props {
 }
 
 const { rowA, rowB } = Astro.props;
-const rows = [rowA, rowB].filter((r) => r?.length);
+// Each track must be wider than the widest viewport, or the loop shows an empty gap
+const rows = [rowA, rowB].filter((r) => r?.length).map((r) => [...r, ...r]);
 ---
 
 <div class="marquee">
@@ -19,8 +20,8 @@ const rows = [rowA, rowB].filter((r) => r?.length);
     rows.map((row, r) => (
       <div class={`marquee__row ${r % 2 ? "marquee__row--rev" : ""}`}>
         <ul class="marquee__track">
-          {row.map((text) => (
-            <li class="marquee__chip">
+          {row.map((text, i) => (
+            <li class:list={["marquee__chip", { "is-repeat": i >= row.length / 2 }]} aria-hidden={i >= row.length / 2 ? "true" : undefined}>
               <Icon name="paperPlane" size={16} />
               {text}
             </li>
@@ -40,10 +41,12 @@ const rows = [rowA, rowB].filter((r) => r?.length);
 </div>
 
 <style>
+  /* Padding keeps the hover lift and shadow inside the mask, which clips at the box edge */
   .marquee {
     display: grid;
-    gap: var(--ux-space-3);
-    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    gap: var(--ux-space-2);
+    padding-block: var(--ux-space-4) var(--ux-space-5);
+    mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
   }
 
   .marquee__row {
@@ -126,7 +129,8 @@ const rows = [rowA, rowB].filter((r) => r?.length);
       padding: 0;
     }
 
-    .marquee__track--dup {
+    .marquee__track--dup,
+    .marquee__chip.is-repeat {
       display: none;
     }
   }

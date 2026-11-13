@@ -4,6 +4,7 @@ import PageHero from "../components/PageHero.astro";
 import Section from "../components/Section.astro";
 import SectionHead from "../components/SectionHead.astro";
 import FeatureCards from "../components/FeatureCards.astro";
+import PhotoFan from "../components/PhotoFan.astro";
 import CtaBand from "../components/CtaBand.astro";
 import page from "../data/pages/ueber-mich.json";
 import site from "../data/site.json";
@@ -34,13 +35,8 @@ const seo = resolveSeo(page);
   </Section>
 
   <Section id="persoenlich">
-    <div class="personal" data-reveal>
-      <img src={page.personal.image} alt={page.personal.imageAlt} width="900" height="1200" loading="lazy" />
-      <div>
-        <h2>{page.personal.heading}</h2>
-        <p>{page.personal.text}</p>
-      </div>
-    </div>
+    <SectionHead kicker={page.personal.kicker} heading={page.personal.heading} lead={page.personal.text} align="center" />
+    <PhotoFan images={page.personal.images} />
   </Section>
 
   <CtaBand
@@ -50,38 +46,3 @@ const seo = resolveSeo(page);
     secondary={{ label: page.cta.secondaryLabel, href: site.booking.calUrl }}
   />
 </BaseLayout>
-
-<style>
-  .personal {
-    display: grid;
-    gap: var(--ux-space-7);
-    align-items: center;
-  }
-
-  .personal img {
-    width: 100%;
-    max-width: 26rem;
-    aspect-ratio: 3 / 4;
-    object-fit: cover;
-    border-radius: calc(var(--ux-radius-lg) * 1.4);
-    box-shadow: var(--ux-shadow-lg);
-  }
-
-  .personal h2 {
-    font-size: var(--ux-text-2xl);
-  }
-
-  .personal p {
-    margin-top: var(--ux-space-5);
-    font-size: var(--ux-text-lg);
-    color: var(--ux-muted);
-    max-width: 34rem;
-  }
-
-  @media (min-width: 56rem) {
-    .personal {
-      grid-template-columns: 26rem 1fr;
-      gap: var(--ux-space-9);
-    }
-  }
-</style>

@@ -4,11 +4,18 @@
   "hero": {
     "kicker": "Website-Check",
     "heading": "Welches Paket passt zu Ihnen?",
-    "lead": "Vier kurze Fragen, dann sehen Sie Paket, Preis und nächste Schritte. Dauert etwa 60 Sekunden."
+    "lead": "Ein paar kurze Fragen, dann sehen Sie Paket, Preis und nächste Schritte. Dauert etwa 60 Sekunden."
   },
   "form": {
+    "progressLabel": "Frage {n} von {total}",
+    "nextLabel": "Weiter",
+    "backLabel": "Zurück",
     "websiteLabel": "Haben Sie schon eine Website?",
-    "websitePlaceholder": "www.ihre-firma.de (optional)",
+    "websiteHint": "Dann schauen wir sie uns vorab an. Texte und Bilder übernehmen wir.",
+    "websitePlaceholder": "www.ihre-firma.de",
+    "noWebsiteLabel": "Ich habe noch keine Website",
+    "featuresNoneLabel": "Nichts davon, weiter",
+    "moreLabel": "Firma oder Nachricht hinzufügen (optional)",
     "pagesLabel": "Wie viele Seiten braucht Ihre Website ungefähr?",
     "pagesOptions": [
       { "value": "bis-6", "label": "Bis zu 6 Seiten" },
@@ -34,7 +41,7 @@
       { "value": "1-3-monate", "label": "In 1 bis 3 Monaten" },
       { "value": "spaeter", "label": "Später, ich informiere mich" }
     ],
-    "contactLabel": "Wohin dürfen wir Ihr Ergebnis schicken?",
+    "contactLabel": "Fast geschafft. Wohin dürfen wir Ihr Ergebnis schicken?",
     "nameLabel": "Ihr Name",
     "emailLabel": "E-Mail",
     "companyLabel": "Firma (optional)",

@@ -21,8 +21,7 @@
       "statusPending": "Wird veröffentlicht …",
       "statusLive": "Live auf Ihrer Website",
       "caption": "Beispiel: So sieht eine Änderung aus. Kein Login, kein Baukasten, nur ein Satz."
-    },
-    "chips": ["Kein Login", "Version gespeichert", "In Minuten online"]
+    }
   },
   "prompts": {
     "kicker": "Ein Satz genügt",
@@ -75,19 +74,22 @@
         "title": "Wir bauen Ihre Website",
         "text": "Modern, schnell und in Ihrem Design. Texte und Bilder von Ihrer alten Website übernehmen wir.",
         "example": "",
-        "tags": ["Ihr Design", "Texte übernommen", "Für Handy optimiert", "Schnell geladen"]
+        "visual": "build",
+        "tags": ["Ihr Design", "Für Handy optimiert"]
       },
       {
         "title": "Sie verbinden Ihre KI, wir helfen",
         "text": "Zum Beispiel Claude oder ChatGPT, auf Ihrem eigenen Computer. Im Video-Call richten wir das gemeinsam ein, Schritt für Schritt.",
         "example": "",
-        "tags": ["Claude", "ChatGPT", "Per Video-Call", "Auf Ihrem Computer"]
+        "visual": "connect",
+        "tags": ["Claude oder ChatGPT", "Per Video-Call"]
       },
       {
         "title": "Sie schreiben, was sich ändern soll",
         "text": "Ihre KI ändert die Website, speichert eine neue Version und stellt sie online.",
         "example": "„Tausche das Teamfoto gegen das neue aus.“",
-        "tags": ["Kein Login", "Neue Version", "Rückgängig mit einem Satz", "Sofort online"]
+        "visual": "live",
+        "tags": ["Kein Login", "Rückgängig mit einem Satz"]
       }
     ],
     "linkLabel": "Ausführlich erklärt: So funktioniert's"
@@ -106,37 +108,31 @@
     "lead": "",
     "items": [
       {
-        "icon": "chat",
         "visual": "chat",
         "title": "Änderungen in Minuten",
         "text": "Kein Ticket, kein Warten. Sie schreiben einen Satz, die KI erledigt den Rest."
       },
       {
-        "icon": "shield",
         "visual": "shield",
         "title": "Kaum Angriffsfläche",
         "text": "Kein WordPress, keine Plugins, keine Datenbank. Damit fallen die typischen Einfallstore für Hacker weg."
       },
       {
-        "icon": "undo",
         "visual": "versions",
         "title": "Jede Version gespeichert",
         "text": "Gefällt Ihnen eine Änderung nicht? Ein Satz an die KI, und die vorherige Version ist zurück."
       },
       {
-        "icon": "key",
         "visual": "owner",
         "title": "Gehört komplett Ihnen",
         "text": "Website und Inhalte liegen in Ihrem eigenen Konto. Sie können jederzeit wechseln, ohne neu anzufangen."
       },
       {
-        "icon": "lightning",
         "visual": "speed",
         "title": "Sehr schnelle Ladezeiten",
         "text": "Ihre Seiten laden in einem Bruchteil der Zeit einer typischen WordPress-Seite. Das mögen Besucher und Google."
       },
       {
-        "icon": "pencil",
         "visual": "editor",
         "title": "Auch zum Klicken",
         "text": "Lieber selbst tippen als chatten? Ein einfacher Editor für Texte und Bilder ist immer mit dabei."

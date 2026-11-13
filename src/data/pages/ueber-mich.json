@@ -27,10 +27,14 @@
     ]
   },
   "personal": {
-    "image": "/media/andy-nanuk.webp",
-    "imageAlt": "Andy Bittner mit seinem Hund Nanuk im Park",
-    "heading": "Abseits vom Bildschirm",
-    "text": "Wenn ich nicht an Websites arbeite, bin ich mit Nanuk unterwegs, meinem Hund aus Kroatien. Nanuk sorgt dafür, dass ich auch an vollen Tagen rauskomme. [Platzhalter: Andy prüfen und anpassen]"
+    "kicker": "Abseits vom Bildschirm",
+    "heading": "Webdesigner aus München, gern auch unterwegs",
+    "text": "Ich reise gern und liebe andere Kulturen. Deshalb habe ich mir einen VW T3 ausgebaut, mit dem ich Reisen und Arbeit verbinde. Und mein Hund sorgt dafür, dass ich auch an vollen Tagen rauskomme. [Platzhalter: Andy prüfen und anpassen]",
+    "images": [
+      { "image": "/media/workspace.webp", "alt": "Andys Arbeitsplatz mit Bildschirm und Bücherregal" },
+      { "image": "/media/andy-chiko.webp", "alt": "Andy Bittner mit seinem Hund im Wald" },
+      { "image": "/media/vw-t3.webp", "alt": "Andys ausgebauter VW T3 an der Küste" }
+    ]
   },
   "cta": {
     "heading": "Lernen wir uns kennen.",

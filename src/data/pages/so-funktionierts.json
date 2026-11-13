@@ -13,22 +13,30 @@
       {
         "title": "Website-Check und kurzes Kennenlernen",
         "text": "Sie beantworten ein paar Fragen zu Ihrer Website. Danach wissen Sie Preis und Paket. Buchen Sie direkt oder sprechen Sie erst 15 Minuten mit mir.",
-        "example": ""
+        "example": "",
+        "visual": "check",
+        "tags": ["Etwa 60 Sekunden", "Preis sofort sichtbar"]
       },
       {
         "title": "Wir bauen Ihre neue Website",
         "text": "Ihr Design, Ihre Farben, Ihr Logo. Texte und Bilder von der alten Website übernehmen wir. Sie geben Feedback, wir passen an, bis alles sitzt.",
-        "example": ""
+        "example": "",
+        "visual": "build",
+        "tags": ["Ihr Design", "Texte übernommen"]
       },
       {
         "title": "Übergabe und KI-Einrichtung",
         "text": "Die Website liegt in Ihrem eigenen Konto. Ihre KI läuft auf Ihrem Computer. Im Video-Call helfen wir Ihnen, sie mit der Website zu verbinden, und zeigen, wie Sie Änderungen machen.",
-        "example": ""
+        "example": "",
+        "visual": "connect",
+        "tags": ["Ihr eigenes Konto", "Per Video-Call"]
       },
       {
         "title": "Ab jetzt: einfach schreiben",
         "text": "Sie schreiben Ihrer KI eine Nachricht. Sie ändert die Website, speichert eine neue Version und stellt sie online. Meist ist alles nach wenigen Minuten live.",
-        "example": "„Füge bei den Leistungen Balayage für 89 € hinzu.“"
+        "example": "„Füge bei den Leistungen Balayage für 89 € hinzu.“",
+        "visual": "live",
+        "tags": ["Kein Login", "Jede Version gespeichert"]
       }
     ]
   },

@@ -14,17 +14,23 @@
       {
         "title": "Website-Check ausfüllen",
         "text": "Ein paar Fragen zu Umfang und Funktionen. Danach sehen Sie sofort, welches Paket passt.",
-        "example": ""
+        "example": "",
+        "visual": "check",
+        "tags": ["Etwa 60 Sekunden", "Unverbindlich"]
       },
       {
         "title": "Anzahlung oder Gespräch",
         "text": "Zahlen Sie 50 % an und wir legen los. Oder buchen Sie erst ein kostenloses Gespräch von 15 Minuten.",
-        "example": ""
+        "example": "",
+        "visual": "pay",
+        "tags": ["Rest nach Abnahme", "Kostenloses Gespräch"]
       },
       {
         "title": "Prüfung innerhalb von 48 Stunden",
         "text": "Passt alles, starten wir. Passt Ihr Projekt nicht ins Paket, bekommen Sie ein Angebot oder die Anzahlung komplett zurück.",
-        "example": ""
+        "example": "",
+        "visual": "review",
+        "tags": ["Innerhalb von 48 Stunden", "Geld zurück, wenn es nicht passt"]
       }
     ]
   },

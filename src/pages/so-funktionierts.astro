@@ -3,7 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import Section from "../components/Section.astro";
 import SectionHead from "../components/SectionHead.astro";
-import Steps from "../components/Steps.astro";
+import StepDeck from "../components/StepDeck.astro";
 import FeatureCards from "../components/FeatureCards.astro";
 import Comparison from "../components/Comparison.astro";
 import CtaBand from "../components/CtaBand.astro";
@@ -25,9 +25,7 @@ const seo = resolveSeo(page);
 
   <Section id="ablauf" flush="top">
     <SectionHead kicker={page.steps.kicker} heading={page.steps.heading} />
-    <div class="four-steps">
-      <Steps items={page.steps.items} />
-    </div>
+    <StepDeck items={page.steps.items} />
   </Section>
 
   <Section id="beispiele" tone="soft">
@@ -52,12 +50,3 @@ const seo = resolveSeo(page);
     secondary={{ label: page.cta.secondaryLabel, href: site.booking.calUrl }}
   />
 </BaseLayout>
-
-<style>
-  @media (min-width: 56rem) {
-    .four-steps :global(.steps) {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: var(--ux-space-6);
-    }
-  }
-</style>

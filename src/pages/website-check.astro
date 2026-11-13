@@ -17,107 +17,133 @@ const outcomes = [
   { id: "individuell", ...results.individuell, pkg: pkg.individuell, stripe: site.booking.stripeIndividuell },
   { id: "gespraech", ...results.gespraech, pkg: pkg.individuell, stripe: "" },
 ];
+const TOTAL = 5;
 ---
 
 <BaseLayout title={seo.title} description={seo.description} ogImage={seo.ogImage}>
   <PageHero kicker={page.hero.kicker} heading={page.hero.heading} lead={page.hero.lead} />
 
   <Section flush="top" narrow>
-    <form
-      class="check"
-      data-check
-      action={site.booking.formEndpoint}
-      method="POST"
-      novalidate
-      data-error-text={form.errorText}
-    >
-      <input type="hidden" name="_subject" value="Neuer Website-Check (uixandy.com)" />
-      <input type="hidden" name="interesse" value="" data-interest />
-      <input type="hidden" name="empfehlung" value="" data-recommendation />
-      <p class="check__hp" aria-hidden="true">
-        <label>Nicht ausfüllen <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label>
-      </p>
-
-      <fieldset class="check__step">
-        <legend><span class="check__num">1</span>{form.websiteLabel}</legend>
-        <input class="field" type="text" name="website" placeholder={form.websitePlaceholder} inputmode="url" />
-      </fieldset>
-
-      <fieldset class="check__step">
-        <legend><span class="check__num">2</span>{form.pagesLabel}</legend>
-        <div class="choices">
-          {
-            form.pagesOptions.map((o, i) => (
-              <label class="choice">
-                <input type="radio" name="seiten" value={o.value} required={i === 0} />
-                <span>{o.label}</span>
-              </label>
-            ))
-          }
-        </div>
-      </fieldset>
-
-      <fieldset class="check__step">
-        <legend><span class="check__num">3</span>{form.featuresLabel}</legend>
-        <p class="check__hint">{form.featuresHint}</p>
-        <div class="choices choices--grid">
-          {
-            form.featuresOptions.map((o) => (
-              <label class="choice">
-                <input type="checkbox" name="funktionen" value={o.value} />
-                <span>{o.label}</span>
-              </label>
-            ))
-          }
-        </div>
-      </fieldset>
-
-      <fieldset class="check__step">
-        <legend><span class="check__num">4</span>{form.timingLabel}</legend>
-        <div class="choices">
-          {
-            form.timingOptions.map((o) => (
-              <label class="choice">
-                <input type="radio" name="zeitraum" value={o.value} />
-                <span>{o.label}</span>
-              </label>
-            ))
-          }
-        </div>
-      </fieldset>
-
-      <fieldset class="check__step check__step--contact">
-        <legend><span class="check__num"><Icon name="paperPlane" size={16} /></span>{form.contactLabel}</legend>
-        <div class="fields">
-          <label class="field-label">
-            {form.nameLabel}
-            <input class="field" type="text" name="name" autocomplete="name" required />
-          </label>
-          <label class="field-label">
-            {form.emailLabel}
-            <input class="field" type="email" name="email" autocomplete="email" required />
-          </label>
-          <label class="field-label fields__full">
-            {form.companyLabel}
-            <input class="field" type="text" name="firma" autocomplete="organization" />
-          </label>
-          <label class="field-label fields__full">
-            {form.messageLabel}
-            <textarea class="field" name="nachricht" rows="3"></textarea>
-          </label>
-        </div>
-        <label class="consent">
-          <input type="checkbox" name="einwilligung" value="ja" required />
-          <span>{form.consentText} Mehr in der <a href="/datenschutz/">Datenschutzerklärung</a>.</span>
-        </label>
-      </fieldset>
-
-      <p class="check__error" data-error hidden role="alert"></p>
-
-      <div class="check__submit">
-        <Button type="submit" size="lg" arrow data-submit data-sending={form.sendingLabel}>{form.submitLabel}</Button>
+    <div class="wiz" data-wiz>
+      <div class="wiz__progress" aria-hidden="true">
+        <span class="wiz__bar"><i data-bar /></span>
+        <span class="wiz__count" data-count data-template={form.progressLabel} data-total={TOTAL}></span>
       </div>
-    </form>
+
+      <form
+        class="check"
+        data-check
+        action={site.booking.formEndpoint}
+        method="POST"
+        novalidate
+        data-error-text={form.errorText}
+      >
+        <input type="hidden" name="_subject" value="Neuer Website-Check (uixandy.com)" />
+        <input type="hidden" name="interesse" value="" data-interest />
+        <input type="hidden" name="empfehlung" value="" data-recommendation />
+        <p class="check__hp" aria-hidden="true">
+          <label>Nicht ausfüllen <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label>
+        </p>
+
+        <fieldset class="step" data-step="1">
+          <legend class="step__q">{form.websiteLabel}</legend>
+          <p class="step__hint">{form.websiteHint}</p>
+          <input class="field field--lg" type="text" name="website" placeholder={form.websitePlaceholder} inputmode="url" autocomplete="url" data-website />
+          <div class="step__actions">
+            <Button type="button" size="lg" arrow data-next>{form.nextLabel}</Button>
+            <button type="button" class="step__link" data-no-website>{form.noWebsiteLabel}</button>
+          </div>
+        </fieldset>
+
+        <fieldset class="step" data-step="2">
+          <legend class="step__q">{form.pagesLabel}</legend>
+          <div class="options">
+            {
+              form.pagesOptions.map((o) => (
+                <label class="option">
+                  <input type="radio" name="seiten" value={o.value} data-auto />
+                  <span>{o.label}<Icon name="arrowRight" size={18} /></span>
+                </label>
+              ))
+            }
+          </div>
+        </fieldset>
+
+        <fieldset class="step" data-step="3">
+          <legend class="step__q">{form.featuresLabel}</legend>
+          <p class="step__hint">{form.featuresHint}</p>
+          <div class="options options--grid">
+            {
+              form.featuresOptions.map((o) => (
+                <label class="option option--check">
+                  <input type="checkbox" name="funktionen" value={o.value} data-feature />
+                  <span><b class="option__box"><Icon name="check" size={12} /></b>{o.label}</span>
+                </label>
+              ))
+            }
+          </div>
+          <div class="step__actions">
+            <Button type="button" size="lg" arrow data-next data-features-next data-none={form.featuresNoneLabel} data-some={form.nextLabel}>
+              {form.featuresNoneLabel}
+            </Button>
+          </div>
+        </fieldset>
+
+        <fieldset class="step" data-step="4">
+          <legend class="step__q">{form.timingLabel}</legend>
+          <div class="options">
+            {
+              form.timingOptions.map((o) => (
+                <label class="option">
+                  <input type="radio" name="zeitraum" value={o.value} data-auto />
+                  <span>{o.label}<Icon name="arrowRight" size={18} /></span>
+                </label>
+              ))
+            }
+          </div>
+        </fieldset>
+
+        <fieldset class="step" data-step="5">
+          <legend class="step__q">{form.contactLabel}</legend>
+          <div class="fields">
+            <label class="field-label">
+              {form.nameLabel}
+              <input class="field" type="text" name="name" autocomplete="name" required />
+            </label>
+            <label class="field-label">
+              {form.emailLabel}
+              <input class="field" type="email" name="email" autocomplete="email" required />
+            </label>
+          </div>
+          <details class="more">
+            <summary>{form.moreLabel}</summary>
+            <div class="fields">
+              <label class="field-label fields__full">
+                {form.companyLabel}
+                <input class="field" type="text" name="firma" autocomplete="organization" />
+              </label>
+              <label class="field-label fields__full">
+                {form.messageLabel}
+                <textarea class="field" name="nachricht" rows="3"></textarea>
+              </label>
+            </div>
+          </details>
+          <label class="consent">
+            <input type="checkbox" name="einwilligung" value="ja" required />
+            <span>{form.consentText} Mehr in der <a href="/datenschutz/">Datenschutzerklärung</a>.</span>
+          </label>
+          <p class="check__error" data-error hidden role="alert"></p>
+          <div class="step__actions">
+            <Button type="submit" size="lg" arrow data-submit data-sending={form.sendingLabel}>{form.submitLabel}</Button>
+          </div>
+        </fieldset>
+
+        <button type="button" class="wiz__back" data-back hidden>
+          <Icon name="arrowRight" size={16} class="wiz__back-icon" />
+          {form.backLabel}
+        </button>
+      </form>
+    </div>
 
     <div class="result" data-result hidden tabindex="-1">
       {
@@ -141,15 +167,15 @@ const outcomes = [
             <div class="result__actions">
               {o.stripe ? (
                 <>
-                  <Button href={o.stripe} variant="accent" size="lg" arrow data-stripe>
+                  <Button href={o.stripe} variant="light" size="lg" arrow data-stripe>
                     {results.depositLabel} ({o.pkg.deposit})
                   </Button>
-                  <Button href={site.booking.calUrl} variant="ghost" size="lg" data-cal>
+                  <Button href={site.booking.calUrl} variant="ghost-light" size="lg" data-cal>
                     {results.callLabel}
                   </Button>
                 </>
               ) : (
-                <Button href={site.booking.calUrl} variant="accent" size="lg" arrow data-cal>
+                <Button href={site.booking.calUrl} variant="light" size="lg" arrow data-cal>
                   {results.callLabel}
                 </Button>
               )}
@@ -165,11 +191,19 @@ const outcomes = [
 <script>
   type Outcome = "start" | "individuell" | "gespraech";
 
+  const wiz = document.querySelector<HTMLElement>("[data-wiz]");
   const form = document.querySelector<HTMLFormElement>("[data-check]");
   const result = document.querySelector<HTMLElement>("[data-result]");
   const errorEl = document.querySelector<HTMLElement>("[data-error]");
   const submit = form?.querySelector<HTMLButtonElement>("[data-submit]");
-  const submitLabel = submit?.textContent ?? "";
+  const submitText = submit?.querySelector("span");
+  const submitLabel = submitText?.textContent ?? "";
+  const steps = Array.from(form?.querySelectorAll<HTMLFieldSetElement>("[data-step]") ?? []);
+  const bar = wiz?.querySelector<HTMLElement>("[data-bar]");
+  const count = wiz?.querySelector<HTMLElement>("[data-count]");
+  const back = form?.querySelector<HTMLButtonElement>("[data-back]");
+  const featuresNext = form?.querySelector<HTMLButtonElement>("[data-features-next]");
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const INDIVIDUAL = ["blog", "jobs", "sprachen", "termine", "rechner", "formulare"];
 
@@ -178,6 +212,66 @@ const outcomes = [
     if (pages === "7-15" || features.some((f) => INDIVIDUAL.includes(f))) return "individuell";
     return "start";
   };
+
+  let current = 0;
+
+  const show = (index: number, dir: 1 | -1 = 1) => {
+    current = Math.max(0, Math.min(steps.length - 1, index));
+    steps.forEach((s, i) => {
+      s.classList.toggle("is-active", i === current);
+      s.classList.toggle("is-back", i === current && dir === -1);
+    });
+    const total = Number(count?.dataset.total ?? steps.length);
+    if (bar) bar.style.width = `${((current + 1) / total) * 100}%`;
+    if (count) {
+      count.textContent = (count.dataset.template ?? "")
+        .replace("{n}", String(current + 1))
+        .replace("{total}", String(total));
+    }
+    if (back) back.hidden = current === 0;
+    const focusable = steps[current]?.querySelector<HTMLElement>("input:not([type=hidden]), button");
+    if (index > 0) focusable?.focus({ preventScroll: true });
+  };
+
+  if (wiz && form && steps.length) {
+    wiz.classList.add("is-wizard");
+    show(0);
+
+    form.querySelectorAll<HTMLElement>("[data-next]").forEach((btn) =>
+      btn.addEventListener("click", () => show(current + 1)),
+    );
+
+    form.querySelector("[data-no-website]")?.addEventListener("click", () => {
+      const input = form.querySelector<HTMLInputElement>("[data-website]");
+      if (input) input.value = "";
+      show(current + 1);
+    });
+
+    form.querySelector<HTMLInputElement>("[data-website]")?.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        show(current + 1);
+      }
+    });
+
+    form.querySelectorAll<HTMLInputElement>("[data-auto]").forEach((input) =>
+      input.addEventListener("click", () => {
+        window.setTimeout(() => show(current + 1), reduced ? 0 : 260);
+      }),
+    );
+
+    form.querySelectorAll<HTMLInputElement>("[data-feature]").forEach((input) =>
+      input.addEventListener("change", () => {
+        if (!featuresNext) return;
+        const some = form.querySelectorAll("[data-feature]:checked").length > 0;
+        const label = some ? featuresNext.dataset.some : featuresNext.dataset.none;
+        const span = featuresNext.querySelector("span");
+        if (span && label) span.textContent = label;
+      }),
+    );
+
+    back?.addEventListener("click", () => show(current - 1, -1));
+  }
 
   const params = new URLSearchParams(location.search);
   const interest = form?.querySelector<HTMLInputElement>("[data-interest]");
@@ -212,9 +306,13 @@ const outcomes = [
     const name = String(data.get("name") ?? "").trim();
     const email = String(data.get("email") ?? "").trim();
 
-    if (!pages || !name || !/^\S+@\S+\.\S+$/.test(email) || !data.get("einwilligung")) {
-      form.reportValidity();
-      showError("Bitte beantworten Sie Frage 2 und füllen Sie Name, E-Mail und die Einwilligung aus.");
+    if (!pages) {
+      show(1, -1);
+      return;
+    }
+
+    if (!name || !/^\S+@\S+\.\S+$/.test(email) || !data.get("einwilligung")) {
+      showError("Bitte füllen Sie Name und E-Mail aus und setzen Sie den Haken bei der Einwilligung.");
       return;
     }
 
@@ -223,7 +321,7 @@ const outcomes = [
     data.set("funktionen", features.join(", ") || "keine");
 
     submit.disabled = true;
-    submit.textContent = submit.dataset.sending ?? "Wird gesendet …";
+    if (submitText) submitText.textContent = submit.dataset.sending ?? "Wird gesendet …";
 
     try {
       const res = await fetch(form.action, {
@@ -234,7 +332,7 @@ const outcomes = [
       if (!res.ok) throw new Error(String(res.status));
     } catch {
       submit.disabled = false;
-      submit.textContent = submitLabel;
+      if (submitText) submitText.textContent = submitLabel;
       showError(form.dataset.errorText ?? "");
       return;
     }
@@ -252,17 +350,61 @@ const outcomes = [
       a.href = withParams(a.href, { name, email });
     });
 
-    form.hidden = true;
+    if (wiz) wiz.hidden = true;
     result.hidden = false;
     result.focus();
-    result.scrollIntoView({ behavior: "smooth", block: "start" });
+    result.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
   });
 </script>
 
 <style>
+  .wiz {
+    position: relative;
+    padding: clamp(1.5rem, 1rem + 3vw, 3rem);
+    border-radius: calc(var(--ux-radius-lg) + 0.5rem);
+    background: var(--ux-bg);
+    border: 1px solid var(--ux-border);
+    box-shadow: var(--ux-shadow-md);
+  }
+
+  .wiz__progress {
+    display: none;
+    align-items: center;
+    gap: var(--ux-space-4);
+    margin-bottom: var(--ux-space-6);
+  }
+
+  .wiz.is-wizard .wiz__progress {
+    display: flex;
+  }
+
+  .wiz__bar {
+    flex: 1;
+    height: 6px;
+    border-radius: var(--ux-radius-pill);
+    background: var(--ux-surface-2);
+    overflow: hidden;
+  }
+
+  .wiz__bar i {
+    display: block;
+    width: 20%;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--ux-gradient);
+    transition: width 0.6s var(--ux-ease-out);
+  }
+
+  .wiz__count {
+    flex: none;
+    font-size: var(--ux-text-sm);
+    font-weight: 700;
+    color: var(--ux-muted);
+  }
+
   .check {
     display: grid;
-    gap: var(--ux-space-5);
+    gap: var(--ux-space-7);
   }
 
   .check__hp {
@@ -270,98 +412,184 @@ const outcomes = [
     left: -9999px;
   }
 
-  .check__step {
+  .step {
     margin: 0;
-    padding: var(--ux-space-6);
-    border: 1px solid var(--ux-border);
-    border-radius: var(--ux-radius-lg);
-    background: var(--ux-bg);
+    padding: 0;
+    border: 0;
+    min-width: 0;
   }
 
-  .check__step legend {
-    display: flex;
-    align-items: center;
-    gap: var(--ux-space-3);
+  .wiz.is-wizard .step:not(.is-active) {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .wiz.is-wizard .step.is-active {
+      animation: step-in 0.55s var(--ux-ease-out) both;
+    }
+
+    .wiz.is-wizard .step.is-active.is-back {
+      animation-name: step-back;
+    }
+  }
+
+  @keyframes step-in {
+    from { opacity: 0; translate: 28px 0; }
+  }
+
+  @keyframes step-back {
+    from { opacity: 0; translate: -28px 0; }
+  }
+
+  .step__q {
     float: left;
     width: 100%;
+    padding: 0;
     margin-bottom: var(--ux-space-5);
     font-family: var(--ux-font-display);
-    font-size: var(--ux-text-xl);
-    line-height: var(--ux-leading-snug);
+    font-size: var(--ux-text-2xl);
+    line-height: var(--ux-leading-tight);
     color: var(--ux-navy-deep);
   }
 
-  .check__step legend + * {
+  .step__q + * {
     clear: both;
   }
 
-  .check__num {
-    display: inline-grid;
-    place-items: center;
-    flex: none;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    background: var(--ux-gradient);
-    color: var(--ux-on-dark);
-    font-size: var(--ux-text-sm);
-  }
-
-  .check__hint {
-    clear: both;
-    margin: calc(-1 * var(--ux-space-3)) 0 var(--ux-space-4);
-    font-size: var(--ux-text-sm);
+  .step__hint {
+    margin: calc(-1 * var(--ux-space-2)) 0 var(--ux-space-5);
     color: var(--ux-muted);
   }
 
-  .choices {
+  .step__actions {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
+    gap: var(--ux-space-4) var(--ux-space-5);
+    margin-top: var(--ux-space-6);
+  }
+
+  .wiz:not(.is-wizard) :global([data-next]),
+  .wiz:not(.is-wizard) .step__link {
+    display: none;
+  }
+
+  .step__link {
+    padding: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    font-weight: 700;
+    color: var(--ux-navy);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    cursor: pointer;
+  }
+
+  .step__link:hover {
+    color: var(--ux-teal-ink);
+  }
+
+  .options {
+    display: grid;
     gap: var(--ux-space-3);
   }
 
-  .choices--grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  .options--grid {
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
   }
 
-  .choice {
+  .option {
     position: relative;
     cursor: pointer;
   }
 
-  .choice input {
+  .option input {
     position: absolute;
     opacity: 0;
     pointer-events: none;
   }
 
-  .choice span {
-    display: block;
-    padding: 0.7rem 1.1rem;
+  .option span {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--ux-space-3);
+    padding: 1rem 1.25rem;
     border: 1.5px solid var(--ux-border);
     border-radius: var(--ux-radius-md);
     background: var(--ux-bg);
     font-weight: 700;
     color: var(--ux-ink);
     transition:
-      border-color var(--ux-dur-fast) var(--ux-ease),
-      background-color var(--ux-dur-fast) var(--ux-ease);
+      border-color var(--ux-dur-hover) var(--ux-ease-out),
+      background-color var(--ux-dur-hover) var(--ux-ease-out),
+      transform var(--ux-dur-hover) var(--ux-ease-out),
+      box-shadow var(--ux-dur-hover) var(--ux-ease-out);
   }
 
-  .choice:hover span {
+  .option span :global(.icon) {
+    color: var(--ux-teal-ink);
+    opacity: 0;
+    translate: -6px 0;
+    transition:
+      opacity var(--ux-dur-hover) var(--ux-ease-out),
+      translate var(--ux-dur-hover) var(--ux-ease-out);
+  }
+
+  .option:hover span {
     border-color: var(--ux-teal);
+    transform: translateY(var(--ux-lift));
+    box-shadow: var(--ux-shadow-sm);
   }
 
-  .choice input:checked + span {
-    border-color: var(--ux-navy);
-    background: var(--ux-surface-2);
+  .option:hover span :global(.icon),
+  .option input:checked + span :global(.icon) {
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  .option input:checked + span {
+    border-color: var(--ux-teal);
+    background: rgb(0 195 160 / 0.08);
     color: var(--ux-navy-deep);
   }
 
-  .choice input:focus-visible + span {
+  .option input:focus-visible + span {
     outline: 2px solid var(--ux-teal);
     outline-offset: 2px;
+  }
+
+  .option--check span {
+    justify-content: flex-start;
+  }
+
+  .option__box {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 1.35rem;
+    height: 1.35rem;
+    border: 1.5px solid var(--ux-border);
+    border-radius: 6px;
+    transition:
+      background-color var(--ux-dur-hover) var(--ux-ease-out),
+      border-color var(--ux-dur-hover) var(--ux-ease-out);
+  }
+
+  .option--check span .option__box :global(.icon) {
+    color: var(--ux-on-dark);
+    opacity: 0;
+    translate: none;
+  }
+
+  .option--check input:checked + span .option__box {
+    background: var(--ux-teal-ink);
+    border-color: var(--ux-teal-ink);
+  }
+
+  .option--check input:checked + span .option__box :global(.icon) {
+    opacity: 1;
   }
 
   .fields {
@@ -388,19 +616,43 @@ const outcomes = [
 
   .field {
     width: 100%;
-    padding: 0.8rem 1rem;
+    padding: 0.85rem 1rem;
     border: 1.5px solid var(--ux-border);
     border-radius: var(--ux-radius-md);
     background: var(--ux-bg);
     font: inherit;
     font-weight: 400;
     color: var(--ux-ink);
+    transition:
+      border-color var(--ux-dur-hover) var(--ux-ease-out),
+      box-shadow var(--ux-dur-hover) var(--ux-ease-out);
+  }
+
+  .field--lg {
+    padding: 1.05rem 1.25rem;
+    font-size: var(--ux-text-lg);
   }
 
   .field:focus {
     outline: none;
     border-color: var(--ux-teal);
-    box-shadow: 0 0 0 3px rgb(0 195 160 / 0.2);
+    box-shadow: 0 0 0 4px rgb(0 195 160 / 0.18);
+  }
+
+  .more {
+    margin-top: var(--ux-space-4);
+  }
+
+  .more summary {
+    width: fit-content;
+    font-size: var(--ux-text-sm);
+    font-weight: 700;
+    color: var(--ux-navy);
+    cursor: pointer;
+  }
+
+  .more[open] summary {
+    margin-bottom: var(--ux-space-4);
   }
 
   .consent {
@@ -420,6 +672,7 @@ const outcomes = [
   }
 
   .check__error {
+    margin-top: var(--ux-space-5);
     padding: var(--ux-space-4);
     border-radius: var(--ux-radius-md);
     background: #fdecec;
@@ -427,9 +680,31 @@ const outcomes = [
     font-weight: 700;
   }
 
-  .check__submit {
-    display: flex;
-    justify-content: center;
+  .wiz__back {
+    display: none;
+    align-items: center;
+    gap: var(--ux-space-2);
+    justify-self: start;
+    padding: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    font-size: var(--ux-text-sm);
+    font-weight: 700;
+    color: var(--ux-muted);
+    cursor: pointer;
+  }
+
+  .wiz.is-wizard .wiz__back:not([hidden]) {
+    display: inline-flex;
+  }
+
+  .wiz__back:hover {
+    color: var(--ux-navy);
+  }
+
+  .wiz__back :global(.wiz__back-icon) {
+    rotate: 180deg;
   }
 
   .result:focus {
@@ -444,6 +719,7 @@ const outcomes = [
       var(--ux-navy-deep);
     color: var(--ux-on-dark);
     box-shadow: var(--ux-shadow-lg);
+    animation: ux-reveal 0.8s var(--ux-ease-out) both;
   }
 
   .result__sent {
@@ -503,12 +779,6 @@ const outcomes = [
     flex-wrap: wrap;
     gap: var(--ux-space-3);
     margin-top: var(--ux-space-7);
-  }
-
-  .result__actions :global(.btn--ghost) {
-    --btn-fg: var(--ux-on-dark);
-    --btn-border: var(--ux-border-dark);
-    --btn-bg-hover: rgb(255 255 255 / 0.08);
   }
 
   .result__note {

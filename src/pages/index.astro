@@ -51,11 +51,6 @@ const [before, after] = hero.headingHighlight && hero.heading.includes(hero.head
       </div>
       <div class="hero__visual" data-reveal>
         <ChatDemo demo={hero.demo} />
-        {hero.chips?.slice(0, 3).map((chip, i) => (
-          <span class={`hero__chip hero__chip--${i + 1} ${i % 2 ? "ux-float-alt" : "ux-float"}`} aria-hidden="true">
-            <Icon name="check" size={12} />{chip}
-          </span>
-        ))}
       </div>
     </div>
   </section>
@@ -190,35 +185,6 @@ const [before, after] = hero.headingHighlight && hero.heading.includes(hero.head
     color: var(--ux-teal-ink);
   }
 
-  .hero__visual {
-    position: relative;
-  }
-
-  .hero__chip {
-    position: absolute;
-    z-index: 3;
-    display: none;
-    align-items: center;
-    gap: 6px;
-    padding: 0.5rem 0.85rem;
-    border-radius: var(--ux-radius-pill);
-    background: var(--ux-navy-deep);
-    color: var(--ux-on-dark);
-    font-size: var(--ux-text-xs);
-    font-weight: 700;
-    white-space: nowrap;
-    box-shadow: var(--ux-shadow-md);
-  }
-
-  .hero__chip :global(.icon) {
-    color: var(--ux-teal);
-  }
-
-  .hero__chip--1 { top: -0.75rem; right: -0.5rem; }
-  .hero__chip--2 { top: 42%; left: -1.5rem; animation-delay: 0.8s; }
-  .hero__chip--3 { bottom: 4.5rem; left: 0.5rem; animation-delay: 1.4s; background: var(--ux-bg); color: var(--ux-navy-deep); }
-  .hero__chip--3 :global(.icon) { color: var(--ux-teal-ink); }
-
   .prompts {
     padding-block: var(--ux-space-8) var(--ux-section-y);
     overflow: hidden;
@@ -254,12 +220,6 @@ const [before, after] = hero.headingHighlight && hero.heading.includes(hero.head
     gap: var(--ux-space-2);
     font-weight: 700;
     text-decoration: none;
-  }
-
-  @media (min-width: 40rem) {
-    .hero__chip {
-      display: inline-flex;
-    }
   }
 
   @media (min-width: 64rem) {

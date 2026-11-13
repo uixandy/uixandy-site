@@ -4,7 +4,7 @@ import PageHero from "../components/PageHero.astro";
 import Section from "../components/Section.astro";
 import SectionHead from "../components/SectionHead.astro";
 import PackageCards from "../components/PackageCards.astro";
-import Steps from "../components/Steps.astro";
+import StepDeck from "../components/StepDeck.astro";
 import Faq from "../components/Faq.astro";
 import CtaBand from "../components/CtaBand.astro";
 import page from "../data/pages/preise.json";
@@ -30,7 +30,7 @@ const seo = resolveSeo(page);
 
   <Section id="buchen" tone="soft">
     <SectionHead kicker={page.process.kicker} heading={page.process.heading} lead={page.process.lead} />
-    <Steps items={page.process.items} />
+    <StepDeck items={page.process.items} />
   </Section>
 
   <Section id="faq" narrow>

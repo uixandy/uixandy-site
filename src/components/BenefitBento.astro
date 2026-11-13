@@ -6,7 +6,7 @@
 import Icon from "./Icon.astro";
 
 export interface Props {
-  items: { icon: string; title: string; text: string; visual?: string }[];
+  items: { title: string; text: string; visual?: string }[];
 }
 
 const { items } = Astro.props;
@@ -74,7 +74,6 @@ const { items } = Astro.props;
           )}
         </div>
         <div class="bento__body">
-          <span class="bento__icon"><Icon name={item.icon} size={22} /></span>
           <h3 class="bento__title">{item.title}</h3>
           <p class="bento__text">{item.text}</p>
         </div>
@@ -96,8 +95,9 @@ const { items } = Astro.props;
     display: flex;
     flex-direction: column;
     border-radius: var(--ux-radius-lg);
-    background: rgb(255 255 255 / 0.04);
-    border: 1px solid var(--ux-border-dark);
+    background: #072a40;
+    border: 1px solid rgb(255 255 255 / 0.1);
+    box-shadow: 0 24px 50px -30px rgb(0 0 0 / 0.7);
     overflow: hidden;
     transition:
       transform var(--ux-dur-hover) var(--ux-ease-out),
@@ -107,20 +107,20 @@ const { items } = Astro.props;
 
   .bento__card:hover {
     transform: translateY(var(--ux-lift-card));
-    border-color: rgb(0 195 160 / 0.45);
-    background: rgb(255 255 255 / 0.07);
+    border-color: rgb(0 195 160 / 0.5);
   }
 
   .bento__visual {
     position: relative;
     display: grid;
     place-items: center;
-    min-height: 11.5rem;
+    min-height: 12rem;
+    margin: 8px 8px 0;
     padding: var(--ux-space-5);
+    border-radius: calc(var(--ux-radius-lg) - 6px);
     background:
-      radial-gradient(18rem 10rem at 80% 0%, rgb(0 195 160 / 0.2), transparent 70%),
-      rgb(255 255 255 / 0.03);
-    border-bottom: 1px solid var(--ux-border-dark);
+      radial-gradient(18rem 11rem at 85% 0%, rgb(0 195 160 / 0.28), transparent 70%),
+      linear-gradient(160deg, #0b4d72, #083a57);
   }
 
   .bento__visual > * {
@@ -138,17 +138,7 @@ const { items } = Astro.props;
   .bento__body {
     display: grid;
     gap: var(--ux-space-3);
-    padding: var(--ux-space-5) var(--ux-space-5) var(--ux-space-6);
-  }
-
-  .bento__icon {
-    display: grid;
-    place-items: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 0.75rem;
-    background: rgb(0 195 160 / 0.14);
-    color: var(--ux-teal);
+    padding: var(--ux-space-5) var(--ux-space-6) var(--ux-space-6);
   }
 
   .bento__title {
@@ -157,7 +147,8 @@ const { items } = Astro.props;
   }
 
   .bento__text {
-    color: var(--ux-on-dark-muted);
+    color: #d2e0e7;
+    max-width: 30rem;
   }
 
   /* Mocks */
@@ -511,14 +502,13 @@ const { items } = Astro.props;
     .bento__card:nth-child(4n + 1) .bento__visual,
     .bento__card:nth-child(4n + 4) .bento__visual {
       flex: 1 1 52%;
-      border-bottom: 0;
-      border-left: 1px solid var(--ux-border-dark);
+      margin: 8px 8px 8px 0;
     }
 
     .bento__card:nth-child(4n + 1) .bento__body,
     .bento__card:nth-child(4n + 4) .bento__body {
       flex: 1 1 48%;
-      align-content: start;
+      align-content: center;
     }
   }
 </style>

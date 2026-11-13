@@ -1,0 +1,99 @@
+---
+/**
+ * Three photos: the middle one upright, the outer two tilted.
+ * On reveal the outer photos slide out from behind the middle one.
+ */
+export interface Props {
+  images: { image: string; alt: string }[];
+}
+
+const { images } = Astro.props;
+const photos = images.slice(0, 3);
+---
+
+<div class="fan" data-reveal>
+  {
+    photos.map((p, i) => (
+      <figure class={`fan__card fan__card--${i + 1}`}>
+        <img src={p.image} alt={p.alt} width="800" height="1000" loading="lazy" decoding="async" />
+      </figure>
+    ))
+  }
+</div>
+
+<style>
+  .fan {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: center;
+    max-width: 58rem;
+    margin-inline: auto;
+    padding-block: var(--ux-space-6) var(--ux-space-8);
+  }
+
+  .fan__card {
+    position: relative;
+    margin: 0;
+    aspect-ratio: 4 / 5;
+    border-radius: var(--ux-radius-lg);
+    overflow: hidden;
+    background: var(--ux-surface-2);
+    box-shadow: var(--ux-shadow-lg);
+    transition:
+      transform 0.9s var(--ux-ease-out),
+      box-shadow var(--ux-dur-hover) var(--ux-ease-out);
+  }
+
+  .fan__card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: scale 0.8s var(--ux-ease-out);
+  }
+
+  .fan__card--1 {
+    z-index: 1;
+    transform: translate(10%, 2.5rem) rotate(-8deg) scale(0.92);
+  }
+
+  .fan__card--2 {
+    z-index: 2;
+    transform: scale(1.08);
+  }
+
+  .fan__card--3 {
+    z-index: 1;
+    transform: translate(-10%, 2.5rem) rotate(8deg) scale(0.92);
+  }
+
+  .fan__card--1:hover {
+    transform: translate(4%, 1.75rem) rotate(-4deg) scale(0.95);
+  }
+
+  .fan__card--2:hover {
+    transform: scale(1.08) translateY(-6px);
+  }
+
+  .fan__card--3:hover {
+    transform: translate(-4%, 1.75rem) rotate(4deg) scale(0.95);
+  }
+
+  .fan__card:hover {
+    z-index: 3;
+    box-shadow: 0 34px 80px -24px rgb(0 33 53 / 0.45);
+  }
+
+  .fan__card:hover img {
+    scale: 1.04;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .js .fan:not(.is-revealed) .fan__card--1 {
+      transform: translateX(70%) scale(0.85);
+    }
+
+    .js .fan:not(.is-revealed) .fan__card--3 {
+      transform: translateX(-70%) scale(0.85);
+    }
+  }
+</style>
