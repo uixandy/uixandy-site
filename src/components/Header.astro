@@ -11,7 +11,7 @@ const isActive = (href: string) => href !== "/" && path.startsWith(href);
 <header class="site-header" data-header>
   <div class="container site-header__inner">
     <a href="/" class="site-header__logo" aria-label="uixandy Startseite">
-      <Logo animate />
+      <Logo tone="white" animate />
     </a>
 
     <nav class="site-nav" aria-label="Hauptnavigation">
@@ -30,7 +30,7 @@ const isActive = (href: string) => href !== "/" && path.startsWith(href);
           ))
         }
       </ul>
-      <Button href={site.primaryCta.href} variant="primary">{site.primaryCta.label}</Button>
+      <Button href={site.primaryCta.href} variant="light">{site.primaryCta.label}</Button>
     </nav>
 
     <button
@@ -58,7 +58,7 @@ const isActive = (href: string) => href !== "/" && path.startsWith(href);
         ))
       }
     </ul>
-    <Button href={site.primaryCta.href} variant="accent" size="lg" arrow>
+    <Button href={site.primaryCta.href} variant="light" size="lg" arrow>
       {site.primaryCta.label} starten
     </Button>
   </div>
@@ -93,44 +93,13 @@ const isActive = (href: string) => href !== "/" && path.startsWith(href);
     position: sticky;
     top: 0;
     z-index: 50;
-    margin-bottom: calc(-1 * var(--ux-header-h));
-    border-bottom: 1px solid transparent;
-    transition:
-      border-color var(--ux-dur) var(--ux-ease),
-      box-shadow var(--ux-dur) var(--ux-ease);
-  }
-
-  /* Glass on a pseudo-element: backdrop-filter on the header itself would trap the fixed mobile menu */
-  .site-header::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background: rgb(255 255 255 / 0.78);
-    backdrop-filter: saturate(1.6) blur(16px);
-    -webkit-backdrop-filter: saturate(1.6) blur(16px);
-    opacity: 0;
-    transition: opacity var(--ux-dur) var(--ux-ease);
-  }
-
-  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-    .site-header::before {
-      background: rgb(255 255 255 / 0.97);
-    }
-  }
-
-  .site-header.is-scrolled::before,
-  .site-header.is-open::before {
-    opacity: 1;
-  }
-
-  .site-header.is-open::before {
-    background: var(--ux-bg);
+    background: var(--ux-navy-deep);
+    color: var(--ux-on-dark);
+    transition: box-shadow var(--ux-dur) var(--ux-ease);
   }
 
   .site-header.is-scrolled {
-    border-bottom-color: rgb(0 75 118 / 0.08);
-    box-shadow: 0 6px 24px -12px rgb(0 33 53 / 0.18);
+    box-shadow: 0 8px 28px -14px rgb(0 33 53 / 0.6);
   }
 
   .site-header__inner {
@@ -162,7 +131,7 @@ const isActive = (href: string) => href !== "/" && path.startsWith(href);
 
   .site-nav__link {
     position: relative;
-    color: var(--ux-ink);
+    color: var(--ux-on-dark);
     font-weight: 700;
     font-size: var(--ux-text-sm);
     text-decoration: none;
@@ -183,8 +152,9 @@ const isActive = (href: string) => href !== "/" && path.startsWith(href);
     transition: transform var(--ux-dur) var(--ux-ease);
   }
 
-  .site-nav__link:hover {
-    color: var(--ux-navy);
+  .site-nav__link:hover,
+  .site-nav__link[aria-current="page"] {
+    color: var(--ux-teal);
   }
 
   .site-nav__link:hover::after,
@@ -200,7 +170,7 @@ const isActive = (href: string) => href !== "/" && path.startsWith(href);
     border: 0;
     border-radius: var(--ux-radius-sm);
     background: transparent;
-    color: var(--ux-navy);
+    color: var(--ux-on-dark);
     cursor: pointer;
   }
 
@@ -222,7 +192,7 @@ const isActive = (href: string) => href !== "/" && path.startsWith(href);
     justify-content: center;
     gap: var(--ux-space-7);
     padding: var(--ux-space-6);
-    background: var(--ux-bg);
+    background: var(--ux-navy-deep);
   }
 
   .mobile-menu[hidden] {
@@ -241,12 +211,12 @@ const isActive = (href: string) => href !== "/" && path.startsWith(href);
   .mobile-menu__list a {
     font-family: var(--ux-font-display);
     font-size: var(--ux-text-2xl);
-    color: var(--ux-navy-deep);
+    color: var(--ux-on-dark);
     text-decoration: none;
   }
 
   .mobile-menu__list a[aria-current="page"] {
-    color: var(--ux-teal-ink);
+    color: var(--ux-teal);
   }
 
   @media (min-width: 64rem) {
