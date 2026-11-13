@@ -93,16 +93,44 @@ const isActive = (href: string) => href !== "/" && path.startsWith(href);
     position: sticky;
     top: 0;
     z-index: 50;
-    background: var(--ux-bg);
+    margin-bottom: calc(-1 * var(--ux-header-h));
     border-bottom: 1px solid transparent;
     transition:
       border-color var(--ux-dur) var(--ux-ease),
       box-shadow var(--ux-dur) var(--ux-ease);
   }
 
+  /* Glass on a pseudo-element: backdrop-filter on the header itself would trap the fixed mobile menu */
+  .site-header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: rgb(255 255 255 / 0.78);
+    backdrop-filter: saturate(1.6) blur(16px);
+    -webkit-backdrop-filter: saturate(1.6) blur(16px);
+    opacity: 0;
+    transition: opacity var(--ux-dur) var(--ux-ease);
+  }
+
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .site-header::before {
+      background: rgb(255 255 255 / 0.97);
+    }
+  }
+
+  .site-header.is-scrolled::before,
+  .site-header.is-open::before {
+    opacity: 1;
+  }
+
+  .site-header.is-open::before {
+    background: var(--ux-bg);
+  }
+
   .site-header.is-scrolled {
-    border-bottom-color: var(--ux-border);
-    box-shadow: var(--ux-shadow-sm);
+    border-bottom-color: rgb(0 75 118 / 0.08);
+    box-shadow: 0 6px 24px -12px rgb(0 33 53 / 0.18);
   }
 
   .site-header__inner {
