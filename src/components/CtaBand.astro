@@ -19,8 +19,8 @@ const { heading, text, primary, secondary } = Astro.props;
       <h2>{heading}</h2>
       {text && <p>{text}</p>}
       <div class="cta-band__actions">
-        <Button href={primary.href} variant="accent" size="lg" arrow>{primary.label}</Button>
-        {secondary && <Button href={secondary.href} variant="light" size="lg">{secondary.label}</Button>}
+        <Button href={primary.href} variant="light" size="lg" arrow>{primary.label}</Button>
+        {secondary && <Button href={secondary.href} variant="ghost-light" size="lg">{secondary.label}</Button>}
       </div>
     </div>
   </div>

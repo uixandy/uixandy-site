@@ -50,7 +50,7 @@ Prices: Start 990 € netto, Individuell ab 1.490 €, Betreuung 39 €/Monat. N
 
 Do:
 - Use existing components: `Section`, `SectionHead`, `PageHero`, `Button`, `FeatureCards`, `Steps`, `PackageCards`, `Faq`, `CtaBand`, `Comparison`, `Testimonials`, `VideoBlock`, `ChatDemo`, `LegalPage`
-- One button component (`Button.astro`), variants primary / accent / ghost / light
+- One button component (`Button.astro`), variants primary / accent / ghost / light / ghost-light. On gradient or dark boxes: light (main action) + ghost-light (secondary)
 - Reveal on scroll via `data-reveal`; respect reduced motion
 
 Don't:

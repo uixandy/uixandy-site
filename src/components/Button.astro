@@ -7,7 +7,7 @@ import Icon from "./Icon.astro";
 
 export interface Props {
   href?: string;
-  variant?: "primary" | "accent" | "ghost" | "light";
+  variant?: "primary" | "accent" | "ghost" | "light" | "ghost-light";
   size?: "md" | "lg";
   arrow?: boolean;
   type?: "button" | "submit";
@@ -111,6 +111,13 @@ const classes = ["btn", `btn--${variant}`, `btn--${size}`, className];
     --btn-bg: var(--ux-on-dark);
     --btn-fg: var(--ux-navy-deep);
     --btn-bg-hover: var(--ux-surface-2);
+  }
+
+  .btn--ghost-light {
+    --btn-bg: transparent;
+    --btn-fg: var(--ux-on-dark);
+    --btn-bg-hover: rgb(255 255 255 / 0.12);
+    --btn-border: rgb(255 255 255 / 0.7);
   }
 
   .btn :global(.btn__arrow) {
