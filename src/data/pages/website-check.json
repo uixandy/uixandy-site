@@ -51,6 +51,25 @@
     "sendingLabel": "Wird gesendet …",
     "errorText": "Das hat leider nicht geklappt. Bitte versuchen Sie es noch einmal oder schreiben Sie uns direkt an info@uixandy.com."
   },
+  "analyze": {
+    "heading": "Wir schauen uns Ihre Website an",
+    "rowSystem": "System",
+    "rowPages": "Seiten",
+    "rowFeatures": "Funktionen",
+    "rowSpeed": "Ladezeit auf dem Handy",
+    "working": "Wird geprüft …",
+    "noSystem": "Kein bekanntes System erkannt",
+    "pagesSitemap": "Etwa {n} Seiten",
+    "pagesLinks": "Mindestens {n} verlinkte Seiten",
+    "pagesUnknown": "Nicht automatisch zählbar",
+    "noFeatures": "Keine besonderen Funktionen gefunden",
+    "speedScore": "{n} von 100 Punkten (Google PageSpeed)",
+    "speedUnknown": "Konnte gerade nicht gemessen werden",
+    "unreachable": "Wir konnten die Website gerade nicht erreichen. Kein Problem, wir schauen sie uns persönlich an.",
+    "disclaimer": "Das ist eine automatische, vorläufige Einschätzung. Wir prüfen jedes Projekt persönlich. Passt es nicht ins Paket, bekommen Sie ein Angebot oder die Anzahlung zurück, und innerhalb von 7 Tagen nach Zahlung können Sie ohne Angabe von Gründen zurücktreten.",
+    "prefilledNote": "Nach der Analyse vorausgewählt. Bitte kurz prüfen.",
+    "otherUrl": "Andere Adresse eingeben"
+  },
   "results": {
     "start": {
       "title": "Ihr Paket: Start",
@@ -67,7 +86,7 @@
     "shopNote": "Hinweis: Online-Shops bauen wir bewusst nicht. Alles andere schauen wir uns gerne an.",
     "depositLabel": "Anzahlung zahlen und starten",
     "callLabel": "15 Min. Gespräch buchen",
-    "refundNote": "Wir prüfen Ihre Angaben innerhalb von 48 Stunden. Passt das Projekt nicht ins Paket, bekommen Sie ein Angebot oder die Anzahlung komplett zurück.",
+    "refundNote": "Wir prüfen Ihre Angaben innerhalb von 48 Stunden. Passt das Projekt nicht ins Paket, bekommen Sie ein Angebot oder die Anzahlung komplett zurück. Und falls Sie es sich anders überlegen: Innerhalb von 7 Tagen nach Zahlung erstatten wir die Anzahlung ohne Angabe von Gründen.",
     "sentNote": "Ihre Angaben sind bei uns angekommen. Wir melden uns spätestens innerhalb von 48 Stunden."
   }
 }

@@ -511,6 +511,28 @@ content:
               - { name: submitLabel, label: Button-Text, type: string }
               - { name: sendingLabel, label: Button-Text beim Senden, type: string }
               - { name: errorText, label: Fehlermeldung, type: text }
+          - name: analyze
+            label: Website-Analyse (nach Frage 1)
+            type: object
+            description: "{n} wird automatisch durch die Zahl ersetzt."
+            fields:
+              - { name: heading, label: Überschrift während der Analyse, type: string }
+              - { name: rowSystem, label: Zeile System, type: string }
+              - { name: rowPages, label: Zeile Seiten, type: string }
+              - { name: rowFeatures, label: Zeile Funktionen, type: string }
+              - { name: rowSpeed, label: Zeile Ladezeit, type: string }
+              - { name: working, label: Text während der Prüfung, type: string }
+              - { name: noSystem, label: Kein System erkannt, type: string }
+              - { name: pagesSitemap, label: Seitenzahl aus Sitemap, type: string }
+              - { name: pagesLinks, label: Seitenzahl aus Links, type: string }
+              - { name: pagesUnknown, label: Seitenzahl unbekannt, type: string }
+              - { name: noFeatures, label: Keine Funktionen gefunden, type: string }
+              - { name: speedScore, label: Ladezeit-Ergebnis, type: string }
+              - { name: speedUnknown, label: Ladezeit nicht messbar, type: string }
+              - { name: unreachable, label: Website nicht erreichbar, type: text }
+              - { name: disclaimer, label: Hinweis unter der Analyse, type: text }
+              - { name: prefilledNote, label: Hinweis bei vorausgewählten Antworten, type: string }
+              - { name: otherUrl, label: Link andere Adresse, type: string }
           - name: results
             label: Ergebnis-Texte
             type: object

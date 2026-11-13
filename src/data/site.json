@@ -26,7 +26,8 @@
     "calUrl": "https://cal.com/PLATZHALTER-uixandy/15min",
     "stripeStart": "https://buy.stripe.com/PLATZHALTER-start",
     "stripeIndividuell": "https://buy.stripe.com/PLATZHALTER-individuell",
-    "formEndpoint": "https://formspree.io/f/mnjybldd"
+    "formEndpoint": "https://formspree.io/f/mnjybldd",
+    "analyzerUrl": "https://uixandy-analyzer.uixandy.workers.dev/"
   },
   "footerBlurb": "Websites für kleine Unternehmen, die Sie selbst pflegen, indem Sie Ihrer KI schreiben, was sich ändern soll. Gebaut in München.",
   "copyright": "© uixandy, Andreas Bittner"

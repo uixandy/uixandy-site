@@ -10,7 +10,9 @@ import packages from "../data/packages.json";
 import { resolveSeo } from "../lib/seo";
 
 const seo = resolveSeo(page);
-const { form, results } = page;
+const { form, results, analyze } = page;
+const featureLabels = Object.fromEntries(form.featuresOptions.map((o) => [o.value, o.label]));
+const analyzeTexts = { ...analyze, features: featureLabels };
 const pkg = Object.fromEntries(packages.items.map((p) => [p.id, p]));
 const outcomes = [
   { id: "start", ...results.start, pkg: pkg.start, stripe: site.booking.stripeStart },
@@ -24,7 +26,7 @@ const TOTAL = 5;
   <PageHero kicker={page.hero.kicker} heading={page.hero.heading} lead={page.hero.lead} />
 
   <Section flush="top" narrow>
-    <div class="wiz" data-wiz>
+    <div class="wiz" data-wiz data-analyzer={site.booking.analyzerUrl} data-analyze-texts={JSON.stringify(analyzeTexts)}>
       <div class="wiz__progress" aria-hidden="true">
         <span class="wiz__bar"><i data-bar /></span>
         <span class="wiz__count" data-count data-template={form.progressLabel} data-total={TOTAL}></span>
@@ -41,22 +43,53 @@ const TOTAL = 5;
         <input type="hidden" name="_subject" value="Neuer Website-Check (uixandy.com)" />
         <input type="hidden" name="interesse" value="" data-interest />
         <input type="hidden" name="empfehlung" value="" data-recommendation />
+        <input type="hidden" name="analyse" value="" data-analysis />
         <p class="check__hp" aria-hidden="true">
           <label>Nicht ausfüllen <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label>
         </p>
 
         <fieldset class="step" data-step="1">
-          <legend class="step__q">{form.websiteLabel}</legend>
-          <p class="step__hint">{form.websiteHint}</p>
-          <input class="field field--lg" type="text" name="website" placeholder={form.websitePlaceholder} inputmode="url" autocomplete="url" data-website />
-          <div class="step__actions">
-            <Button type="button" size="lg" arrow data-next>{form.nextLabel}</Button>
-            <button type="button" class="step__link" data-no-website>{form.noWebsiteLabel}</button>
+          <div data-url-panel>
+            <label class="step__q" for="check-website">{form.websiteLabel}</label>
+            <p class="step__hint">{form.websiteHint}</p>
+            <input id="check-website" class="field field--lg" type="text" name="website" placeholder={form.websitePlaceholder} inputmode="url" autocomplete="url" data-website />
+            <div class="step__actions">
+              <Button type="button" size="lg" arrow data-url-next>{form.nextLabel}</Button>
+              <button type="button" class="step__link" data-no-website>{form.noWebsiteLabel}</button>
+            </div>
+          </div>
+
+          <div class="an" data-analyze-panel hidden aria-live="polite">
+            <p class="step__q an__title">{analyze.heading}</p>
+            <p class="an__host" data-an-host></p>
+            <ul class="an__list">
+              {
+                [
+                  ["system", analyze.rowSystem],
+                  ["pages", analyze.rowPages],
+                  ["features", analyze.rowFeatures],
+                  ["speed", analyze.rowSpeed],
+                ].map(([key, label]) => (
+                  <li class="an__row" data-an-row={key}>
+                    <span class="an__state" aria-hidden="true"><i class="an__spin" /><Icon name="check" size={12} /></span>
+                    <span class="an__label">{label}</span>
+                    <span class="an__value" data-an-value>{analyze.working}</span>
+                  </li>
+                ))
+              }
+            </ul>
+            <p class="an__unreachable" data-an-unreachable hidden>{analyze.unreachable}</p>
+            <p class="an__note">{analyze.disclaimer}</p>
+            <div class="step__actions">
+              <Button type="button" size="lg" arrow data-next data-an-continue disabled>{form.nextLabel}</Button>
+              <button type="button" class="step__link" data-an-other>{analyze.otherUrl}</button>
+            </div>
           </div>
         </fieldset>
 
         <fieldset class="step" data-step="2">
           <legend class="step__q">{form.pagesLabel}</legend>
+          <p class="step__prefilled" data-prefilled-note hidden><Icon name="sparkle" size={16} />{analyze.prefilledNote}</p>
           <div class="options">
             {
               form.pagesOptions.map((o) => (
@@ -72,6 +105,7 @@ const TOTAL = 5;
         <fieldset class="step" data-step="3">
           <legend class="step__q">{form.featuresLabel}</legend>
           <p class="step__hint">{form.featuresHint}</p>
+          <p class="step__prefilled" data-prefilled-note hidden><Icon name="sparkle" size={16} />{analyze.prefilledNote}</p>
           <div class="options options--grid">
             {
               form.featuresOptions.map((o) => (
@@ -241,17 +275,139 @@ const TOTAL = 5;
       btn.addEventListener("click", () => show(current + 1)),
     );
 
-    form.querySelector("[data-no-website]")?.addEventListener("click", () => {
-      const input = form.querySelector<HTMLInputElement>("[data-website]");
-      if (input) input.value = "";
-      show(current + 1);
-    });
+    const urlInput = form.querySelector<HTMLInputElement>("[data-website]");
+    const urlPanel = form.querySelector<HTMLElement>("[data-url-panel]");
+    const anPanel = form.querySelector<HTMLElement>("[data-analyze-panel]");
+    const anContinue = form.querySelector<HTMLButtonElement>("[data-an-continue]");
+    const analysisField = form.querySelector<HTMLInputElement>("[data-analysis]");
+    const analyzerUrl = wiz.dataset.analyzer ?? "";
+    const t = JSON.parse(wiz.dataset.analyzeTexts ?? "{}");
+    let analyzedHost = "";
 
-    form.querySelector<HTMLInputElement>("[data-website]")?.addEventListener("keydown", (e) => {
+    const fill = (s: string, n: number | string) => String(s ?? "").replace("{n}", String(n));
+
+    const setRow = (key: string, value: string) => {
+      const row = anPanel?.querySelector<HTMLElement>(`[data-an-row="${key}"]`);
+      if (!row) return;
+      row.classList.add("is-done");
+      const v = row.querySelector<HTMLElement>("[data-an-value]");
+      if (v) v.textContent = value;
+    };
+
+    const prefill = (data: any) => {
+      const pages = typeof data.pages === "number" ? data.pages : null;
+      const bucket = pages === null ? "" : pages <= 6 ? "bis-6" : pages <= 15 ? "7-15" : "ueber-15";
+      if (bucket) {
+        const radio = form.querySelector<HTMLInputElement>(`input[name="seiten"][value="${bucket}"]`);
+        if (radio) radio.checked = true;
+        steps[1]?.querySelector<HTMLElement>("[data-prefilled-note]")?.removeAttribute("hidden");
+      }
+      const found: string[] = Array.isArray(data.features) ? data.features : [];
+      let any = false;
+      form.querySelectorAll<HTMLInputElement>("[data-feature]").forEach((box) => {
+        if (found.includes(box.value)) {
+          box.checked = true;
+          any = true;
+        }
+      });
+      if (any) {
+        steps[2]?.querySelector<HTMLElement>("[data-prefilled-note]")?.removeAttribute("hidden");
+        form.querySelector("[data-feature]")?.dispatchEvent(new Event("change"));
+      }
+    };
+
+    const runAnalysis = async (raw: string) => {
+      if (!urlPanel || !anPanel || !anContinue) return;
+      urlPanel.hidden = true;
+      anPanel.hidden = false;
+      anContinue.disabled = true;
+      anPanel.querySelectorAll<HTMLElement>("[data-an-row]").forEach((row) => {
+        row.classList.remove("is-done");
+        const v = row.querySelector<HTMLElement>("[data-an-value]");
+        if (v) v.textContent = t.working ?? "";
+      });
+      anPanel.querySelector<HTMLElement>("[data-an-unreachable]")?.setAttribute("hidden", "");
+      const hostEl = anPanel.querySelector<HTMLElement>("[data-an-host]");
+      if (hostEl) hostEl.textContent = raw.replace(/^https?:\/\//i, "").replace(/\/.*$/, "");
+
+      let data: any = null;
+      try {
+        const ctrl = new AbortController();
+        const timer = window.setTimeout(() => ctrl.abort(), 35000);
+        const res = await fetch(`${analyzerUrl}?url=${encodeURIComponent(raw)}`, { signal: ctrl.signal });
+        window.clearTimeout(timer);
+        if (res.ok) data = await res.json();
+      } catch {
+        data = null;
+      }
+
+      if (!data?.reachable) {
+        anPanel.querySelectorAll<HTMLElement>("[data-an-row]").forEach((row) => row.setAttribute("hidden", ""));
+        anPanel.querySelector<HTMLElement>("[data-an-unreachable]")?.removeAttribute("hidden");
+        if (analysisField) analysisField.value = "nicht erreichbar";
+      } else {
+        anPanel.querySelectorAll<HTMLElement>("[data-an-row]").forEach((row) => row.removeAttribute("hidden"));
+        const pause = reduced ? 0 : 350;
+        const featureText = (data.features ?? []).map((f: string) => t.features?.[f] ?? f).join(", ");
+        const rows: [string, string][] = [
+          ["system", data.cms?.label ?? t.noSystem],
+          ["pages", typeof data.pages === "number" ? fill(t.pagesSitemap, data.pages) : data.linkedPages ? fill(t.pagesLinks, data.linkedPages) : t.pagesUnknown],
+          ["features", featureText || t.noFeatures],
+          ["speed", data.speed?.score != null ? fill(t.speedScore, data.speed.score) : t.speedUnknown],
+        ];
+        for (const [key, value] of rows) {
+          setRow(key, value);
+          if (pause) await new Promise((r) => window.setTimeout(r, pause));
+        }
+        prefill(data);
+        if (analysisField) {
+          analysisField.value = [
+            `System: ${data.cms?.label ?? "unbekannt"}`,
+            `Seiten: ${data.pages ?? "?"} (Sitemap), ${data.linkedPages ?? "?"} verlinkt`,
+            `Funktionen: ${featureText || "keine"}`,
+            `Sprachen: ${data.languages ?? 1}`,
+            `PageSpeed mobil: ${data.speed?.score ?? "?"}`,
+          ].join(" | ");
+        }
+      }
+      analyzedHost = raw;
+      anContinue.disabled = false;
+      anContinue.focus({ preventScroll: true });
+    };
+
+    const onUrlNext = () => {
+      const raw = urlInput?.value.trim() ?? "";
+      if (!raw || !analyzerUrl) {
+        show(current + 1);
+        return;
+      }
+      if (raw === analyzedHost && anPanel) {
+        urlPanel?.setAttribute("hidden", "");
+        anPanel.hidden = false;
+        return;
+      }
+      runAnalysis(raw);
+    };
+
+    form.querySelector("[data-url-next]")?.addEventListener("click", onUrlNext);
+
+    urlInput?.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
         e.preventDefault();
-        show(current + 1);
+        onUrlNext();
       }
+    });
+
+    form.querySelector("[data-an-other]")?.addEventListener("click", () => {
+      if (anPanel) anPanel.hidden = true;
+      if (urlPanel) urlPanel.hidden = false;
+      urlInput?.focus();
+    });
+
+    form.querySelector("[data-no-website]")?.addEventListener("click", () => {
+      if (urlInput) urlInput.value = "";
+      if (analysisField) analysisField.value = "";
+      show(current + 1);
     });
 
     form.querySelectorAll<HTMLInputElement>("[data-auto]").forEach((input) =>
@@ -470,8 +626,145 @@ const TOTAL = 5;
   }
 
   .wiz:not(.is-wizard) :global([data-next]),
+  .wiz:not(.is-wizard) :global([data-url-next]),
   .wiz:not(.is-wizard) .step__link {
     display: none;
+  }
+
+  .step__prefilled {
+    display: flex;
+    align-items: center;
+    gap: var(--ux-space-2);
+    margin: 0 0 var(--ux-space-4);
+    font-size: var(--ux-text-sm);
+    font-weight: 600;
+    color: var(--ux-teal-ink);
+  }
+
+  .step__prefilled[hidden],
+  .an[hidden],
+  .an__row[hidden],
+  .an__unreachable[hidden],
+  [data-url-panel][hidden] {
+    display: none;
+  }
+
+  .an__title {
+    margin-bottom: var(--ux-space-2);
+  }
+
+  .an__host {
+    clear: both;
+    margin: 0 0 var(--ux-space-5);
+    font-weight: 700;
+    color: var(--ux-teal-ink);
+    word-break: break-all;
+  }
+
+  .an__list {
+    display: grid;
+    gap: var(--ux-space-2);
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .an__row {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: var(--ux-space-1) var(--ux-space-3);
+    padding: var(--ux-space-3) var(--ux-space-4);
+    border: 1px solid var(--ux-border);
+    border-radius: var(--ux-radius-md);
+    background: #fff;
+    transition: border-color var(--ux-dur-hover) var(--ux-ease-out), background var(--ux-dur-hover) var(--ux-ease-out);
+  }
+
+  .an__row.is-done {
+    border-color: rgb(0 134 111 / 0.35);
+  }
+
+  .an__state {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 1.375rem;
+    height: 1.375rem;
+    grid-row: span 2;
+  }
+
+  .an__spin {
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--ux-border);
+    border-top-color: var(--ux-teal-ink);
+    border-radius: 50%;
+    animation: an-spin 0.9s linear infinite;
+  }
+
+  .an__state :global(svg) {
+    position: absolute;
+    opacity: 0;
+    color: #fff;
+  }
+
+  .an__row.is-done .an__spin {
+    border-color: var(--ux-teal-ink);
+    background: var(--ux-teal-ink);
+    animation: none;
+  }
+
+  .an__row.is-done .an__state :global(svg) {
+    opacity: 1;
+    animation: ux-reveal 0.4s var(--ux-ease-out) backwards;
+  }
+
+  .an__label {
+    font-size: var(--ux-text-sm);
+    color: var(--ux-muted);
+  }
+
+  .an__value {
+    font-weight: 700;
+    color: var(--ux-navy-deep);
+  }
+
+  .an__row:not(.is-done) .an__value {
+    font-weight: 400;
+    color: var(--ux-muted);
+  }
+
+  .an__unreachable {
+    margin: 0;
+    font-weight: 600;
+    color: var(--ux-navy-deep);
+  }
+
+  .an__note {
+    margin: var(--ux-space-5) 0 0;
+    padding: var(--ux-space-4);
+    border-radius: var(--ux-radius-md);
+    background: var(--ux-surface);
+    font-size: var(--ux-text-sm);
+    color: var(--ux-navy-deep);
+  }
+
+  .an :global(button[disabled]) {
+    opacity: 0.45;
+    pointer-events: none;
+  }
+
+  @keyframes an-spin {
+    to {
+      rotate: 360deg;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .an__spin {
+      animation-duration: 2.4s;
+    }
   }
 
   .step__link {
