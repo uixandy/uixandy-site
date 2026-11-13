@@ -6,7 +6,9 @@ import Button from "../components/Button.astro";
 import Icon from "../components/Icon.astro";
 import ChatDemo from "../components/ChatDemo.astro";
 import FeatureCards from "../components/FeatureCards.astro";
-import Steps from "../components/Steps.astro";
+import StepDeck from "../components/StepDeck.astro";
+import PromptMarquee from "../components/PromptMarquee.astro";
+import BenefitBento from "../components/BenefitBento.astro";
 import VideoBlock from "../components/VideoBlock.astro";
 import PackageCards from "../components/PackageCards.astro";
 import Testimonials from "../components/Testimonials.astro";
@@ -49,8 +51,21 @@ const [before, after] = hero.headingHighlight && hero.heading.includes(hero.head
       </div>
       <div class="hero__visual" data-reveal>
         <ChatDemo demo={hero.demo} />
+        {hero.chips?.slice(0, 3).map((chip, i) => (
+          <span class={`hero__chip hero__chip--${i + 1} ${i % 2 ? "ux-float-alt" : "ux-float"}`} aria-hidden="true">
+            <Icon name="check" size={12} />{chip}
+          </span>
+        ))}
       </div>
     </div>
+  </section>
+
+  <section class="prompts" aria-labelledby="prompts-heading">
+    <div class="container prompts__head" data-reveal>
+      <p class="prompts__kicker">{home.prompts.kicker}</p>
+      <h2 id="prompts-heading" class="prompts__heading">{home.prompts.heading}</h2>
+    </div>
+    <PromptMarquee rowA={home.prompts.rowA} rowB={home.prompts.rowB} />
   </section>
 
   <Section id="problem" tone="soft">
@@ -60,7 +75,7 @@ const [before, after] = hero.headingHighlight && hero.heading.includes(hero.head
 
   <Section id="so-gehts">
     <SectionHead kicker={home.how.kicker} heading={home.how.heading} lead={home.how.lead || undefined} />
-    <Steps items={home.how.items} />
+    <StepDeck items={home.how.items} />
     <p class="section-link">
       <a href="/so-funktionierts/">{home.how.linkLabel} <Icon name="arrowRight" size={16} /></a>
     </p>
@@ -78,7 +93,7 @@ const [before, after] = hero.headingHighlight && hero.heading.includes(hero.head
 
   <Section id="vorteile" tone="dark">
     <SectionHead kicker={home.benefits.kicker} heading={home.benefits.heading} tone="dark" />
-    <FeatureCards items={home.benefits.items} tone="dark" />
+    <BenefitBento items={home.benefits.items} />
   </Section>
 
   <Section id="preise">
@@ -175,6 +190,60 @@ const [before, after] = hero.headingHighlight && hero.heading.includes(hero.head
     color: var(--ux-teal-ink);
   }
 
+  .hero__visual {
+    position: relative;
+  }
+
+  .hero__chip {
+    position: absolute;
+    z-index: 3;
+    display: none;
+    align-items: center;
+    gap: 6px;
+    padding: 0.5rem 0.85rem;
+    border-radius: var(--ux-radius-pill);
+    background: var(--ux-navy-deep);
+    color: var(--ux-on-dark);
+    font-size: var(--ux-text-xs);
+    font-weight: 700;
+    white-space: nowrap;
+    box-shadow: var(--ux-shadow-md);
+  }
+
+  .hero__chip :global(.icon) {
+    color: var(--ux-teal);
+  }
+
+  .hero__chip--1 { top: -0.75rem; right: -0.5rem; }
+  .hero__chip--2 { top: 42%; left: -1.5rem; animation-delay: 0.8s; }
+  .hero__chip--3 { bottom: 4.5rem; left: 0.5rem; animation-delay: 1.4s; background: var(--ux-bg); color: var(--ux-navy-deep); }
+  .hero__chip--3 :global(.icon) { color: var(--ux-teal-ink); }
+
+  .prompts {
+    padding-block: var(--ux-space-8) var(--ux-section-y);
+    overflow: hidden;
+  }
+
+  .prompts__head {
+    margin-bottom: var(--ux-space-6);
+    text-align: center;
+  }
+
+  .prompts__kicker {
+    color: var(--ux-teal-ink);
+    font-weight: 700;
+    font-size: var(--ux-text-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .prompts__heading {
+    max-width: 40rem;
+    margin: var(--ux-space-3) auto 0;
+    font-size: var(--ux-text-2xl);
+    color: var(--ux-navy-deep);
+  }
+
   .section-link {
     margin-top: var(--ux-space-7);
   }
@@ -185,6 +254,12 @@ const [before, after] = hero.headingHighlight && hero.heading.includes(hero.head
     gap: var(--ux-space-2);
     font-weight: 700;
     text-decoration: none;
+  }
+
+  @media (min-width: 40rem) {
+    .hero__chip {
+      display: inline-flex;
+    }
   }
 
   @media (min-width: 64rem) {

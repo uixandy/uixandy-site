@@ -40,15 +40,29 @@ const { items, columns = 3, tone = "light" } = Astro.props;
     background: var(--ux-bg);
     border: 1px solid var(--ux-border);
     transition:
-      transform var(--ux-dur) var(--ux-ease),
-      box-shadow var(--ux-dur) var(--ux-ease),
-      border-color var(--ux-dur) var(--ux-ease);
+      transform var(--ux-dur-hover) var(--ux-ease-out),
+      box-shadow var(--ux-dur-hover) var(--ux-ease-out),
+      border-color var(--ux-dur-hover) var(--ux-ease-out),
+      background-color var(--ux-dur-hover) var(--ux-ease-out);
   }
 
   .card:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--ux-shadow-md);
+    transform: translateY(var(--ux-lift-card));
+    box-shadow: var(--ux-shadow-card-hover);
     border-color: transparent;
+  }
+
+  .card__icon {
+    transition:
+      transform var(--ux-dur-hover) var(--ux-ease-out),
+      background-color var(--ux-dur-hover) var(--ux-ease-out),
+      color var(--ux-dur-hover) var(--ux-ease-out);
+  }
+
+  .card:hover .card__icon {
+    transform: rotate(-6deg) scale(1.06);
+    background: var(--ux-gradient);
+    color: var(--ux-on-dark);
   }
 
   .card__icon {

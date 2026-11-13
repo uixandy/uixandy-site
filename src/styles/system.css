@@ -215,25 +215,55 @@ p {
 
 /* Scroll reveal (paired with src/scripts/reveal.ts) */
 
+/* Keyframes animate `translate`, not `transform`, so hover lifts on the same element stay free */
+@keyframes ux-reveal {
+  from {
+    opacity: 0;
+    translate: 0 22px;
+  }
+}
+
+@keyframes ux-float {
+  50% { translate: 0 -7px; }
+}
+
+@keyframes ux-float-alt {
+  50% { translate: 0 6px; }
+}
+
+@keyframes ux-pulse {
+  0%, 100% { opacity: 0.55; scale: 1; }
+  50% { opacity: 1; scale: 1.08; }
+}
+
+@keyframes ux-ping {
+  from { opacity: 0.7; scale: 1; }
+  to { opacity: 0; scale: 2.4; }
+}
+
+@keyframes ux-marquee {
+  to { transform: translateX(-50%); }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .js [data-reveal]:not(.is-revealed),
   .js [data-reveal-stagger]:not(.is-revealed) > * {
     opacity: 0;
-    transform: translate3d(0, 18px, 0);
   }
 
-  [data-reveal],
-  [data-reveal-stagger] > * {
-    transition:
-      opacity var(--ux-dur-slow) var(--ux-ease),
-      transform var(--ux-dur-slow) var(--ux-ease);
+  [data-reveal].is-revealed,
+  [data-reveal-stagger].is-revealed > * {
+    animation: ux-reveal 0.8s var(--ux-ease-out) backwards;
   }
 
-  [data-reveal-stagger].is-revealed > :nth-child(2) { transition-delay: 70ms; }
-  [data-reveal-stagger].is-revealed > :nth-child(3) { transition-delay: 140ms; }
-  [data-reveal-stagger].is-revealed > :nth-child(4) { transition-delay: 210ms; }
-  [data-reveal-stagger].is-revealed > :nth-child(5) { transition-delay: 280ms; }
-  [data-reveal-stagger].is-revealed > :nth-child(6) { transition-delay: 350ms; }
+  [data-reveal-stagger].is-revealed > :nth-child(2) { animation-delay: 80ms; }
+  [data-reveal-stagger].is-revealed > :nth-child(3) { animation-delay: 160ms; }
+  [data-reveal-stagger].is-revealed > :nth-child(4) { animation-delay: 240ms; }
+  [data-reveal-stagger].is-revealed > :nth-child(5) { animation-delay: 320ms; }
+  [data-reveal-stagger].is-revealed > :nth-child(6) { animation-delay: 400ms; }
+
+  .ux-float { animation: ux-float 5.5s ease-in-out infinite; }
+  .ux-float-alt { animation: ux-float-alt 6.2s ease-in-out infinite; }
 }
 
 @media (prefers-reduced-motion: reduce) {

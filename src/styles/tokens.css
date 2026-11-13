@@ -89,4 +89,10 @@
   --ux-dur-fast: 160ms;
   --ux-dur: 320ms;
   --ux-dur-slow: 640ms;
+  --ux-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ux-dur-hover: 420ms;
+  --ux-lift: -2px;
+  --ux-lift-card: -6px;
+  --ux-shadow-btn: 0 12px 26px -10px rgb(0 33 53 / 0.45);
+  --ux-shadow-card-hover: 0 28px 60px -24px rgb(0 33 53 / 0.35);
 }

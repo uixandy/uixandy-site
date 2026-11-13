@@ -71,21 +71,26 @@ const classes = ["btn", `btn--${variant}`, `btn--${size}`, className];
     line-height: 1.2;
     text-decoration: none;
     cursor: pointer;
+    will-change: transform;
     transition:
-      background-color var(--ux-dur-fast) var(--ux-ease),
-      border-color var(--ux-dur-fast) var(--ux-ease),
-      color var(--ux-dur-fast) var(--ux-ease),
-      transform var(--ux-dur-fast) var(--ux-ease);
+      background-color var(--ux-dur-hover) var(--ux-ease-out),
+      border-color var(--ux-dur-hover) var(--ux-ease-out),
+      color var(--ux-dur-hover) var(--ux-ease-out),
+      box-shadow var(--ux-dur-hover) var(--ux-ease-out),
+      transform var(--ux-dur-hover) var(--ux-ease-out);
   }
 
   .btn:hover {
     background: var(--btn-bg-hover);
     color: var(--btn-fg);
-    transform: translateY(-1px);
+    transform: translateY(var(--ux-lift));
+    box-shadow: var(--btn-shadow, var(--ux-shadow-btn));
   }
 
   .btn:active {
     transform: translateY(0);
+    box-shadow: none;
+    transition-duration: 120ms;
   }
 
   .btn--lg {
@@ -105,6 +110,7 @@ const classes = ["btn", `btn--${variant}`, `btn--${size}`, className];
     --btn-fg: var(--ux-navy);
     --btn-bg-hover: var(--ux-surface);
     --btn-border: var(--ux-border);
+    --btn-shadow: 0 10px 24px -14px rgb(0 33 53 / 0.3);
   }
 
   .btn--light {
@@ -118,10 +124,16 @@ const classes = ["btn", `btn--${variant}`, `btn--${size}`, className];
     --btn-fg: var(--ux-on-dark);
     --btn-bg-hover: rgb(255 255 255 / 0.12);
     --btn-border: rgb(255 255 255 / 0.7);
+    --btn-shadow: none;
+  }
+
+  .btn--light,
+  .btn--accent {
+    --btn-shadow: 0 14px 30px -12px rgb(0 0 0 / 0.35);
   }
 
   .btn :global(.btn__arrow) {
-    transition: transform var(--ux-dur-fast) var(--ux-ease);
+    transition: transform var(--ux-dur-hover) var(--ux-ease-out);
   }
 
   .btn:hover :global(.btn__arrow) {

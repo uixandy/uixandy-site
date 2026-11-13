@@ -173,6 +173,18 @@ content:
                   - { name: statusPending, label: Status während Veröffentlichung, type: string }
                   - { name: statusLive, label: Status nach Veröffentlichung, type: string }
                   - { name: caption, label: Bildunterschrift, type: string }
+              - name: chips
+                label: Schwebende Hinweise neben der Chat-Animation (max. 3)
+                type: string
+                list: true
+          - name: prompts
+            label: Bereich Beispiel-Nachrichten (Laufband)
+            type: object
+            fields:
+              - { name: kicker, label: Kleine Überschrift, type: string }
+              - { name: heading, label: Überschrift, type: string }
+              - { name: rowA, label: Nachrichten obere Reihe, type: string, list: true }
+              - { name: rowB, label: Nachrichten untere Reihe, type: string, list: true }
           - name: problem
             label: Bereich Probleme
             type: object
@@ -188,7 +200,21 @@ content:
               - { name: kicker, label: Kleine Überschrift, type: string }
               - { name: heading, label: Überschrift, type: string }
               - { name: lead, label: Einleitungstext, type: text }
-              - { name: items, component: steps }
+              - name: items
+                label: Schritte (gestapelte Karten)
+                type: object
+                list: true
+                fields:
+                  - { name: title, label: Titel, type: string }
+                  - { name: text, label: Text, type: text }
+                  - name: example
+                    label: Beispiel-Nachricht (optional)
+                    type: string
+                    description: "Erscheint als Chat-Blase. Leer lassen = keine Blase."
+                  - name: tags
+                    label: Schwebende Stichworte auf der Grafik (max. 4)
+                    type: string
+                    list: true
               - { name: linkLabel, label: Link-Text zur Detailseite, type: string }
           - name: video
             label: Bereich Video
@@ -210,7 +236,26 @@ content:
               - { name: kicker, label: Kleine Überschrift, type: string }
               - { name: heading, label: Überschrift, type: string }
               - { name: lead, label: Einleitungstext, type: text }
-              - { name: items, component: cards }
+              - name: items
+                label: Vorteile (Kacheln)
+                type: object
+                list: true
+                fields:
+                  - { name: icon, component: icon }
+                  - { name: title, label: Titel, type: string }
+                  - { name: text, label: Text, type: text }
+                  - name: visual
+                    label: Grafik oben in der Kachel
+                    type: select
+                    options:
+                      values:
+                        - { value: chat, label: Chat mit Antwort }
+                        - { value: shield, label: Schutzschild }
+                        - { value: versions, label: Versionen }
+                        - { value: owner, label: Ihr Konto }
+                        - { value: speed, label: Ladezeit-Balken }
+                        - { value: editor, label: Editor }
+                        - { value: none, label: Keine Grafik }
           - name: pricing
             label: Bereich Preise (Pakete selbst unter "Pakete und Preise")
             type: object

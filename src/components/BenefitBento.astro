@@ -1,0 +1,524 @@
+---
+/**
+ * Bento grid for the dark benefits section. Each card picks a decorative mock via `visual`.
+ * Mock strings are UI decoration (aria-hidden), not claims.
+ */
+import Icon from "./Icon.astro";
+
+export interface Props {
+  items: { icon: string; title: string; text: string; visual?: string }[];
+}
+
+const { items } = Astro.props;
+---
+
+<ul class="bento" data-reveal-stagger>
+  {
+    items.map((item) => (
+      <li class="bento__card">
+        <div class={`bento__visual bento__visual--${item.visual || "none"}`} aria-hidden="true">
+          {item.visual === "chat" && (
+            <div class="bv-chat">
+              <p class="bv-chat__user">Neues Foto für die Startseite, bitte.</p>
+              <p class="bv-chat__ai">
+                <span class="bv-chat__typing"><i /><i /><i /></span>
+                <span class="bv-chat__done"><Icon name="check" size={12} /> Erledigt</span>
+              </p>
+            </div>
+          )}
+          {item.visual === "shield" && (
+            <div class="bv-shield">
+              <span class="bv-shield__core"><Icon name="shield" size={34} /></span>
+              <span class="bv-shield__ring" />
+              <ul class="bv-shield__gone">
+                <li>WordPress</li>
+                <li>Plugins</li>
+                <li>Datenbank</li>
+              </ul>
+            </div>
+          )}
+          {item.visual === "versions" && (
+            <ol class="bv-versions">
+              <li class="is-now"><b>Jetzt</b> Neues Teamfoto <span class="bv-versions__undo"><Icon name="undo" size={14} /> Zurück</span></li>
+              <li><b>Gestern</b> Öffnungszeiten</li>
+              <li><b>Vor 1 Woche</b> Preisliste</li>
+            </ol>
+          )}
+          {item.visual === "owner" && (
+            <div class="bv-owner">
+              <p class="bv-owner__head"><Icon name="key" size={18} /> Ihr Konto</p>
+              <ul>
+                <li>Website <Icon name="check" size={12} /></li>
+                <li>Texte <Icon name="check" size={12} /></li>
+                <li>Bilder <Icon name="check" size={12} /></li>
+              </ul>
+            </div>
+          )}
+          {item.visual === "speed" && (
+            <div class="bv-speed">
+              <p>Ihre Website</p>
+              <span class="bv-speed__bar bv-speed__bar--fast"><i /></span>
+              <p>Typische WordPress-Seite</p>
+              <span class="bv-speed__bar bv-speed__bar--slow"><i /></span>
+            </div>
+          )}
+          {item.visual === "editor" && (
+            <div class="bv-editor">
+              <p class="bv-editor__label">Überschrift</p>
+              <p class="bv-editor__field">Willkommen im Salon Mira<span class="bv-editor__caret" /></p>
+              <div class="bv-editor__row">
+                <span class="bv-editor__img"><Icon name="paintBrush" size={18} /></span>
+                <span class="bv-editor__save">Speichern</span>
+              </div>
+            </div>
+          )}
+        </div>
+        <div class="bento__body">
+          <span class="bento__icon"><Icon name={item.icon} size={22} /></span>
+          <h3 class="bento__title">{item.title}</h3>
+          <p class="bento__text">{item.text}</p>
+        </div>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .bento {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--ux-space-4);
+  }
+
+  .bento__card {
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--ux-radius-lg);
+    background: rgb(255 255 255 / 0.04);
+    border: 1px solid var(--ux-border-dark);
+    overflow: hidden;
+    transition:
+      transform var(--ux-dur-hover) var(--ux-ease-out),
+      border-color var(--ux-dur-hover) var(--ux-ease-out),
+      background-color var(--ux-dur-hover) var(--ux-ease-out);
+  }
+
+  .bento__card:hover {
+    transform: translateY(var(--ux-lift-card));
+    border-color: rgb(0 195 160 / 0.45);
+    background: rgb(255 255 255 / 0.07);
+  }
+
+  .bento__visual {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 11.5rem;
+    padding: var(--ux-space-5);
+    background:
+      radial-gradient(18rem 10rem at 80% 0%, rgb(0 195 160 / 0.2), transparent 70%),
+      rgb(255 255 255 / 0.03);
+    border-bottom: 1px solid var(--ux-border-dark);
+  }
+
+  .bento__visual > * {
+    transition: transform 0.6s var(--ux-ease-out);
+  }
+
+  .bento__card:hover .bento__visual > * {
+    transform: scale(1.04);
+  }
+
+  .bento__visual--none {
+    display: none;
+  }
+
+  .bento__body {
+    display: grid;
+    gap: var(--ux-space-3);
+    padding: var(--ux-space-5) var(--ux-space-5) var(--ux-space-6);
+  }
+
+  .bento__icon {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.75rem;
+    background: rgb(0 195 160 / 0.14);
+    color: var(--ux-teal);
+  }
+
+  .bento__title {
+    font-size: var(--ux-text-xl);
+    color: var(--ux-on-dark);
+  }
+
+  .bento__text {
+    color: var(--ux-on-dark-muted);
+  }
+
+  /* Mocks */
+
+  .bv-chat {
+    display: grid;
+    gap: 10px;
+    width: min(100%, 20rem);
+    font-size: var(--ux-text-sm);
+  }
+
+  .bv-chat__user {
+    justify-self: end;
+    padding: 9px 13px;
+    border-radius: 14px 14px 4px 14px;
+    background: var(--ux-teal);
+    color: var(--ux-navy-deep);
+    font-weight: 700;
+  }
+
+  .bv-chat__ai {
+    position: relative;
+    justify-self: start;
+    min-width: 7.5rem;
+    height: 2.4rem;
+    border-radius: 14px 14px 14px 4px;
+    background: rgb(255 255 255 / 0.1);
+    color: var(--ux-on-dark);
+  }
+
+  .bv-chat__typing,
+  .bv-chat__done {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .bv-chat__typing i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--ux-on-dark-muted);
+  }
+
+  .bv-chat__done {
+    opacity: 0;
+    font-weight: 700;
+    color: var(--ux-teal);
+  }
+
+  .bv-shield {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    gap: var(--ux-space-4);
+  }
+
+  .bv-shield__core {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background: var(--ux-gradient);
+    color: var(--ux-on-dark);
+  }
+
+  .bv-shield__ring {
+    position: absolute;
+    top: 0;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    border: 2px solid var(--ux-teal);
+    opacity: 0;
+  }
+
+  .bv-shield__gone {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .bv-shield__gone li {
+    padding: 4px 10px;
+    border-radius: 99px;
+    border: 1px solid var(--ux-border-dark);
+    color: var(--ux-on-dark-muted);
+    font-size: var(--ux-text-xs);
+    text-decoration: line-through;
+    text-decoration-color: var(--ux-teal);
+  }
+
+  .bv-versions {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 14px;
+    display: grid;
+    gap: 8px;
+    width: min(100%, 19rem);
+    border-left: 2px solid var(--ux-border-dark);
+    font-size: var(--ux-text-xs);
+    color: var(--ux-on-dark-muted);
+  }
+
+  .bv-versions li {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 10px;
+    border-radius: 9px;
+    background: rgb(255 255 255 / 0.05);
+  }
+
+  .bv-versions li::before {
+    content: "";
+    position: absolute;
+    left: -21px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--ux-navy);
+    border: 2px solid var(--ux-navy-deep);
+  }
+
+  .bv-versions li.is-now::before {
+    background: var(--ux-teal);
+  }
+
+  .bv-versions b {
+    color: var(--ux-on-dark);
+  }
+
+  .bv-versions__undo {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: auto;
+    padding: 2px 8px;
+    border-radius: 99px;
+    background: var(--ux-teal);
+    color: var(--ux-navy-deep);
+    font-weight: 700;
+  }
+
+  .bv-owner {
+    width: min(100%, 15rem);
+    padding: 14px;
+    border-radius: var(--ux-radius-md);
+    background: var(--ux-bg);
+    color: var(--ux-navy-deep);
+    box-shadow: 0 20px 40px -20px rgb(0 0 0 / 0.6);
+  }
+
+  .bv-owner__head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+
+  .bv-owner__head :global(.icon) {
+    color: var(--ux-teal-ink);
+  }
+
+  .bv-owner ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 6px;
+    font-size: var(--ux-text-xs);
+  }
+
+  .bv-owner li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: 8px;
+    background: var(--ux-surface);
+  }
+
+  .bv-owner li :global(.icon) {
+    color: var(--ux-teal-ink);
+  }
+
+  .bv-speed {
+    display: grid;
+    gap: 6px;
+    width: min(100%, 22rem);
+    font-size: var(--ux-text-xs);
+    color: var(--ux-on-dark-muted);
+  }
+
+  .bv-speed p:nth-of-type(2) {
+    margin-top: 8px;
+  }
+
+  .bv-speed__bar {
+    display: block;
+    height: 10px;
+    border-radius: 99px;
+    background: rgb(255 255 255 / 0.08);
+    overflow: hidden;
+  }
+
+  .bv-speed__bar i {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    transform-origin: left;
+  }
+
+  .bv-speed__bar--fast i {
+    width: 24%;
+    background: var(--ux-teal);
+  }
+
+  .bv-speed__bar--slow i {
+    width: 100%;
+    background: rgb(255 255 255 / 0.3);
+  }
+
+  .bv-editor {
+    width: min(100%, 19rem);
+    padding: 14px;
+    border-radius: var(--ux-radius-md);
+    background: var(--ux-bg);
+    color: var(--ux-navy-deep);
+    font-size: var(--ux-text-xs);
+  }
+
+  .bv-editor__label {
+    color: var(--ux-muted);
+    margin-bottom: 4px;
+  }
+
+  .bv-editor__field {
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 2px solid var(--ux-teal);
+    font-weight: 700;
+  }
+
+  .bv-editor__caret {
+    width: 2px;
+    height: 1em;
+    margin-left: 2px;
+    background: var(--ux-navy);
+  }
+
+  .bv-editor__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  .bv-editor__img {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 2.25rem;
+    border-radius: 8px;
+    background: var(--ux-surface-2);
+    color: var(--ux-navy);
+  }
+
+  .bv-editor__save {
+    padding: 6px 12px;
+    border-radius: 99px;
+    background: var(--ux-navy);
+    color: var(--ux-on-dark);
+    font-weight: 700;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .bv-chat__typing { animation: bv-typing 4s infinite; }
+    .bv-chat__typing i { animation: ux-pulse 1s ease-in-out infinite; }
+    .bv-chat__typing i:nth-child(2) { animation-delay: 0.15s; }
+    .bv-chat__typing i:nth-child(3) { animation-delay: 0.3s; }
+    .bv-chat__done { animation: bv-done 4s infinite; }
+
+    .bv-shield__ring { animation: ux-ping 2.4s var(--ux-ease-out) infinite; }
+
+    .bv-speed__bar i { animation: bv-fill 3.6s var(--ux-ease-out) infinite; }
+    .bv-speed__bar--slow i { animation-duration: 3.6s; animation-timing-function: linear; }
+
+    .bv-editor__caret { animation: bv-blink 1s steps(1) infinite; }
+  }
+
+  @keyframes bv-typing {
+    0%, 45% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+
+  @keyframes bv-done {
+    0%, 45% { opacity: 0; }
+    50%, 100% { opacity: 1; }
+  }
+
+  @keyframes bv-fill {
+    0% { transform: scaleX(0); }
+    70%, 100% { transform: scaleX(1); }
+  }
+
+  @keyframes bv-blink {
+    50% { opacity: 0; }
+  }
+
+  @media (min-width: 40rem) {
+    .bento {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .bento {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+
+    .bento__card:nth-child(4n + 1),
+    .bento__card:nth-child(4n + 4) {
+      grid-column: span 7;
+    }
+
+    .bento__card:nth-child(4n + 2),
+    .bento__card:nth-child(4n + 3) {
+      grid-column: span 5;
+    }
+
+    .bento__card:nth-child(4n + 1),
+    .bento__card:nth-child(4n + 4) {
+      flex-direction: row-reverse;
+    }
+
+    .bento__card:nth-child(4n + 1) .bento__visual,
+    .bento__card:nth-child(4n + 4) .bento__visual {
+      flex: 1 1 52%;
+      border-bottom: 0;
+      border-left: 1px solid var(--ux-border-dark);
+    }
+
+    .bento__card:nth-child(4n + 1) .bento__body,
+    .bento__card:nth-child(4n + 4) .bento__body {
+      flex: 1 1 48%;
+      align-content: start;
+    }
+  }
+</style>

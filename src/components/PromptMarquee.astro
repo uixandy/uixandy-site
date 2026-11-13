@@ -1,0 +1,133 @@
+---
+/**
+ * Two rows of example chat messages scrolling in opposite directions.
+ * The second copy of each row only exists for the seamless loop and is hidden from assistive tech.
+ */
+import Icon from "./Icon.astro";
+
+export interface Props {
+  rowA: string[];
+  rowB: string[];
+}
+
+const { rowA, rowB } = Astro.props;
+const rows = [rowA, rowB].filter((r) => r?.length);
+---
+
+<div class="marquee">
+  {
+    rows.map((row, r) => (
+      <div class={`marquee__row ${r % 2 ? "marquee__row--rev" : ""}`}>
+        <ul class="marquee__track">
+          {row.map((text) => (
+            <li class="marquee__chip">
+              <Icon name="paperPlane" size={16} />
+              {text}
+            </li>
+          ))}
+        </ul>
+        <ul class="marquee__track marquee__track--dup" aria-hidden="true">
+          {row.map((text) => (
+            <li class="marquee__chip">
+              <Icon name="paperPlane" size={16} />
+              {text}
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .marquee {
+    display: grid;
+    gap: var(--ux-space-3);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+
+  .marquee__row {
+    display: flex;
+    width: max-content;
+  }
+
+  .marquee__track {
+    display: flex;
+    gap: var(--ux-space-3);
+    margin: 0;
+    padding: 0 var(--ux-space-3) 0 0;
+    list-style: none;
+  }
+
+  .marquee__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ux-space-2);
+    padding: 0.7rem 1.1rem;
+    border-radius: 18px 18px 18px 5px;
+    background: var(--ux-bg);
+    border: 1px solid var(--ux-border);
+    color: var(--ux-navy-deep);
+    font-weight: 700;
+    font-size: var(--ux-text-sm);
+    white-space: nowrap;
+    box-shadow: var(--ux-shadow-sm);
+    transition:
+      transform var(--ux-dur-hover) var(--ux-ease-out),
+      border-color var(--ux-dur-hover) var(--ux-ease-out);
+  }
+
+  .marquee__chip :global(.icon) {
+    color: var(--ux-teal-ink);
+  }
+
+  .marquee__row--rev .marquee__chip {
+    border-radius: 18px 18px 5px 18px;
+    background: var(--ux-navy-deep);
+    border-color: var(--ux-navy-deep);
+    color: var(--ux-on-dark);
+  }
+
+  .marquee__row--rev .marquee__chip :global(.icon) {
+    color: var(--ux-teal);
+  }
+
+  .marquee__chip:hover {
+    transform: translateY(-3px);
+    border-color: var(--ux-teal);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .marquee__row {
+      animation: ux-marquee 48s linear infinite;
+    }
+
+    .marquee__row--rev {
+      animation-direction: reverse;
+      animation-duration: 54s;
+    }
+
+    .marquee:hover .marquee__row {
+      animation-play-state: paused;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee {
+      mask-image: none;
+    }
+
+    .marquee__row {
+      width: auto;
+    }
+
+    .marquee__track {
+      flex-wrap: wrap;
+      padding: 0;
+    }
+
+    .marquee__track--dup {
+      display: none;
+    }
+  }
+</style>

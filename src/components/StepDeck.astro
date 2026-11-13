@@ -1,0 +1,522 @@
+---
+/**
+ * Sticky stacking deck: one split card per step, cards stack while scrolling.
+ * Visual per position: 0 = website is built, 1 = AI gets connected, 2 = change goes live.
+ * Mock UI is decorative (aria-hidden); step copy and tags come from the CMS.
+ */
+import Icon from "./Icon.astro";
+
+export interface Props {
+  items: { title: string; text: string; example?: string; tags?: string[] }[];
+}
+
+const { items } = Astro.props;
+const tones = ["mint", "sky", "ink"];
+---
+
+<ol class="deck">
+  {
+    items.map((item, i) => (
+      <li class="deck__card" style={`--i: ${i}`}>
+        <div class="deck__copy">
+          <span class="deck__num">{String(i + 1).padStart(2, "0")}</span>
+          <h3 class="deck__title">{item.title}</h3>
+          <p class="deck__text">{item.text}</p>
+          {item.example && <p class="deck__example">{item.example}</p>}
+        </div>
+
+        <div class={`deck__visual deck__visual--${tones[i % tones.length]}`} aria-hidden="true">
+          {i % 3 === 0 && (
+            <div class="mk mk-build">
+              <div class="mk-build__chrome">
+                <span /><span /><span />
+                <em>ihre-firma.de</em>
+              </div>
+              <div class="mk-build__body">
+                <div class="mk-build__nav"><b /><i /><i /><i /></div>
+                <div class="mk-build__hero"><b /><i /><span /></div>
+                <div class="mk-build__cards"><span /><span /><span /></div>
+              </div>
+            </div>
+          )}
+          {i % 3 === 1 && (
+            <div class="mk mk-link">
+              <div class="mk-link__node">
+                <span class="mk-link__icon mk-link__icon--ai"><Icon name="sparkle" size={22} /></span>
+                Ihre KI
+              </div>
+              <div class="mk-link__wire"><span /></div>
+              <div class="mk-link__node">
+                <span class="mk-link__icon"><Icon name="globe" size={22} /></span>
+                Ihre Website
+              </div>
+              <p class="mk-link__status"><Icon name="check" size={14} /> Verbunden</p>
+            </div>
+          )}
+          {i % 3 === 2 && (
+            <div class="mk mk-live">
+              <p class="mk-live__msg">{item.example || "Bitte das Teamfoto austauschen."}</p>
+              <div class="mk-live__reply">
+                <span class="mk-live__dot" />
+                <span class="mk-line mk-line--80" />
+                <span class="mk-line mk-line--55" />
+              </div>
+              <ul class="mk-live__versions">
+                <li class="is-current"><Icon name="check" size={12} /> Neue Version <em>live</em></li>
+                <li>Version von gestern</li>
+                <li>Version von letzter Woche</li>
+              </ul>
+            </div>
+          )}
+
+          {item.tags?.slice(0, 4).map((tag, t) => (
+            <span class={`deck__tag deck__tag--${t + 1} ${t % 2 ? "ux-float-alt" : "ux-float"}`}>{tag}</span>
+          ))}
+        </div>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .deck {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--ux-space-5);
+  }
+
+  .deck__card {
+    position: sticky;
+    top: calc(var(--ux-header-h) + var(--ux-space-5) + var(--i, 0) * 1.25rem);
+    display: grid;
+    gap: var(--ux-space-4);
+    padding: var(--ux-space-3);
+    border-radius: calc(var(--ux-radius-lg) + 0.5rem);
+    background: var(--ux-bg);
+    border: 1px solid var(--ux-border);
+    box-shadow: 0 -10px 40px -20px rgb(0 33 53 / 0.18);
+  }
+
+  .deck__copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--ux-space-4);
+    padding: var(--ux-space-5) var(--ux-space-4) var(--ux-space-3);
+  }
+
+  .deck__num {
+    font-family: var(--ux-font-display);
+    font-size: clamp(2.5rem, 2rem + 2vw, 3.75rem);
+    line-height: 1;
+    background: var(--ux-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .deck__title {
+    font-size: var(--ux-text-2xl);
+    color: var(--ux-navy-deep);
+  }
+
+  .deck__text {
+    color: var(--ux-muted);
+    max-width: 26rem;
+  }
+
+  .deck__example {
+    margin-top: auto;
+    padding: 10px 16px;
+    border-radius: 16px 16px 16px 4px;
+    background: var(--ux-surface-2);
+    color: var(--ux-navy-deep);
+    font-weight: 700;
+    font-size: var(--ux-text-sm);
+  }
+
+  /* Visual panel */
+
+  .deck__visual {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 20rem;
+    padding: var(--ux-space-7) var(--ux-space-5);
+    border-radius: var(--ux-radius-lg);
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .deck__visual--mint {
+    background:
+      radial-gradient(26rem 16rem at 85% 10%, rgb(0 195 160 / 0.32), transparent 70%),
+      linear-gradient(160deg, #e6f7f3, #d3efe9);
+  }
+
+  .deck__visual--sky {
+    background:
+      radial-gradient(26rem 16rem at 15% 90%, rgb(0 75 118 / 0.22), transparent 70%),
+      linear-gradient(160deg, #eaf2f7, #d7e6ef);
+  }
+
+  .deck__visual--ink {
+    background:
+      radial-gradient(28rem 18rem at 90% 0%, rgb(0 195 160 / 0.4), transparent 65%),
+      radial-gradient(24rem 16rem at 0% 100%, rgb(0 75 118 / 0.8), transparent 65%),
+      var(--ux-navy-deep);
+  }
+
+  .deck__tag {
+    position: absolute;
+    z-index: 2;
+    padding: 0.55rem 0.9rem;
+    border-radius: 0.8rem;
+    background: rgb(255 255 255 / 0.95);
+    color: var(--ux-navy-deep);
+    font-size: var(--ux-text-xs);
+    font-weight: 700;
+    white-space: nowrap;
+    box-shadow: var(--ux-shadow-md);
+  }
+
+  .deck__tag--1 { top: 9%; left: 6%; }
+  .deck__tag--2 { top: 14%; right: 5%; animation-delay: 0.6s; }
+  .deck__tag--3 { bottom: 10%; left: 9%; animation-delay: 1.1s; }
+  .deck__tag--4 { bottom: 7%; right: 7%; animation-delay: 0.3s; }
+
+  /* Shared mock primitives */
+
+  .mk {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 22rem);
+    transition: transform 0.6s var(--ux-ease-out);
+  }
+
+  .deck__card:hover .mk {
+    transform: translateY(-6px) scale(1.02);
+  }
+
+  .mk-line {
+    display: block;
+    height: 0.5rem;
+    border-radius: 99px;
+    background: rgb(255 255 255 / 0.22);
+  }
+
+  .mk-line--80 { width: 80%; }
+  .mk-line--55 { width: 55%; }
+
+  /* 01: website being built */
+
+  .mk-build {
+    border-radius: var(--ux-radius-md);
+    background: var(--ux-bg);
+    box-shadow: var(--ux-shadow-lg);
+    overflow: hidden;
+  }
+
+  .mk-build__chrome {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 9px 12px;
+    background: var(--ux-surface);
+    border-bottom: 1px solid var(--ux-border);
+  }
+
+  .mk-build__chrome > span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--ux-border);
+  }
+
+  .mk-build__chrome em {
+    margin-left: 8px;
+    padding: 2px 10px;
+    border-radius: 99px;
+    background: var(--ux-bg);
+    font-style: normal;
+    font-size: 11px;
+    color: var(--ux-muted);
+  }
+
+  .mk-build__body {
+    display: grid;
+    gap: 10px;
+    padding: 14px;
+  }
+
+  .mk-build__nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mk-build__nav b {
+    width: 54px;
+    height: 10px;
+    margin-right: auto;
+    border-radius: 4px;
+    background: var(--ux-navy);
+  }
+
+  .mk-build__nav i {
+    width: 26px;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--ux-surface-2);
+  }
+
+  .mk-build__hero {
+    display: grid;
+    gap: 7px;
+    padding: 18px 16px;
+    border-radius: 10px;
+    background: var(--ux-gradient);
+  }
+
+  .mk-build__hero b {
+    width: 70%;
+    height: 12px;
+    border-radius: 4px;
+    background: rgb(255 255 255 / 0.9);
+  }
+
+  .mk-build__hero i {
+    width: 50%;
+    height: 7px;
+    border-radius: 4px;
+    background: rgb(255 255 255 / 0.5);
+  }
+
+  .mk-build__hero span {
+    width: 64px;
+    height: 18px;
+    margin-top: 4px;
+    border-radius: 99px;
+    background: var(--ux-bg);
+  }
+
+  .mk-build__cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .mk-build__cards span {
+    height: 44px;
+    border-radius: 8px;
+    background: var(--ux-surface);
+    border: 1px solid var(--ux-border);
+  }
+
+  /* 02: AI gets connected */
+
+  .mk-link {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .mk-link__node {
+    display: grid;
+    justify-items: center;
+    gap: 8px;
+    padding: 14px 12px;
+    border-radius: var(--ux-radius-md);
+    background: var(--ux-bg);
+    box-shadow: var(--ux-shadow-md);
+    font-size: var(--ux-text-xs);
+    font-weight: 700;
+    color: var(--ux-navy-deep);
+  }
+
+  .mk-link__icon {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--ux-surface-2);
+    color: var(--ux-navy);
+  }
+
+  .mk-link__icon--ai {
+    background: var(--ux-gradient);
+    color: var(--ux-on-dark);
+  }
+
+  .mk-link__wire {
+    position: relative;
+    height: 2px;
+    background: repeating-linear-gradient(90deg, var(--ux-navy) 0 6px, transparent 6px 12px);
+    opacity: 0.6;
+  }
+
+  .mk-link__wire span {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    margin-top: -5px;
+    border-radius: 50%;
+    background: var(--ux-teal);
+    box-shadow: 0 0 0 4px rgb(0 195 160 / 0.25);
+  }
+
+  .mk-link__status {
+    grid-column: 1 / -1;
+    justify-self: center;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+    padding: 5px 12px;
+    border-radius: 99px;
+    background: var(--ux-navy-deep);
+    color: var(--ux-teal);
+    font-size: var(--ux-text-xs);
+    font-weight: 700;
+  }
+
+  /* 03: change goes live */
+
+  .mk-live {
+    display: grid;
+    gap: 10px;
+    padding: 14px;
+    border-radius: var(--ux-radius-md);
+    background: rgb(255 255 255 / 0.06);
+    border: 1px solid var(--ux-border-dark);
+    backdrop-filter: blur(6px);
+  }
+
+  .mk-live__msg {
+    justify-self: end;
+    max-width: 88%;
+    padding: 9px 12px;
+    border-radius: 14px 14px 4px 14px;
+    background: var(--ux-teal);
+    color: var(--ux-navy-deep);
+    font-size: var(--ux-text-sm);
+    font-weight: 700;
+  }
+
+  .mk-live__reply {
+    display: grid;
+    gap: 7px;
+    width: 78%;
+    padding: 12px;
+    border-radius: 14px 14px 14px 4px;
+    background: rgb(255 255 255 / 0.08);
+  }
+
+  .mk-live__dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--ux-gradient);
+  }
+
+  .mk-live__versions {
+    list-style: none;
+    margin: 4px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 6px;
+    font-size: var(--ux-text-xs);
+    color: var(--ux-on-dark-muted);
+  }
+
+  .mk-live__versions li {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 10px;
+    border-radius: 9px;
+    background: rgb(255 255 255 / 0.04);
+  }
+
+  .mk-live__versions li.is-current {
+    background: rgb(0 195 160 / 0.16);
+    color: var(--ux-on-dark);
+    font-weight: 700;
+  }
+
+  .mk-live__versions em {
+    margin-left: auto;
+    font-style: normal;
+    color: var(--ux-teal);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .mk-build__nav,
+    .mk-build__hero,
+    .mk-build__cards span {
+      animation: mk-assemble 6s var(--ux-ease-out) infinite both;
+    }
+
+    .mk-build__hero { animation-delay: 0.25s; }
+    .mk-build__cards span:nth-child(1) { animation-delay: 0.5s; }
+    .mk-build__cards span:nth-child(2) { animation-delay: 0.65s; }
+    .mk-build__cards span:nth-child(3) { animation-delay: 0.8s; }
+
+    .mk-link__wire span {
+      animation: mk-travel 2.4s var(--ux-ease) infinite;
+    }
+
+    .mk-live__versions li.is-current {
+      animation: mk-glow 3s ease-in-out infinite;
+    }
+  }
+
+  @keyframes mk-assemble {
+    0% { opacity: 0; translate: 0 10px; }
+    12%, 85% { opacity: 1; translate: 0 0; }
+    100% { opacity: 0; translate: 0 -4px; }
+  }
+
+  @keyframes mk-travel {
+    0% { left: 0; opacity: 0; }
+    15% { opacity: 1; }
+    85% { opacity: 1; }
+    100% { left: calc(100% - 10px); opacity: 0; }
+  }
+
+  @keyframes mk-glow {
+    50% { background: rgb(0 195 160 / 0.3); }
+  }
+
+  @media (min-width: 52rem) {
+    .deck__card {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      min-height: 26rem;
+    }
+
+    .deck__copy {
+      padding: var(--ux-space-6) var(--ux-space-5) var(--ux-space-6) var(--ux-space-6);
+    }
+
+    .deck__visual {
+      min-height: 0;
+    }
+  }
+
+  @media (max-width: 40rem) {
+    .deck__card {
+      position: static;
+    }
+
+    .deck__tag--3,
+    .deck__tag--4 {
+      display: none;
+    }
+  }
+</style>
