@@ -56,8 +56,8 @@
         "example": ""
       },
       {
-        "title": "Wir verbinden Ihre KI",
-        "text": "Zum Beispiel Claude oder ChatGPT. Wir richten alles ein und zeigen es Ihnen in einem kurzen Video-Call.",
+        "title": "Sie verbinden Ihre KI, wir helfen",
+        "text": "Zum Beispiel Claude oder ChatGPT, auf Ihrem eigenen Computer. Im Video-Call richten wir das gemeinsam ein, Schritt für Schritt.",
         "example": ""
       },
       {
@@ -149,7 +149,7 @@
     "items": [
       {
         "question": "Brauche ich technisches Wissen?",
-        "answer": "Nein. Sie schreiben Ihrer KI ganz normal, was sich ändern soll. Die Technik dahinter richten wir ein, und im Übergabe-Call zeigen wir Ihnen alles Schritt für Schritt."
+        "answer": "Nein. Sie schreiben Ihrer KI ganz normal, was sich ändern soll. Die Website bauen wir. Ihre KI läuft bei Ihnen, und im Übergabe-Call richten wir sie gemeinsam ein, Schritt für Schritt."
       },
       {
         "question": "Welche KI kann ich nutzen?",
