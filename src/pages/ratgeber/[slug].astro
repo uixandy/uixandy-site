@@ -1,0 +1,110 @@
+---
+import { render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CtaBand from "../../components/CtaBand.astro";
+import site from "../../data/site.json";
+import { getPublishedRatgeber, formatDate, ratgeberHref, type RatgeberEntry } from "../../lib/ratgeber";
+import { articleJsonLd, breadcrumbJsonLd } from "../../lib/jsonld";
+import { absoluteUrl } from "../../lib/seo";
+
+export async function getStaticPaths() {
+  const posts = await getPublishedRatgeber();
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props as { post: RatgeberEntry };
+const { Content } = await render(post);
+const { data } = post;
+const url = absoluteUrl(ratgeberHref(post));
+const title = data.seoTitle || `${data.title} | uixandy Ratgeber`;
+const description = data.seoDescription || data.description;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  ogImage={data.ogImage}
+  jsonLd={[
+    articleJsonLd({
+      title: data.title,
+      description,
+      url,
+      datePublished: data.pubDate,
+      dateModified: data.updatedDate,
+      image: data.ogImage,
+    }),
+    breadcrumbJsonLd([
+      { name: "Start", url: absoluteUrl("/") },
+      { name: "Ratgeber", url: absoluteUrl("/ratgeber/") },
+      { name: data.title, url },
+    ]),
+  ]}
+>
+  <article class="article">
+    <header class="article__head container--narrow">
+      <nav class="article__crumbs" aria-label="Brotkrumen">
+        <a href="/ratgeber/">Ratgeber</a>
+      </nav>
+      <h1>{data.title}</h1>
+      <p class="article__meta">
+        Von Andy Bittner ·
+        <time datetime={data.pubDate.toISOString()}>{formatDate(data.pubDate)}</time>
+        {data.updatedDate && <> · aktualisiert {formatDate(data.updatedDate)}</>}
+      </p>
+      <aside class="article__answer">
+        <p class="article__answer-label">Kurz gesagt</p>
+        <p>{data.answer}</p>
+      </aside>
+    </header>
+    <div class="prose container--narrow">
+      <Content />
+    </div>
+  </article>
+
+  <CtaBand
+    heading="Eine Website, die Sie per Chat pflegen?"
+    text="Machen Sie den Website-Check und sehen Sie in 60 Sekunden, welches Paket passt."
+    primary={{ label: "Website-Check starten", href: site.primaryCta.href }}
+    secondary={{ label: "Preise ansehen", href: "/preise/" }}
+  />
+</BaseLayout>
+
+<style>
+  .article {
+    padding-top: clamp(3rem, 2rem + 4vw, 6rem);
+  }
+
+  .article__crumbs a {
+    font-size: var(--ux-text-sm);
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--ux-teal-ink);
+  }
+
+  .article h1 {
+    margin-top: var(--ux-space-4);
+    font-size: var(--ux-text-3xl);
+    color: var(--ux-navy-deep);
+  }
+
+  .article__meta {
+    margin-top: var(--ux-space-4);
+    font-size: var(--ux-text-sm);
+    color: var(--ux-muted);
+  }
+
+  .article__answer {
+    margin: var(--ux-space-6) 0 var(--ux-space-7);
+    padding: var(--ux-space-5) var(--ux-space-6);
+    border-radius: var(--ux-radius-lg);
+    background: var(--ux-surface);
+    border-left: 4px solid var(--ux-teal);
+    font-size: var(--ux-text-lg);
+  }
+
+  .article__answer-label {
+    margin-bottom: var(--ux-space-2);
+    font-family: var(--ux-font-display);
+    color: var(--ux-navy);
+  }
+</style>

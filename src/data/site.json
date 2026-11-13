@@ -1,0 +1,33 @@
+{
+  "title": "uixandy",
+  "legalName": "uixandy, Andreas Bittner",
+  "claim": "Websites, die Sie per Chat mit Ihrer KI pflegen. Ohne WordPress, ohne Agentur für jede Kleinigkeit.",
+  "email": "info@uixandy.com",
+  "phone": "+49 156 787 356 32",
+  "phoneHref": "+4915678735632",
+  "logoPath": "/media/og-default.jpg",
+  "address": {
+    "street": "Tal 44",
+    "postalCode": "80331",
+    "city": "München"
+  },
+  "nav": [
+    { "label": "So funktioniert's", "href": "/so-funktionierts/" },
+    { "label": "Preise", "href": "/preise/" },
+    { "label": "Beispiele", "href": "/beispiele/" },
+    { "label": "Ratgeber", "href": "/ratgeber/" },
+    { "label": "Über mich", "href": "/ueber-mich/" }
+  ],
+  "primaryCta": {
+    "label": "Website-Check",
+    "href": "/website-check/"
+  },
+  "booking": {
+    "calUrl": "https://cal.com/PLATZHALTER-uixandy/15min",
+    "stripeStart": "https://buy.stripe.com/PLATZHALTER-start",
+    "stripeIndividuell": "https://buy.stripe.com/PLATZHALTER-individuell",
+    "formEndpoint": "https://formspree.io/f/mnjybldd"
+  },
+  "footerBlurb": "Websites für kleine Unternehmen, die Sie selbst pflegen, indem Sie Ihrer KI schreiben, was sich ändern soll. Gebaut in München.",
+  "copyright": "© uixandy, Andreas Bittner"
+}

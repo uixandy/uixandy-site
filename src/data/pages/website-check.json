@@ -1,0 +1,66 @@
+{
+  "seoTitle": "Website-Check: Welches Paket passt? In 60 Sekunden | uixandy",
+  "seoDescription": "Beantworten Sie vier kurze Fragen zu Ihrer Website und sehen Sie sofort Paket, Preis und nächste Schritte. Direkt buchen oder erst kurz sprechen.",
+  "hero": {
+    "kicker": "Website-Check",
+    "heading": "Welches Paket passt zu Ihnen?",
+    "lead": "Vier kurze Fragen, dann sehen Sie Paket, Preis und nächste Schritte. Dauert etwa 60 Sekunden."
+  },
+  "form": {
+    "websiteLabel": "Haben Sie schon eine Website?",
+    "websitePlaceholder": "www.ihre-firma.de (optional)",
+    "pagesLabel": "Wie viele Seiten braucht Ihre Website ungefähr?",
+    "pagesOptions": [
+      { "value": "bis-6", "label": "Bis zu 6 Seiten" },
+      { "value": "7-15", "label": "7 bis 15 Seiten" },
+      { "value": "ueber-15", "label": "Mehr als 15 Seiten" },
+      { "value": "unklar", "label": "Weiß ich noch nicht" }
+    ],
+    "featuresLabel": "Was soll Ihre Website können?",
+    "featuresHint": "Mehrfachauswahl möglich. Ein Kontaktformular ist immer dabei.",
+    "featuresOptions": [
+      { "value": "blog", "label": "Ratgeber oder Blog" },
+      { "value": "jobs", "label": "Stellenangebote" },
+      { "value": "sprachen", "label": "Mehrere Sprachen" },
+      { "value": "termine", "label": "Online-Terminbuchung" },
+      { "value": "rechner", "label": "Rechner oder Konfigurator" },
+      { "value": "formulare", "label": "Formulare mit mehreren Schritten" },
+      { "value": "login", "label": "Login- oder Mitgliederbereich" },
+      { "value": "shop", "label": "Online-Shop" }
+    ],
+    "timingLabel": "Wann soll die neue Website online sein?",
+    "timingOptions": [
+      { "value": "sofort", "label": "So schnell wie möglich" },
+      { "value": "1-3-monate", "label": "In 1 bis 3 Monaten" },
+      { "value": "spaeter", "label": "Später, ich informiere mich" }
+    ],
+    "contactLabel": "Wohin dürfen wir Ihr Ergebnis schicken?",
+    "nameLabel": "Ihr Name",
+    "emailLabel": "E-Mail",
+    "companyLabel": "Firma (optional)",
+    "messageLabel": "Noch etwas, das wir wissen sollten? (optional)",
+    "consentText": "Ich bin einverstanden, dass meine Angaben zur Bearbeitung meiner Anfrage gespeichert werden.",
+    "submitLabel": "Ergebnis anzeigen",
+    "sendingLabel": "Wird gesendet …",
+    "errorText": "Das hat leider nicht geklappt. Bitte versuchen Sie es noch einmal oder schreiben Sie uns direkt an info@uixandy.com."
+  },
+  "results": {
+    "start": {
+      "title": "Ihr Paket: Start",
+      "text": "Ihr Projekt passt in unser Paket Start. Zahlen Sie die Hälfte an und wir legen los, oder sprechen Sie erst 15 Minuten mit mir."
+    },
+    "individuell": {
+      "title": "Ihr Paket: Individuell",
+      "text": "Ihre Wünsche gehen über eine klassische Firmen-Website hinaus. Das Paket Individuell startet bei 1.490 €. Den genauen Preis bekommen Sie nach unserer Prüfung, oder Sie besprechen es direkt mit mir."
+    },
+    "gespraech": {
+      "title": "Lassen Sie uns kurz sprechen",
+      "text": "Ihr Projekt ist etwas größer oder noch offen. In einem kurzen Gespräch klären wir Umfang und Preis. Das Paket Individuell startet bei 1.490 €."
+    },
+    "shopNote": "Hinweis: Online-Shops bauen wir bewusst nicht. Alles andere schauen wir uns gerne an.",
+    "depositLabel": "Anzahlung zahlen und starten",
+    "callLabel": "15 Min. Gespräch buchen",
+    "refundNote": "Wir prüfen Ihre Angaben innerhalb von 48 Stunden. Passt das Projekt nicht ins Paket, bekommen Sie ein Angebot oder die Anzahlung komplett zurück.",
+    "sentNote": "Ihre Angaben sind bei uns angekommen. Wir melden uns spätestens innerhalb von 48 Stunden."
+  }
+}

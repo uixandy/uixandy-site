@@ -1,0 +1,48 @@
+---
+export interface Props {
+  id?: string;
+  tone?: "default" | "soft" | "dark";
+  narrow?: boolean;
+  class?: string;
+  flush?: "top" | "bottom";
+}
+
+const { id, tone = "default", narrow = false, class: className = "", flush } = Astro.props;
+---
+
+<section
+  id={id}
+  class:list={["section", `section--${tone}`, flush && `section--flush-${flush}`, className]}
+>
+  <div class={narrow ? "container--narrow" : "container"}>
+    <slot />
+  </div>
+</section>
+
+<style>
+  .section {
+    position: relative;
+    padding-block: var(--ux-section-y);
+  }
+
+  .section--flush-top {
+    padding-top: 0;
+  }
+
+  .section--flush-bottom {
+    padding-bottom: 0;
+  }
+
+  .section--soft {
+    background: var(--ux-surface);
+  }
+
+  .section--dark {
+    color: var(--ux-on-dark);
+    background:
+      radial-gradient(60rem 30rem at 85% 0%, rgb(0 195 160 / 0.22), transparent 60%),
+      radial-gradient(50rem 30rem at 0% 100%, rgb(0 75 118 / 0.7), transparent 60%),
+      var(--ux-navy-deep);
+    overflow: hidden;
+  }
+</style>

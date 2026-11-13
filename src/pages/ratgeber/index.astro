@@ -1,0 +1,100 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHero from "../../components/PageHero.astro";
+import Section from "../../components/Section.astro";
+import Icon from "../../components/Icon.astro";
+import page from "../../data/pages/ratgeber.json";
+import { resolveSeo } from "../../lib/seo";
+import { getPublishedRatgeber, ratgeberHref, formatDate } from "../../lib/ratgeber";
+
+const seo = resolveSeo(page);
+const posts = await getPublishedRatgeber();
+---
+
+<BaseLayout title={seo.title} description={seo.description} ogImage={seo.ogImage}>
+  <PageHero kicker={page.hero.kicker} heading={page.hero.heading} lead={page.hero.lead} />
+
+  <Section flush="top">
+    {
+      posts.length ? (
+        <ul class="posts" data-reveal-stagger>
+          {posts.map((post) => (
+            <li>
+              <a class="post" href={ratgeberHref(post)}>
+                <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+                <h2>{post.data.title}</h2>
+                <p>{post.data.description}</p>
+                <span class="post__more">
+                  {page.readMoreLabel} <Icon name="arrowRight" size={16} />
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="muted">{page.emptyText}</p>
+      )
+    }
+  </Section>
+</BaseLayout>
+
+<style>
+  .posts {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--ux-space-5);
+  }
+
+  @media (min-width: 52rem) {
+    .posts {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .post {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ux-space-3);
+    height: 100%;
+    padding: var(--ux-space-6);
+    border: 1px solid var(--ux-border);
+    border-radius: var(--ux-radius-lg);
+    color: inherit;
+    text-decoration: none;
+    transition:
+      transform var(--ux-dur) var(--ux-ease),
+      box-shadow var(--ux-dur) var(--ux-ease);
+  }
+
+  .post:hover {
+    color: inherit;
+    transform: translateY(-3px);
+    box-shadow: var(--ux-shadow-md);
+  }
+
+  .post time {
+    font-size: var(--ux-text-sm);
+    color: var(--ux-muted);
+  }
+
+  .post h2 {
+    font-size: var(--ux-text-xl);
+    line-height: var(--ux-leading-snug);
+    color: var(--ux-navy-deep);
+  }
+
+  .post p {
+    color: var(--ux-muted);
+    flex: 1;
+  }
+
+  .post__more {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ux-space-2);
+    font-weight: 700;
+    color: var(--ux-navy);
+  }
+</style>

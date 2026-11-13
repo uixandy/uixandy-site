@@ -1,0 +1,129 @@
+---
+/**
+ * The only button on the site. One hover behaviour for every variant.
+ * primary = navy · accent = teal · ghost = outline · light = white on dark sections
+ */
+import Icon from "./Icon.astro";
+
+export interface Props {
+  href?: string;
+  variant?: "primary" | "accent" | "ghost" | "light";
+  size?: "md" | "lg";
+  arrow?: boolean;
+  type?: "button" | "submit";
+  class?: string;
+  [key: string]: unknown;
+}
+
+const {
+  href,
+  variant = "primary",
+  size = "md",
+  arrow = false,
+  type = "button",
+  class: className = "",
+  ...rest
+} = Astro.props;
+
+const external = typeof href === "string" && /^https?:\/\//.test(href);
+const classes = ["btn", `btn--${variant}`, `btn--${size}`, className];
+---
+
+{
+  href ? (
+    <a
+      href={href}
+      class:list={classes}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener" : undefined}
+      {...rest}
+    >
+      <span><slot /></span>
+      {arrow && <Icon name="arrowRight" size={18} class="btn__arrow" />}
+    </a>
+  ) : (
+    <button type={type} class:list={classes} {...rest}>
+      <span><slot /></span>
+      {arrow && <Icon name="arrowRight" size={18} class="btn__arrow" />}
+    </button>
+  )
+}
+
+<style>
+  .btn {
+    --btn-bg: var(--ux-navy);
+    --btn-fg: var(--ux-on-dark);
+    --btn-bg-hover: var(--ux-navy-deep);
+    --btn-border: transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--ux-space-2);
+    min-height: 2.875rem;
+    padding: 0.7rem 1.35rem;
+    border: 1.5px solid var(--btn-border);
+    border-radius: var(--ux-radius-pill);
+    background: var(--btn-bg);
+    color: var(--btn-fg);
+    font-family: var(--ux-font-body);
+    font-size: var(--ux-text-base);
+    font-weight: 700;
+    line-height: 1.2;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+      background-color var(--ux-dur-fast) var(--ux-ease),
+      border-color var(--ux-dur-fast) var(--ux-ease),
+      color var(--ux-dur-fast) var(--ux-ease),
+      transform var(--ux-dur-fast) var(--ux-ease);
+  }
+
+  .btn:hover {
+    background: var(--btn-bg-hover);
+    color: var(--btn-fg);
+    transform: translateY(-1px);
+  }
+
+  .btn:active {
+    transform: translateY(0);
+  }
+
+  .btn--lg {
+    min-height: 3.375rem;
+    padding: 0.85rem 1.75rem;
+    font-size: var(--ux-text-lg);
+  }
+
+  .btn--accent {
+    --btn-bg: var(--ux-teal);
+    --btn-fg: var(--ux-navy-deep);
+    --btn-bg-hover: #00d9b2;
+  }
+
+  .btn--ghost {
+    --btn-bg: transparent;
+    --btn-fg: var(--ux-navy);
+    --btn-bg-hover: var(--ux-surface);
+    --btn-border: var(--ux-border);
+  }
+
+  .btn--light {
+    --btn-bg: var(--ux-on-dark);
+    --btn-fg: var(--ux-navy-deep);
+    --btn-bg-hover: var(--ux-surface-2);
+  }
+
+  .btn :global(.btn__arrow) {
+    transition: transform var(--ux-dur-fast) var(--ux-ease);
+  }
+
+  .btn:hover :global(.btn__arrow) {
+    transform: translateX(3px);
+  }
+
+  @media (max-width: 40rem) {
+    .btn--lg {
+      width: 100%;
+    }
+  }
+</style>

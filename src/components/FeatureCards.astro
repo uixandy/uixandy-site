@@ -1,0 +1,96 @@
+---
+import Icon from "./Icon.astro";
+
+export interface Props {
+  items: { icon?: string; title: string; text: string }[];
+  columns?: 2 | 3;
+  tone?: "light" | "dark";
+}
+
+const { items, columns = 3, tone = "light" } = Astro.props;
+---
+
+<ul class:list={["cards", "grid", `grid--${columns}`, `cards--${tone}`]} data-reveal-stagger>
+  {
+    items.map((item) => (
+      <li class="card">
+        {item.icon && (
+          <span class="card__icon">
+            <Icon name={item.icon} size={28} />
+          </span>
+        )}
+        <h3 class="card__title">{item.title}</h3>
+        <p class="card__text">{item.text}</p>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .cards {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .card {
+    position: relative;
+    padding: var(--ux-space-6);
+    border-radius: var(--ux-radius-lg);
+    background: var(--ux-bg);
+    border: 1px solid var(--ux-border);
+    transition:
+      transform var(--ux-dur) var(--ux-ease),
+      box-shadow var(--ux-dur) var(--ux-ease),
+      border-color var(--ux-dur) var(--ux-ease);
+  }
+
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--ux-shadow-md);
+    border-color: transparent;
+  }
+
+  .card__icon {
+    display: inline-grid;
+    place-items: center;
+    width: 3.25rem;
+    height: 3.25rem;
+    margin-bottom: var(--ux-space-5);
+    border-radius: var(--ux-radius-md);
+    background: var(--ux-surface-2);
+    color: var(--ux-navy);
+  }
+
+  .card__title {
+    margin-bottom: var(--ux-space-3);
+  }
+
+  .card__text {
+    color: var(--ux-muted);
+  }
+
+  .cards--dark .card {
+    background: rgb(255 255 255 / 0.04);
+    border-color: var(--ux-border-dark);
+  }
+
+  .cards--dark .card:hover {
+    background: rgb(255 255 255 / 0.07);
+    box-shadow: none;
+    border-color: rgb(0 195 160 / 0.4);
+  }
+
+  .cards--dark .card__icon {
+    background: rgb(0 195 160 / 0.14);
+    color: var(--ux-teal);
+  }
+
+  .cards--dark .card__title {
+    color: var(--ux-on-dark);
+  }
+
+  .cards--dark .card__text {
+    color: var(--ux-on-dark-muted);
+  }
+</style>

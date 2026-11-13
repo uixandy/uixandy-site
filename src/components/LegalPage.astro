@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { resolveSeo } from "../lib/seo";
+
+export interface Props {
+  page: {
+    seoTitle: string;
+    seoDescription: string;
+    heading: string;
+    notice?: string;
+    bodyHtml: string;
+  };
+  noindex?: boolean;
+}
+
+const { page, noindex = false } = Astro.props;
+const seo = resolveSeo(page);
+---
+
+<BaseLayout title={seo.title} description={seo.description} noindex={noindex}>
+  <article class="legal">
+    <div class="container--narrow">
+      <h1>{page.heading}</h1>
+      {page.notice && <p class="legal__notice" role="note">{page.notice}</p>}
+      <div class="prose prose--legal" set:html={page.bodyHtml} />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .legal {
+    padding-block: clamp(3rem, 2rem + 4vw, 6rem);
+  }
+
+  .legal h1 {
+    font-size: var(--ux-text-3xl);
+    color: var(--ux-navy-deep);
+    margin-bottom: var(--ux-space-6);
+  }
+
+  .legal__notice {
+    margin-bottom: var(--ux-space-6);
+    padding: var(--ux-space-4) var(--ux-space-5);
+    border: 2px dashed var(--ux-teal);
+    border-radius: var(--ux-radius-md);
+    background: var(--ux-surface);
+    font-weight: 700;
+  }
+
+  .legal :global(.prose--legal) {
+    overflow-wrap: anywhere;
+  }
+</style>

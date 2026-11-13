@@ -1,0 +1,169 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import Section from "../components/Section.astro";
+import Icon from "../components/Icon.astro";
+import CtaBand from "../components/CtaBand.astro";
+import page from "../data/pages/beispiele.json";
+import site from "../data/site.json";
+import { resolveSeo } from "../lib/seo";
+
+const seo = resolveSeo(page);
+---
+
+<BaseLayout title={seo.title} description={seo.description} ogImage={seo.ogImage}>
+  <PageHero kicker={page.hero.kicker} heading={page.hero.heading} lead={page.hero.lead} />
+
+  <Section flush="top">
+    <div class="cases">
+      {
+        page.cases.map((c, i) => (
+          <article class:list={["case", { "case--flip": i % 2 === 1, "case--placeholder": c.placeholder }]} data-reveal>
+            <div class="case__media">
+              {c.image ? (
+                <img src={c.image} alt={c.imageAlt} loading="lazy" width="1200" height="800" />
+              ) : (
+                <div class="case__ph">
+                  <Icon name="mobile" size={40} />
+                  <span>[Platzhalter] Screenshot {c.name}</span>
+                </div>
+              )}
+            </div>
+            <div class="case__body">
+              <p class="case__industry">{c.industry}</p>
+              <h2 class="case__name">{c.name}</h2>
+              <dl class="case__ba">
+                <div>
+                  <dt>Vorher</dt>
+                  <dd>{c.before}</dd>
+                </div>
+                <div>
+                  <dt>Jetzt</dt>
+                  <dd>{c.after}</dd>
+                </div>
+              </dl>
+              <blockquote class="case__quote">
+                <Icon name="quotes" size={24} />
+                <p>{c.quote}</p>
+                <footer>{c.quoteName}</footer>
+              </blockquote>
+              {c.url && (
+                <a class="case__link" href={c.url} target="_blank" rel="noopener">
+                  Website ansehen <Icon name="arrowRight" size={16} />
+                </a>
+              )}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </Section>
+
+  <CtaBand
+    heading={page.cta.heading}
+    text={page.cta.text}
+    primary={{ label: page.cta.primaryLabel, href: site.primaryCta.href }}
+    secondary={{ label: page.cta.secondaryLabel, href: site.booking.calUrl }}
+  />
+</BaseLayout>
+
+<style>
+  .cases {
+    display: grid;
+    gap: var(--ux-space-9);
+  }
+
+  .case {
+    display: grid;
+    gap: var(--ux-space-6);
+    align-items: center;
+  }
+
+  .case__media img,
+  .case__ph {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    border-radius: var(--ux-radius-lg);
+    object-fit: cover;
+    box-shadow: var(--ux-shadow-md);
+  }
+
+  .case__ph {
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: var(--ux-space-3);
+    background: var(--ux-surface);
+    border: 2px dashed var(--ux-teal);
+    color: var(--ux-muted);
+    box-shadow: none;
+  }
+
+  .case__industry {
+    font-size: var(--ux-text-sm);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ux-teal-ink);
+  }
+
+  .case__name {
+    margin-top: var(--ux-space-3);
+    font-size: var(--ux-text-2xl);
+  }
+
+  .case__ba {
+    display: grid;
+    gap: var(--ux-space-4);
+    margin: var(--ux-space-5) 0 0;
+  }
+
+  .case__ba dt {
+    font-weight: 700;
+    color: var(--ux-navy);
+  }
+
+  .case__ba dd {
+    margin: 0;
+    color: var(--ux-muted);
+  }
+
+  .case__quote {
+    margin: var(--ux-space-6) 0 0;
+    padding: var(--ux-space-5);
+    border-radius: var(--ux-radius-md);
+    background: var(--ux-surface);
+    border-left: 3px solid var(--ux-teal);
+  }
+
+  .case__quote :global(.icon) {
+    color: var(--ux-teal);
+    margin-bottom: var(--ux-space-2);
+  }
+
+  .case__quote footer {
+    margin-top: var(--ux-space-3);
+    font-size: var(--ux-text-sm);
+    font-weight: 700;
+  }
+
+  .case__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ux-space-2);
+    margin-top: var(--ux-space-5);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  @media (min-width: 56rem) {
+    .case {
+      grid-template-columns: 1.1fr 1fr;
+      gap: var(--ux-space-8);
+    }
+
+    .case--flip .case__media {
+      order: 2;
+    }
+  }
+</style>

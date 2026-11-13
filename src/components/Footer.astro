@@ -1,0 +1,120 @@
+---
+import site from "../data/site.json";
+import Logo from "./Logo.astro";
+
+const year = new Date().getFullYear();
+const legal = [
+  { label: "Impressum", href: "/impressum/" },
+  { label: "Datenschutz", href: "/datenschutz/" },
+  { label: "AGB", href: "/agb/" },
+];
+const extra = [
+  { label: "WordPress-Alternative", href: "/wordpress-alternative/" },
+  { label: "Website-Check", href: site.primaryCta.href },
+];
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+    <div class="site-footer__brand">
+      <a href="/" class="site-footer__logo" aria-label="uixandy Startseite">
+        <Logo tone="white" />
+      </a>
+      <p>{site.footerBlurb}</p>
+    </div>
+
+    <nav aria-label="Footer">
+      <p class="site-footer__title">Seiten</p>
+      <ul>
+        {site.nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+        {extra.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+      </ul>
+    </nav>
+
+    <div>
+      <p class="site-footer__title">Kontakt</p>
+      <ul>
+        <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+        <li><a href={`tel:${site.phoneHref}`}>{site.phone}</a></li>
+        <li>{site.address.street}, {site.address.postalCode} {site.address.city}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container site-footer__bottom">
+    <p>{site.copyright} {year}</p>
+    <ul>
+      {legal.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+    </ul>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    color: var(--ux-on-dark-muted);
+    background: var(--ux-navy-deep);
+    padding-top: var(--ux-space-9);
+    font-size: var(--ux-text-sm);
+  }
+
+  .site-footer a {
+    color: var(--ux-on-dark);
+    text-decoration: none;
+  }
+
+  .site-footer a:hover {
+    color: var(--ux-teal);
+  }
+
+  .site-footer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--ux-space-3);
+  }
+
+  .site-footer__grid {
+    display: grid;
+    gap: var(--ux-space-7);
+    padding-bottom: var(--ux-space-8);
+  }
+
+  .site-footer__logo {
+    display: block;
+    width: 10rem;
+    margin-bottom: var(--ux-space-5);
+    color: var(--ux-on-dark);
+  }
+
+  .site-footer__brand p {
+    max-width: 26rem;
+  }
+
+  .site-footer__title {
+    margin-bottom: var(--ux-space-4);
+    font-family: var(--ux-font-display);
+    color: var(--ux-on-dark);
+    font-size: var(--ux-text-base);
+  }
+
+  .site-footer__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--ux-space-4);
+    padding-block: var(--ux-space-5);
+    border-top: 1px solid var(--ux-border-dark);
+  }
+
+  .site-footer__bottom ul {
+    display: flex;
+    gap: var(--ux-space-5);
+  }
+
+  @media (min-width: 48rem) {
+    .site-footer__grid {
+      grid-template-columns: 2fr 1fr 1fr;
+    }
+  }
+</style>

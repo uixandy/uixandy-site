@@ -1,0 +1,75 @@
+---
+import Button from "./Button.astro";
+import Logo from "./Logo.astro";
+
+export interface Props {
+  heading: string;
+  text?: string;
+  primary: { label: string; href: string };
+  secondary?: { label: string; href: string };
+}
+
+const { heading, text, primary, secondary } = Astro.props;
+---
+
+<section class="cta-band">
+  <div class="container">
+    <div class="cta-band__box" data-reveal>
+      <Logo tone="white" markOnly class="cta-band__mark" />
+      <h2>{heading}</h2>
+      {text && <p>{text}</p>}
+      <div class="cta-band__actions">
+        <Button href={primary.href} variant="accent" size="lg" arrow>{primary.label}</Button>
+        {secondary && <Button href={secondary.href} variant="light" size="lg">{secondary.label}</Button>}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-band {
+    padding-block: var(--ux-section-y);
+  }
+
+  .cta-band__box {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(2.5rem, 2rem + 4vw, 5.5rem) clamp(1.5rem, 1rem + 4vw, 5rem);
+    border-radius: calc(var(--ux-radius-lg) * 1.4);
+    background:
+      radial-gradient(40rem 24rem at 100% 0%, rgb(0 195 160 / 0.55), transparent 60%),
+      var(--ux-gradient);
+    color: var(--ux-on-dark);
+    text-align: center;
+  }
+
+  .cta-band__box :global(.cta-band__mark) {
+    position: absolute;
+    right: -4%;
+    bottom: -18%;
+    width: 22rem;
+    color: var(--ux-on-dark);
+    opacity: 0.08;
+    pointer-events: none;
+  }
+
+  .cta-band h2 {
+    max-width: 40rem;
+    margin-inline: auto;
+  }
+
+  .cta-band p {
+    max-width: 36rem;
+    margin: var(--ux-space-5) auto 0;
+    font-size: var(--ux-text-lg);
+    color: rgb(255 255 255 / 0.85);
+  }
+
+  .cta-band__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--ux-space-3);
+    margin-top: var(--ux-space-7);
+  }
+</style>

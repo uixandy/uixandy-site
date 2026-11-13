@@ -1,0 +1,196 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+import SectionHead from "../components/SectionHead.astro";
+import Button from "../components/Button.astro";
+import Icon from "../components/Icon.astro";
+import ChatDemo from "../components/ChatDemo.astro";
+import FeatureCards from "../components/FeatureCards.astro";
+import Steps from "../components/Steps.astro";
+import VideoBlock from "../components/VideoBlock.astro";
+import PackageCards from "../components/PackageCards.astro";
+import Testimonials from "../components/Testimonials.astro";
+import Faq from "../components/Faq.astro";
+import CtaBand from "../components/CtaBand.astro";
+import home from "../data/pages/home.json";
+import site from "../data/site.json";
+import packages from "../data/packages.json";
+import { resolveSeo } from "../lib/seo";
+import { faqJsonLd, servicesJsonLd } from "../lib/jsonld";
+
+const seo = resolveSeo(home);
+const { hero } = home;
+const [before, after] = hero.headingHighlight && hero.heading.includes(hero.headingHighlight)
+  ? hero.heading.split(hero.headingHighlight)
+  : [hero.heading, undefined];
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  ogImage={seo.ogImage}
+  jsonLd={[faqJsonLd(home.faq.items), servicesJsonLd(packages.items)]}
+>
+  <section class="hero">
+    <div class="container hero__inner">
+      <div class="hero__copy" data-reveal>
+        <p class="hero__kicker">{hero.kicker}</p>
+        <h1>
+          {before}{after !== undefined && <span class="text-gradient">{hero.headingHighlight}</span>}{after}
+        </h1>
+        <p class="hero__lead">{hero.lead}</p>
+        <div class="hero__actions">
+          <Button href={site.primaryCta.href} size="lg" arrow>{hero.primaryLabel}</Button>
+          <Button href="/preise/" variant="ghost" size="lg">{hero.secondaryLabel}</Button>
+        </div>
+        <ul class="hero__trust">
+          {hero.trust.map((t) => <li><Icon name="checkCircle" size={20} />{t}</li>)}
+        </ul>
+      </div>
+      <div class="hero__visual" data-reveal>
+        <ChatDemo demo={hero.demo} />
+      </div>
+    </div>
+  </section>
+
+  <Section id="problem" tone="soft">
+    <SectionHead kicker={home.problem.kicker} heading={home.problem.heading} lead={home.problem.lead} />
+    <FeatureCards items={home.problem.items} />
+  </Section>
+
+  <Section id="so-gehts">
+    <SectionHead kicker={home.how.kicker} heading={home.how.heading} lead={home.how.lead || undefined} />
+    <Steps items={home.how.items} />
+    <p class="section-link">
+      <a href="/so-funktionierts/">{home.how.linkLabel} <Icon name="arrowRight" size={16} /></a>
+    </p>
+  </Section>
+
+  <Section id="video" flush="top" narrow>
+    <SectionHead kicker={home.video.kicker} heading={home.video.heading} align="center" />
+    <VideoBlock
+      src={home.video.src}
+      poster={home.video.poster}
+      placeholderText={home.video.placeholderText}
+      caption={home.video.caption}
+    />
+  </Section>
+
+  <Section id="vorteile" tone="dark">
+    <SectionHead kicker={home.benefits.kicker} heading={home.benefits.heading} tone="dark" />
+    <FeatureCards items={home.benefits.items} tone="dark" />
+  </Section>
+
+  <Section id="preise">
+    <SectionHead kicker={home.pricing.kicker} heading={home.pricing.heading} lead={home.pricing.lead} align="center" />
+    <PackageCards showNotIncluded={false} />
+  </Section>
+
+  <Section id="kunden" tone="soft">
+    <SectionHead kicker={home.proof.kicker} heading={home.proof.heading} />
+    <Testimonials items={home.proof.items} />
+    <p class="section-link">
+      <a href="/beispiele/">{home.proof.linkLabel} <Icon name="arrowRight" size={16} /></a>
+    </p>
+  </Section>
+
+  <Section id="faq" narrow>
+    <SectionHead kicker={home.faq.kicker} heading={home.faq.heading} align="center" />
+    <Faq items={home.faq.items} />
+  </Section>
+
+  <CtaBand
+    heading={home.cta.heading}
+    text={home.cta.text}
+    primary={{ label: home.cta.primaryLabel, href: site.primaryCta.href }}
+    secondary={{ label: home.cta.secondaryLabel, href: site.booking.calUrl }}
+  />
+</BaseLayout>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(3rem, 2rem + 4vw, 6rem) clamp(4rem, 2rem + 6vw, 8rem);
+    background:
+      radial-gradient(60rem 30rem at 95% -5%, rgb(0 195 160 / 0.18), transparent 60%),
+      radial-gradient(40rem 26rem at -10% 20%, rgb(0 75 118 / 0.1), transparent 60%);
+  }
+
+  .hero__inner {
+    display: grid;
+    gap: var(--ux-space-8);
+    align-items: center;
+  }
+
+  .hero__kicker {
+    display: inline-block;
+    margin-bottom: var(--ux-space-5);
+    padding: 6px 14px;
+    border-radius: var(--ux-radius-pill);
+    background: var(--ux-surface-2);
+    color: var(--ux-navy);
+    font-size: var(--ux-text-sm);
+    font-weight: 700;
+  }
+
+  .hero h1 {
+    color: var(--ux-navy-deep);
+  }
+
+  .hero__lead {
+    margin-top: var(--ux-space-5);
+    font-size: var(--ux-text-xl);
+    line-height: 1.5;
+    color: var(--ux-muted);
+    max-width: 36rem;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--ux-space-3);
+    margin-top: var(--ux-space-7);
+  }
+
+  .hero__trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--ux-space-3) var(--ux-space-5);
+    margin: var(--ux-space-6) 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: var(--ux-text-sm);
+    font-weight: 700;
+    color: var(--ux-navy);
+  }
+
+  .hero__trust li {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ux-space-2);
+  }
+
+  .hero__trust :global(.icon) {
+    color: var(--ux-teal-ink);
+  }
+
+  .section-link {
+    margin-top: var(--ux-space-7);
+  }
+
+  .section-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ux-space-2);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  @media (min-width: 64rem) {
+    .hero__inner {
+      grid-template-columns: 1.05fr 1fr;
+      gap: var(--ux-space-8);
+    }
+  }
+</style>

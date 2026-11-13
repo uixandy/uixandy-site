@@ -1,0 +1,106 @@
+---
+/** Hero for every inner page. One layout, optional image on the right. */
+import Button from "./Button.astro";
+
+export interface Props {
+  kicker?: string;
+  heading: string;
+  lead?: string;
+  primary?: { label: string; href: string };
+  secondary?: { label: string; href: string };
+  image?: string;
+  imageAlt?: string;
+}
+
+const { kicker, heading, lead, primary, secondary, image, imageAlt = "" } = Astro.props;
+---
+
+<section class:list={["page-hero", { "page-hero--image": image }]}>
+  <div class="container page-hero__inner">
+    <div class="page-hero__copy" data-reveal>
+      {kicker && <p class="page-hero__kicker">{kicker}</p>}
+      <h1>{heading}</h1>
+      {lead && <p class="page-hero__lead">{lead}</p>}
+      {
+        (primary || secondary) && (
+          <div class="page-hero__actions">
+            {primary && <Button href={primary.href} size="lg" arrow>{primary.label}</Button>}
+            {secondary && <Button href={secondary.href} variant="ghost" size="lg">{secondary.label}</Button>}
+          </div>
+        )
+      }
+      <slot />
+    </div>
+    {
+      image && (
+        <div class="page-hero__media" data-reveal>
+          <img src={image} alt={imageAlt} width="800" height="800" loading="eager" fetchpriority="high" />
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .page-hero {
+    position: relative;
+    padding-block: clamp(3.5rem, 2rem + 5vw, 7rem) clamp(3rem, 2rem + 3vw, 5rem);
+    background:
+      radial-gradient(50rem 26rem at 90% -10%, rgb(0 195 160 / 0.16), transparent 60%),
+      radial-gradient(40rem 22rem at -10% 10%, rgb(0 75 118 / 0.1), transparent 60%);
+  }
+
+  .page-hero__inner {
+    display: grid;
+    gap: var(--ux-space-7);
+    align-items: center;
+  }
+
+  .page-hero__copy {
+    max-width: 48rem;
+  }
+
+  .page-hero__kicker {
+    margin-bottom: var(--ux-space-4);
+    font-size: var(--ux-text-sm);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ux-teal-ink);
+  }
+
+  .page-hero h1 {
+    font-size: var(--ux-text-4xl);
+    color: var(--ux-navy-deep);
+  }
+
+  .page-hero__lead {
+    margin-top: var(--ux-space-5);
+    font-size: var(--ux-text-xl);
+    line-height: 1.5;
+    color: var(--ux-muted);
+    max-width: 40rem;
+  }
+
+  .page-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--ux-space-3);
+    margin-top: var(--ux-space-7);
+  }
+
+  .page-hero__media img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: calc(var(--ux-radius-lg) * 1.4);
+    box-shadow: var(--ux-shadow-lg);
+  }
+
+  @media (min-width: 60rem) {
+    .page-hero--image .page-hero__inner {
+      grid-template-columns: 1.3fr 1fr;
+      gap: var(--ux-space-9);
+    }
+  }
+</style>

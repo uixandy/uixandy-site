@@ -1,0 +1,119 @@
+---
+/**
+ * One icon family: Phosphor (via icons.relume.io / @phosphor-icons/core).
+ * Duotone for content icons, Regular for UI controls. Colour = currentColor.
+ * Add new names to `icons` below; CMS select options live in `.pages.yml` (component `icon`).
+ */
+import chat from "@phosphor-icons/core/assets/duotone/chat-circle-text-duotone.svg?raw";
+import chats from "@phosphor-icons/core/assets/duotone/chats-circle-duotone.svg?raw";
+import envelope from "@phosphor-icons/core/assets/duotone/envelope-simple-duotone.svg?raw";
+import wrench from "@phosphor-icons/core/assets/duotone/wrench-duotone.svg?raw";
+import lock from "@phosphor-icons/core/assets/duotone/lock-duotone.svg?raw";
+import key from "@phosphor-icons/core/assets/duotone/key-duotone.svg?raw";
+import shield from "@phosphor-icons/core/assets/duotone/shield-check-duotone.svg?raw";
+import lightning from "@phosphor-icons/core/assets/duotone/lightning-duotone.svg?raw";
+import globe from "@phosphor-icons/core/assets/duotone/globe-hemisphere-west-duotone.svg?raw";
+import undo from "@phosphor-icons/core/assets/duotone/arrow-counter-clockwise-duotone.svg?raw";
+import creditCard from "@phosphor-icons/core/assets/duotone/credit-card-duotone.svg?raw";
+import search from "@phosphor-icons/core/assets/duotone/magnifying-glass-duotone.svg?raw";
+import mobile from "@phosphor-icons/core/assets/duotone/device-mobile-duotone.svg?raw";
+import pencil from "@phosphor-icons/core/assets/duotone/pencil-simple-line-duotone.svg?raw";
+import checkCircle from "@phosphor-icons/core/assets/duotone/check-circle-duotone.svg?raw";
+import calendar from "@phosphor-icons/core/assets/duotone/calendar-check-duotone.svg?raw";
+import rocket from "@phosphor-icons/core/assets/duotone/rocket-launch-duotone.svg?raw";
+import sparkle from "@phosphor-icons/core/assets/duotone/sparkle-duotone.svg?raw";
+import storefront from "@phosphor-icons/core/assets/duotone/storefront-duotone.svg?raw";
+import play from "@phosphor-icons/core/assets/duotone/play-circle-duotone.svg?raw";
+import quotes from "@phosphor-icons/core/assets/duotone/quotes-duotone.svg?raw";
+import files from "@phosphor-icons/core/assets/duotone/files-duotone.svg?raw";
+import translate from "@phosphor-icons/core/assets/duotone/translate-duotone.svg?raw";
+import briefcase from "@phosphor-icons/core/assets/duotone/briefcase-duotone.svg?raw";
+import article from "@phosphor-icons/core/assets/duotone/article-duotone.svg?raw";
+import calculator from "@phosphor-icons/core/assets/duotone/calculator-duotone.svg?raw";
+import lockKey from "@phosphor-icons/core/assets/duotone/lock-key-duotone.svg?raw";
+import handshake from "@phosphor-icons/core/assets/duotone/handshake-duotone.svg?raw";
+import paintBrush from "@phosphor-icons/core/assets/duotone/paint-brush-duotone.svg?raw";
+import plugs from "@phosphor-icons/core/assets/duotone/plugs-connected-duotone.svg?raw";
+import gauge from "@phosphor-icons/core/assets/duotone/gauge-duotone.svg?raw";
+import list from "@phosphor-icons/core/assets/regular/list.svg?raw";
+import x from "@phosphor-icons/core/assets/regular/x.svg?raw";
+import arrowRight from "@phosphor-icons/core/assets/regular/arrow-right.svg?raw";
+import caretDown from "@phosphor-icons/core/assets/regular/caret-down.svg?raw";
+import check from "@phosphor-icons/core/assets/bold/check-bold.svg?raw";
+import minus from "@phosphor-icons/core/assets/bold/minus-bold.svg?raw";
+import paperPlane from "@phosphor-icons/core/assets/regular/paper-plane-tilt.svg?raw";
+
+const icons = {
+  chat,
+  chats,
+  envelope,
+  wrench,
+  lock,
+  key,
+  shield,
+  lightning,
+  globe,
+  undo,
+  creditCard,
+  search,
+  mobile,
+  pencil,
+  checkCircle,
+  calendar,
+  rocket,
+  sparkle,
+  storefront,
+  play,
+  quotes,
+  files,
+  translate,
+  briefcase,
+  article,
+  calculator,
+  lockKey,
+  handshake,
+  paintBrush,
+  plugs,
+  gauge,
+  list,
+  x,
+  arrowRight,
+  caretDown,
+  check,
+  minus,
+  paperPlane,
+} as const;
+
+export type IconName = keyof typeof icons;
+
+export interface Props {
+  name: IconName | string;
+  size?: number | string;
+  class?: string;
+  label?: string;
+}
+
+const { name, size = 24, class: className = "", label } = Astro.props;
+const raw = (icons as Record<string, string>)[name] ?? icons.sparkle;
+const inner = raw.replace(/^[\s\S]*?<svg[^>]*>/, "").replace(/<\/svg>\s*$/, "");
+const dim = typeof size === "number" ? `${size}px` : size;
+---
+
+<svg
+  class:list={["icon", className]}
+  viewBox="0 0 256 256"
+  fill="currentColor"
+  width={dim}
+  height={dim}
+  role={label ? "img" : undefined}
+  aria-label={label}
+  aria-hidden={label ? undefined : "true"}
+  focusable="false"
+  set:html={inner}
+/>
+
+<style>
+  .icon {
+    flex: none;
+  }
+</style>

@@ -1,0 +1,519 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import Section from "../components/Section.astro";
+import Button from "../components/Button.astro";
+import Icon from "../components/Icon.astro";
+import page from "../data/pages/website-check.json";
+import site from "../data/site.json";
+import packages from "../data/packages.json";
+import { resolveSeo } from "../lib/seo";
+
+const seo = resolveSeo(page);
+const { form, results } = page;
+const pkg = Object.fromEntries(packages.items.map((p) => [p.id, p]));
+const outcomes = [
+  { id: "start", ...results.start, pkg: pkg.start, stripe: site.booking.stripeStart },
+  { id: "individuell", ...results.individuell, pkg: pkg.individuell, stripe: site.booking.stripeIndividuell },
+  { id: "gespraech", ...results.gespraech, pkg: pkg.individuell, stripe: "" },
+];
+---
+
+<BaseLayout title={seo.title} description={seo.description} ogImage={seo.ogImage}>
+  <PageHero kicker={page.hero.kicker} heading={page.hero.heading} lead={page.hero.lead} />
+
+  <Section flush="top" narrow>
+    <form
+      class="check"
+      data-check
+      action={site.booking.formEndpoint}
+      method="POST"
+      novalidate
+      data-error-text={form.errorText}
+    >
+      <input type="hidden" name="_subject" value="Neuer Website-Check (uixandy.com)" />
+      <input type="hidden" name="interesse" value="" data-interest />
+      <input type="hidden" name="empfehlung" value="" data-recommendation />
+      <p class="check__hp" aria-hidden="true">
+        <label>Nicht ausfüllen <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label>
+      </p>
+
+      <fieldset class="check__step">
+        <legend><span class="check__num">1</span>{form.websiteLabel}</legend>
+        <input class="field" type="text" name="website" placeholder={form.websitePlaceholder} inputmode="url" />
+      </fieldset>
+
+      <fieldset class="check__step">
+        <legend><span class="check__num">2</span>{form.pagesLabel}</legend>
+        <div class="choices">
+          {
+            form.pagesOptions.map((o, i) => (
+              <label class="choice">
+                <input type="radio" name="seiten" value={o.value} required={i === 0} />
+                <span>{o.label}</span>
+              </label>
+            ))
+          }
+        </div>
+      </fieldset>
+
+      <fieldset class="check__step">
+        <legend><span class="check__num">3</span>{form.featuresLabel}</legend>
+        <p class="check__hint">{form.featuresHint}</p>
+        <div class="choices choices--grid">
+          {
+            form.featuresOptions.map((o) => (
+              <label class="choice">
+                <input type="checkbox" name="funktionen" value={o.value} />
+                <span>{o.label}</span>
+              </label>
+            ))
+          }
+        </div>
+      </fieldset>
+
+      <fieldset class="check__step">
+        <legend><span class="check__num">4</span>{form.timingLabel}</legend>
+        <div class="choices">
+          {
+            form.timingOptions.map((o) => (
+              <label class="choice">
+                <input type="radio" name="zeitraum" value={o.value} />
+                <span>{o.label}</span>
+              </label>
+            ))
+          }
+        </div>
+      </fieldset>
+
+      <fieldset class="check__step check__step--contact">
+        <legend><span class="check__num"><Icon name="paperPlane" size={16} /></span>{form.contactLabel}</legend>
+        <div class="fields">
+          <label class="field-label">
+            {form.nameLabel}
+            <input class="field" type="text" name="name" autocomplete="name" required />
+          </label>
+          <label class="field-label">
+            {form.emailLabel}
+            <input class="field" type="email" name="email" autocomplete="email" required />
+          </label>
+          <label class="field-label fields__full">
+            {form.companyLabel}
+            <input class="field" type="text" name="firma" autocomplete="organization" />
+          </label>
+          <label class="field-label fields__full">
+            {form.messageLabel}
+            <textarea class="field" name="nachricht" rows="3"></textarea>
+          </label>
+        </div>
+        <label class="consent">
+          <input type="checkbox" name="einwilligung" value="ja" required />
+          <span>{form.consentText} Mehr in der <a href="/datenschutz/">Datenschutzerklärung</a>.</span>
+        </label>
+      </fieldset>
+
+      <p class="check__error" data-error hidden role="alert"></p>
+
+      <div class="check__submit">
+        <Button type="submit" size="lg" arrow data-submit data-sending={form.sendingLabel}>{form.submitLabel}</Button>
+      </div>
+    </form>
+
+    <div class="result" data-result hidden tabindex="-1">
+      {
+        outcomes.map((o) => (
+          <article class="result__card" data-outcome={o.id} hidden>
+            <p class="result__sent">
+              <Icon name="checkCircle" size={20} />
+              {results.sentNote}
+            </p>
+            <h2>{o.title}</h2>
+            <p class="result__price">
+              {o.pkg.pricePrefix && <span>{o.pkg.pricePrefix}</span>}
+              {o.pkg.price}
+              <small>netto</small>
+            </p>
+            <p class="result__text">{o.text}</p>
+            <p class="result__shop" data-shop-note hidden>
+              <Icon name="storefront" size={20} />
+              {results.shopNote}
+            </p>
+            <div class="result__actions">
+              {o.stripe ? (
+                <>
+                  <Button href={o.stripe} variant="accent" size="lg" arrow data-stripe>
+                    {results.depositLabel} ({o.pkg.deposit})
+                  </Button>
+                  <Button href={site.booking.calUrl} variant="ghost" size="lg" data-cal>
+                    {results.callLabel}
+                  </Button>
+                </>
+              ) : (
+                <Button href={site.booking.calUrl} variant="accent" size="lg" arrow data-cal>
+                  {results.callLabel}
+                </Button>
+              )}
+            </div>
+            {o.stripe && <p class="result__note">{results.refundNote}</p>}
+          </article>
+        ))
+      }
+    </div>
+  </Section>
+</BaseLayout>
+
+<script>
+  type Outcome = "start" | "individuell" | "gespraech";
+
+  const form = document.querySelector<HTMLFormElement>("[data-check]");
+  const result = document.querySelector<HTMLElement>("[data-result]");
+  const errorEl = document.querySelector<HTMLElement>("[data-error]");
+  const submit = form?.querySelector<HTMLButtonElement>("[data-submit]");
+  const submitLabel = submit?.textContent ?? "";
+
+  const INDIVIDUAL = ["blog", "jobs", "sprachen", "termine", "rechner", "formulare"];
+
+  const recommend = (pages: string, features: string[]): Outcome => {
+    if (features.includes("login") || pages === "ueber-15" || pages === "unklar") return "gespraech";
+    if (pages === "7-15" || features.some((f) => INDIVIDUAL.includes(f))) return "individuell";
+    return "start";
+  };
+
+  const params = new URLSearchParams(location.search);
+  const interest = form?.querySelector<HTMLInputElement>("[data-interest]");
+  if (interest) interest.value = params.get("paket") ?? "";
+
+  const withParams = (href: string, add: Record<string, string>) => {
+    try {
+      const url = new URL(href);
+      Object.entries(add).forEach(([k, v]) => v && url.searchParams.set(k, v));
+      return url.toString();
+    } catch {
+      return href;
+    }
+  };
+
+  const showError = (msg: string) => {
+    if (!errorEl) return;
+    errorEl.textContent = msg;
+    errorEl.hidden = false;
+  };
+
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (!form || !result || !submit) return;
+    if (errorEl) errorEl.hidden = true;
+
+    const data = new FormData(form);
+    if (data.get("_gotcha")) return;
+
+    const pages = String(data.get("seiten") ?? "");
+    const features = data.getAll("funktionen").map(String);
+    const name = String(data.get("name") ?? "").trim();
+    const email = String(data.get("email") ?? "").trim();
+
+    if (!pages || !name || !/^\S+@\S+\.\S+$/.test(email) || !data.get("einwilligung")) {
+      form.reportValidity();
+      showError("Bitte beantworten Sie Frage 2 und füllen Sie Name, E-Mail und die Einwilligung aus.");
+      return;
+    }
+
+    const outcome = recommend(pages, features);
+    data.set("empfehlung", outcome);
+    data.set("funktionen", features.join(", ") || "keine");
+
+    submit.disabled = true;
+    submit.textContent = submit.dataset.sending ?? "Wird gesendet …";
+
+    try {
+      const res = await fetch(form.action, {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" },
+      });
+      if (!res.ok) throw new Error(String(res.status));
+    } catch {
+      submit.disabled = false;
+      submit.textContent = submitLabel;
+      showError(form.dataset.errorText ?? "");
+      return;
+    }
+
+    result.querySelectorAll<HTMLElement>("[data-outcome]").forEach((card) => {
+      card.hidden = card.dataset.outcome !== outcome;
+    });
+    result.querySelectorAll<HTMLElement>("[data-shop-note]").forEach((n) => {
+      n.hidden = !features.includes("shop");
+    });
+    result.querySelectorAll<HTMLAnchorElement>("[data-stripe]").forEach((a) => {
+      a.href = withParams(a.href, { prefilled_email: email });
+    });
+    result.querySelectorAll<HTMLAnchorElement>("[data-cal]").forEach((a) => {
+      a.href = withParams(a.href, { name, email });
+    });
+
+    form.hidden = true;
+    result.hidden = false;
+    result.focus();
+    result.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+</script>
+
+<style>
+  .check {
+    display: grid;
+    gap: var(--ux-space-5);
+  }
+
+  .check__hp {
+    position: absolute;
+    left: -9999px;
+  }
+
+  .check__step {
+    margin: 0;
+    padding: var(--ux-space-6);
+    border: 1px solid var(--ux-border);
+    border-radius: var(--ux-radius-lg);
+    background: var(--ux-bg);
+  }
+
+  .check__step legend {
+    display: flex;
+    align-items: center;
+    gap: var(--ux-space-3);
+    float: left;
+    width: 100%;
+    margin-bottom: var(--ux-space-5);
+    font-family: var(--ux-font-display);
+    font-size: var(--ux-text-xl);
+    line-height: var(--ux-leading-snug);
+    color: var(--ux-navy-deep);
+  }
+
+  .check__step legend + * {
+    clear: both;
+  }
+
+  .check__num {
+    display: inline-grid;
+    place-items: center;
+    flex: none;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: var(--ux-gradient);
+    color: var(--ux-on-dark);
+    font-size: var(--ux-text-sm);
+  }
+
+  .check__hint {
+    clear: both;
+    margin: calc(-1 * var(--ux-space-3)) 0 var(--ux-space-4);
+    font-size: var(--ux-text-sm);
+    color: var(--ux-muted);
+  }
+
+  .choices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--ux-space-3);
+  }
+
+  .choices--grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  }
+
+  .choice {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .choice input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .choice span {
+    display: block;
+    padding: 0.7rem 1.1rem;
+    border: 1.5px solid var(--ux-border);
+    border-radius: var(--ux-radius-md);
+    background: var(--ux-bg);
+    font-weight: 700;
+    color: var(--ux-ink);
+    transition:
+      border-color var(--ux-dur-fast) var(--ux-ease),
+      background-color var(--ux-dur-fast) var(--ux-ease);
+  }
+
+  .choice:hover span {
+    border-color: var(--ux-teal);
+  }
+
+  .choice input:checked + span {
+    border-color: var(--ux-navy);
+    background: var(--ux-surface-2);
+    color: var(--ux-navy-deep);
+  }
+
+  .choice input:focus-visible + span {
+    outline: 2px solid var(--ux-teal);
+    outline-offset: 2px;
+  }
+
+  .fields {
+    display: grid;
+    gap: var(--ux-space-4);
+  }
+
+  @media (min-width: 40rem) {
+    .fields {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .fields__full {
+      grid-column: 1 / -1;
+    }
+  }
+
+  .field-label {
+    display: grid;
+    gap: var(--ux-space-2);
+    font-size: var(--ux-text-sm);
+    font-weight: 700;
+  }
+
+  .field {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1.5px solid var(--ux-border);
+    border-radius: var(--ux-radius-md);
+    background: var(--ux-bg);
+    font: inherit;
+    font-weight: 400;
+    color: var(--ux-ink);
+  }
+
+  .field:focus {
+    outline: none;
+    border-color: var(--ux-teal);
+    box-shadow: 0 0 0 3px rgb(0 195 160 / 0.2);
+  }
+
+  .consent {
+    display: flex;
+    gap: var(--ux-space-3);
+    align-items: flex-start;
+    margin-top: var(--ux-space-5);
+    font-size: var(--ux-text-sm);
+    color: var(--ux-muted);
+  }
+
+  .consent input {
+    margin-top: 0.3em;
+    accent-color: var(--ux-navy);
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+
+  .check__error {
+    padding: var(--ux-space-4);
+    border-radius: var(--ux-radius-md);
+    background: #fdecec;
+    color: #8a1c1c;
+    font-weight: 700;
+  }
+
+  .check__submit {
+    display: flex;
+    justify-content: center;
+  }
+
+  .result:focus {
+    outline: none;
+  }
+
+  .result__card {
+    padding: clamp(2rem, 1.5rem + 3vw, 3.5rem);
+    border-radius: var(--ux-radius-lg);
+    background:
+      radial-gradient(30rem 18rem at 100% 0%, rgb(0 195 160 / 0.3), transparent 65%),
+      var(--ux-navy-deep);
+    color: var(--ux-on-dark);
+    box-shadow: var(--ux-shadow-lg);
+  }
+
+  .result__sent {
+    display: inline-flex;
+    gap: var(--ux-space-2);
+    align-items: center;
+    margin-bottom: var(--ux-space-6);
+    padding: 6px 14px;
+    border-radius: var(--ux-radius-pill);
+    background: rgb(0 195 160 / 0.15);
+    color: var(--ux-teal);
+    font-size: var(--ux-text-sm);
+    font-weight: 700;
+  }
+
+  .result__card h2 {
+    color: var(--ux-on-dark);
+  }
+
+  .result__price {
+    margin-top: var(--ux-space-4);
+    font-family: var(--ux-font-display);
+    font-size: var(--ux-text-3xl);
+    line-height: 1;
+  }
+
+  .result__price span,
+  .result__price small {
+    font-family: var(--ux-font-body);
+    font-size: var(--ux-text-base);
+    color: var(--ux-on-dark-muted);
+  }
+
+  .result__price span {
+    margin-right: 0.35rem;
+  }
+
+  .result__price small {
+    margin-left: 0.35rem;
+  }
+
+  .result__text {
+    margin-top: var(--ux-space-5);
+    font-size: var(--ux-text-lg);
+    color: var(--ux-on-dark-muted);
+  }
+
+  .result__shop {
+    display: flex;
+    gap: var(--ux-space-3);
+    margin-top: var(--ux-space-5);
+    color: var(--ux-on-dark);
+  }
+
+  .result__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--ux-space-3);
+    margin-top: var(--ux-space-7);
+  }
+
+  .result__actions :global(.btn--ghost) {
+    --btn-fg: var(--ux-on-dark);
+    --btn-border: var(--ux-border-dark);
+    --btn-bg-hover: rgb(255 255 255 / 0.08);
+  }
+
+  .result__note {
+    margin-top: var(--ux-space-5);
+    font-size: var(--ux-text-sm);
+    color: var(--ux-on-dark-muted);
+  }
+</style>

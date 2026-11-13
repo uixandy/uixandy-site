@@ -1,0 +1,65 @@
+{
+  "seoTitle": "WordPress-Alternative für kleine Unternehmen: ohne Updates | uixandy",
+  "seoDescription": "Die WordPress-Alternative für kleine Unternehmen: schnelle Website ohne Plugins und Updates, die Sie per Chat mit Ihrer KI selbst pflegen. Ab 990 € netto.",
+  "hero": {
+    "kicker": "WordPress-Alternative",
+    "heading": "Eine Website ohne WordPress. Und ohne die Arbeit, die WordPress macht.",
+    "lead": "Keine Plugins, keine Updates, keine Sicherheitslücken. Stattdessen eine schnelle Website, die Sie per Chat mit Ihrer KI selbst pflegen."
+  },
+  "answer": {
+    "heading": "Kurz gesagt",
+    "text": "Für kleine Unternehmen, die vor allem Texte, Bilder und Seiten pflegen, ist eine statische Website die bessere Alternative zu WordPress. Sie braucht keine Plugins und keine Datenbank, lädt deutlich schneller und muss nicht ständig aktualisiert werden. Geändert wird sie per Chat mit einer KI oder in einem einfachen Editor."
+  },
+  "compare": {
+    "kicker": "Im Vergleich",
+    "heading": "WordPress und uixandy nebeneinander",
+    "oldLabel": "WordPress",
+    "newLabel": "uixandy",
+    "rows": [
+      { "topic": "Pflege", "old": "Login ins Backend, Pagebuilder lernen", "new": "Ihrer KI schreiben, was sich ändern soll" },
+      { "topic": "Updates", "old": "WordPress, Theme und Plugins regelmäßig aktualisieren", "new": "Keine Updates nötig" },
+      { "topic": "Sicherheit", "old": "Plugins und Login sind häufige Angriffsziele", "new": "Kein Login, keine Datenbank, kaum Angriffsfläche" },
+      { "topic": "Geschwindigkeit", "old": "Oft langsam durch Plugins und Pagebuilder", "new": "Sehr schnell, weil fertige Seiten ausgeliefert werden" },
+      { "topic": "Fehler rückgängig machen", "old": "Backup-Plugin, falls vorhanden", "new": "Jede Änderung ist eine Version, ein Satz genügt" },
+      { "topic": "Laufende Kosten", "old": "Hosting, Premium-Plugins, Wartungsvertrag", "new": "Hosting direkt beim Anbieter, Betreuung optional" }
+    ]
+  },
+  "fit": {
+    "kicker": "Ehrlich gesagt",
+    "heading": "Wann WordPress weiterhin die bessere Wahl ist",
+    "lead": "Nicht jede Website sollte von WordPress weg. In diesen Fällen raten wir selbst davon ab.",
+    "items": [
+      { "icon": "storefront", "title": "Große Online-Shops", "text": "Wer viele Produkte, Lager und Versand verwaltet, ist mit einem Shopsystem wie Shopify besser beraten." },
+      { "icon": "lockKey", "title": "Mitgliederbereiche", "text": "Websites mit Login, Kundenkonten und geschützten Inhalten brauchen ein System dahinter." },
+      { "icon": "chats", "title": "Viele Redakteure gleichzeitig", "text": "Wenn täglich zehn Leute Beiträge mit Freigabeprozess veröffentlichen, ist ein klassisches CMS sinnvoll." }
+    ]
+  },
+  "faq": {
+    "kicker": "Häufige Fragen",
+    "heading": "Fragen zum Umstieg von WordPress",
+    "items": [
+      {
+        "question": "Verliere ich meine Google-Rankings beim Umstieg?",
+        "answer": "Nicht, wenn der Umzug sauber gemacht wird. Wir übernehmen Inhalte und Seitentitel und leiten alte Adressen auf die neuen weiter. Viele Websites werden danach sogar besser gefunden, weil sie schneller laden."
+      },
+      {
+        "question": "Kann ich meine Inhalte von WordPress übernehmen?",
+        "answer": "Ja. Texte, Bilder und Blogbeiträge übernehmen wir. Sie müssen nichts neu schreiben."
+      },
+      {
+        "question": "Was passiert mit meinem Kontaktformular?",
+        "answer": "Ihr Kontaktformular funktioniert weiter, nur ohne Plugin. Anfragen landen wie gewohnt in Ihrem Postfach."
+      },
+      {
+        "question": "Brauche ich danach noch einen Wartungsvertrag?",
+        "answer": "In der Regel nicht. Es gibt keine Plugins und kein System, das aktualisiert werden muss. Wer trotzdem jemanden an der Seite haben möchte, bucht unsere Betreuung für 39 € im Monat."
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Raus aus WordPress, ohne Stress.",
+    "text": "Machen Sie den Website-Check. Wir sagen Ihnen in 60 Sekunden, welches Paket passt.",
+    "primaryLabel": "Website-Check starten",
+    "secondaryLabel": "15 Min. Gespräch buchen"
+  }
+}

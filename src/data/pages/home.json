@@ -1,0 +1,190 @@
+{
+  "seoTitle": "Website per Chat mit KI pflegen | Ohne WordPress | uixandy",
+  "seoDescription": "Professionelle Website für kleine Unternehmen, die Sie per Chat mit Ihrer KI (z. B. Claude oder ChatGPT) selbst pflegen. Ohne WordPress, ohne Agentur. Ab 990 € netto.",
+  "ogImage": "/media/og-default.jpg",
+  "hero": {
+    "kicker": "Websites für kleine Unternehmen",
+    "heading": "Ihre Website. Gepflegt per Chat mit Ihrer KI.",
+    "headingHighlight": "per Chat",
+    "lead": "Sie schreiben Ihrer KI, was sich ändern soll, zum Beispiel neue Öffnungszeiten oder ein neues Foto. Wenige Minuten später ist es online. Ohne WordPress, ohne Agentur, ohne Wartezeit.",
+    "primaryLabel": "Website-Check starten",
+    "secondaryLabel": "Preise ansehen",
+    "trust": ["Start ab 990 € netto", "Gehört komplett Ihnen", "Kein WordPress, keine Plugins"],
+    "demo": {
+      "siteName": "Salon Mira",
+      "siteTagline": "Haarschnitt, Farbe und Beratung in Ihrer Nähe.",
+      "hoursOld": "Mo bis Do, 10 bis 17 Uhr",
+      "hoursNew": "Mo bis Sa, 9 bis 18 Uhr",
+      "banner": "Neu: Ab Dezember auch samstags geöffnet",
+      "userMessage": "Bitte ändere die Öffnungszeiten auf Mo bis Sa, 9 bis 18 Uhr. Und oben ein Hinweis: ab Dezember auch samstags.",
+      "aiMessage": "Erledigt. Öffnungszeiten angepasst und den Hinweis oben eingefügt. Die neue Version ist gespeichert.",
+      "statusPending": "Wird veröffentlicht …",
+      "statusLive": "Live auf Ihrer Website",
+      "caption": "Beispiel: So sieht eine Änderung aus. Kein Login, kein Baukasten, nur ein Satz."
+    }
+  },
+  "problem": {
+    "kicker": "Kennen Sie das?",
+    "heading": "Ihre Website sollte Ihnen Arbeit abnehmen. Nicht machen.",
+    "lead": "Die meisten kleinen Unternehmen haben eine von drei Arten Website. Mit allen dreien hat man Ärger.",
+    "items": [
+      {
+        "icon": "envelope",
+        "title": "Jede Änderung ist eine Mail an die Agentur",
+        "text": "Ein neues Foto, ein Tippfehler, ein Feiertag. Sie schreiben, warten ein paar Tage und bekommen eine Rechnung."
+      },
+      {
+        "icon": "wrench",
+        "title": "WordPress will ständig Updates",
+        "text": "Plugins, Themes, Sicherheitslücken. Wer nicht aktualisiert, riskiert eine gehackte Website. Wer aktualisiert, riskiert eine kaputte."
+      },
+      {
+        "icon": "lock",
+        "title": "Ein Baukasten-Abo, das Ihnen nie gehört",
+        "text": "Bei Wix, Jimdo und Co. zahlen Sie jeden Monat. Wenn Sie wechseln wollen, fangen Sie von vorne an."
+      }
+    ]
+  },
+  "how": {
+    "kicker": "So funktioniert's",
+    "heading": "Drei Schritte. Danach pflegen Sie Ihre Website selbst.",
+    "lead": "",
+    "items": [
+      {
+        "title": "Wir bauen Ihre Website",
+        "text": "Modern, schnell und in Ihrem Design. Texte und Bilder von Ihrer alten Website übernehmen wir.",
+        "example": ""
+      },
+      {
+        "title": "Wir verbinden Ihre KI",
+        "text": "Zum Beispiel Claude oder ChatGPT. Wir richten alles ein und zeigen es Ihnen in einem kurzen Video-Call.",
+        "example": ""
+      },
+      {
+        "title": "Sie schreiben, was sich ändern soll",
+        "text": "Ihre KI ändert die Website, speichert eine neue Version und stellt sie online.",
+        "example": "„Tausche das Teamfoto gegen das neue aus.“"
+      }
+    ],
+    "linkLabel": "Ausführlich erklärt: So funktioniert's"
+  },
+  "video": {
+    "kicker": "Im Video",
+    "heading": "Eine echte Änderung an einer echten Website.",
+    "src": "",
+    "poster": "",
+    "placeholderText": "[Platzhalter] Hier kommt das Demo-Video (60 bis 90 Sekunden): Jemand schreibt der KI eine Änderung, die Website aktualisiert sich live.",
+    "caption": ""
+  },
+  "benefits": {
+    "kicker": "Was Sie davon haben",
+    "heading": "Weniger Aufwand. Mehr Kontrolle. Keine Abhängigkeit.",
+    "lead": "",
+    "items": [
+      {
+        "icon": "chat",
+        "title": "Änderungen in Minuten",
+        "text": "Kein Ticket, kein Warten. Sie schreiben einen Satz, die KI erledigt den Rest."
+      },
+      {
+        "icon": "shield",
+        "title": "Kaum Angriffsfläche",
+        "text": "Kein WordPress, keine Plugins, keine Datenbank. Damit fallen die typischen Einfallstore für Hacker weg."
+      },
+      {
+        "icon": "undo",
+        "title": "Jede Version gespeichert",
+        "text": "Gefällt Ihnen eine Änderung nicht? Ein Satz an die KI, und die vorherige Version ist zurück."
+      },
+      {
+        "icon": "key",
+        "title": "Gehört komplett Ihnen",
+        "text": "Website und Inhalte liegen in Ihrem eigenen Konto. Sie können jederzeit wechseln, ohne neu anzufangen."
+      },
+      {
+        "icon": "lightning",
+        "title": "Sehr schnelle Ladezeiten",
+        "text": "Ihre Seiten laden in einem Bruchteil der Zeit einer typischen WordPress-Seite. Das mögen Besucher und Google."
+      },
+      {
+        "icon": "pencil",
+        "title": "Auch zum Klicken",
+        "text": "Lieber selbst tippen als chatten? Ein einfacher Editor für Texte und Bilder ist immer mit dabei."
+      }
+    ]
+  },
+  "pricing": {
+    "kicker": "Preise",
+    "heading": "Feste Preise. Ohne Überraschungen.",
+    "lead": "Wählen Sie ein Paket oder machen Sie den Website-Check. In 60 Sekunden wissen Sie, was zu Ihnen passt."
+  },
+  "proof": {
+    "kicker": "Kunden",
+    "heading": "Diese Unternehmen pflegen ihre Website schon per Chat.",
+    "items": [
+      {
+        "quote": "[Platzhalter] Zitat folgt nach Freigabe.",
+        "name": "[Name]",
+        "role": "Lovely Hair, Friseursalon",
+        "placeholder": true
+      },
+      {
+        "quote": "[Platzhalter] Zitat folgt nach Freigabe.",
+        "name": "[Name]",
+        "role": "Intecra GmbH",
+        "placeholder": true
+      },
+      {
+        "quote": "[Platzhalter] Zitat folgt nach Freigabe.",
+        "name": "[Name]",
+        "role": "sikamedia",
+        "placeholder": true
+      }
+    ],
+    "linkLabel": "Alle Beispiele ansehen"
+  },
+  "faq": {
+    "kicker": "Häufige Fragen",
+    "heading": "Was Kunden vorher wissen wollen",
+    "items": [
+      {
+        "question": "Brauche ich technisches Wissen?",
+        "answer": "Nein. Sie schreiben Ihrer KI ganz normal, was sich ändern soll. Die Technik dahinter richten wir ein, und im Übergabe-Call zeigen wir Ihnen alles Schritt für Schritt."
+      },
+      {
+        "question": "Welche KI kann ich nutzen?",
+        "answer": "Am besten funktioniert es mit Claude. ChatGPT und andere Assistenten, die auf Ihr Website-Konto zugreifen können, gehen auch. Im Gespräch empfehlen wir Ihnen, was zu Ihnen passt."
+      },
+      {
+        "question": "Was kostet die KI?",
+        "answer": "Für gelegentliche Änderungen reicht meist ein normales Abo bei Ihrem KI-Anbieter, das viele ohnehin schon haben. Das zahlen Sie direkt beim Anbieter, nicht bei uns."
+      },
+      {
+        "question": "Was, wenn die KI einen Fehler macht?",
+        "answer": "Jede Änderung wird als eigene Version gespeichert. Sie sagen der KI, dass sie die letzte Änderung rückgängig machen soll, und alles ist wie vorher. Mit der Betreuung schauen wir auf Wunsch selbst drauf."
+      },
+      {
+        "question": "Wem gehört die Website?",
+        "answer": "Ihnen. Texte, Bilder und die Website selbst liegen in Ihrem eigenen Konto. Wenn Sie irgendwann mit jemand anderem arbeiten möchten, nehmen Sie alles mit."
+      },
+      {
+        "question": "Was kostet das Hosting?",
+        "answer": "Ihre Website läuft bei einem Anbieter in der EU, auf Ihrem eigenen Konto. Die Kosten zahlen Sie direkt an den Anbieter, ohne Aufschlag von uns. [Platzhalter: genaue Hosting-Kosten ergänzen]"
+      },
+      {
+        "question": "Können Sie meine bestehende Website übernehmen?",
+        "answer": "Ja. Wir übernehmen Ihre Texte und Bilder und bauen alles neu auf. Bei größeren Websites leiten wir alte Adressen weiter, damit Ihre Google-Rankings erhalten bleiben."
+      },
+      {
+        "question": "Machen Sie auch Online-Shops?",
+        "answer": "Nein, bewusst nicht. Ein Shop hat Lager, Zahlungen und Versand und braucht eine eigene Verwaltung. Dafür empfehlen wir Shopify."
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Finden Sie in 60 Sekunden heraus, welches Paket passt.",
+    "text": "Ein paar Fragen zu Ihrer Website, und Sie sehen sofort Preis und nächste Schritte. Direkt buchen oder erst kurz sprechen, Sie entscheiden.",
+    "primaryLabel": "Website-Check starten",
+    "secondaryLabel": "15 Min. Gespräch buchen"
+  }
+}

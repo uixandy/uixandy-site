@@ -1,0 +1,67 @@
+---
+import Icon from "./Icon.astro";
+
+export interface Props {
+  items: { quote: string; name: string; role: string; placeholder?: boolean }[];
+}
+
+const { items } = Astro.props;
+---
+
+<ul class="quotes grid grid--3" data-reveal-stagger>
+  {
+    items.map((item) => (
+      <li class:list={["quote", { "quote--placeholder": item.placeholder }]}>
+        <Icon name="quotes" size={32} class="quote__mark" />
+        <blockquote>{item.quote}</blockquote>
+        <p class="quote__who">
+          <strong>{item.name}</strong>
+          <span>{item.role}</span>
+        </p>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .quotes {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .quote {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ux-space-5);
+    padding: var(--ux-space-6);
+    border-radius: var(--ux-radius-lg);
+    background: var(--ux-bg);
+    border: 1px solid var(--ux-border);
+  }
+
+  .quote--placeholder {
+    border-style: dashed;
+    border-color: var(--ux-teal);
+  }
+
+  .quote :global(.quote__mark) {
+    color: var(--ux-teal);
+  }
+
+  .quote blockquote {
+    margin: 0;
+    font-size: var(--ux-text-lg);
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .quote__who {
+    display: grid;
+    font-size: var(--ux-text-sm);
+  }
+
+  .quote__who span {
+    color: var(--ux-muted);
+  }
+</style>

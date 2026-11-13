@@ -1,0 +1,87 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import Section from "../components/Section.astro";
+import SectionHead from "../components/SectionHead.astro";
+import FeatureCards from "../components/FeatureCards.astro";
+import CtaBand from "../components/CtaBand.astro";
+import page from "../data/pages/ueber-mich.json";
+import site from "../data/site.json";
+import { resolveSeo } from "../lib/seo";
+
+const seo = resolveSeo(page);
+---
+
+<BaseLayout title={seo.title} description={seo.description} ogImage={seo.ogImage}>
+  <PageHero
+    kicker={page.hero.kicker}
+    heading={page.hero.heading}
+    lead={page.hero.lead}
+    image={page.hero.image}
+    imageAlt={page.hero.imageAlt}
+  />
+
+  <Section id="geschichte" narrow>
+    <SectionHead kicker={page.story.kicker} heading={page.story.heading} />
+    <div class="prose" data-reveal>
+      {page.story.paragraphs.map((p) => <p>{p}</p>)}
+    </div>
+  </Section>
+
+  <Section id="werte" tone="soft">
+    <SectionHead kicker={page.values.kicker} heading={page.values.heading} />
+    <FeatureCards items={page.values.items} />
+  </Section>
+
+  <Section id="persoenlich">
+    <div class="personal" data-reveal>
+      <img src={page.personal.image} alt={page.personal.imageAlt} width="900" height="1200" loading="lazy" />
+      <div>
+        <h2>{page.personal.heading}</h2>
+        <p>{page.personal.text}</p>
+      </div>
+    </div>
+  </Section>
+
+  <CtaBand
+    heading={page.cta.heading}
+    text={page.cta.text}
+    primary={{ label: page.cta.primaryLabel, href: site.primaryCta.href }}
+    secondary={{ label: page.cta.secondaryLabel, href: site.booking.calUrl }}
+  />
+</BaseLayout>
+
+<style>
+  .personal {
+    display: grid;
+    gap: var(--ux-space-7);
+    align-items: center;
+  }
+
+  .personal img {
+    width: 100%;
+    max-width: 26rem;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border-radius: calc(var(--ux-radius-lg) * 1.4);
+    box-shadow: var(--ux-shadow-lg);
+  }
+
+  .personal h2 {
+    font-size: var(--ux-text-2xl);
+  }
+
+  .personal p {
+    margin-top: var(--ux-space-5);
+    font-size: var(--ux-text-lg);
+    color: var(--ux-muted);
+    max-width: 34rem;
+  }
+
+  @media (min-width: 56rem) {
+    .personal {
+      grid-template-columns: 26rem 1fr;
+      gap: var(--ux-space-9);
+    }
+  }
+</style>

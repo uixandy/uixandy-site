@@ -1,0 +1,41 @@
+{
+  "seoTitle": "Über mich: Andy Bittner, Webdesigner aus München | uixandy",
+  "seoDescription": "Ich bin Andy Bittner und baue seit 8 Jahren Websites. Heute so, dass meine Kunden sie per Chat mit ihrer KI selbst pflegen können.",
+  "hero": {
+    "kicker": "Über mich",
+    "heading": "Hi, ich bin Andy. Ich baue Websites, die Ihnen keine Arbeit machen.",
+    "lead": "Seit 8 Jahren baue ich Websites für Unternehmen. Erst in einer Münchner Agentur, dann sechs Jahre selbstständig unter uixandy.",
+    "image": "/media/andy-bittner.jpg",
+    "imageAlt": "Andy Bittner, Gründer von uixandy"
+  },
+  "story": {
+    "kicker": "Warum ich das so mache",
+    "heading": "Ich habe zu oft gesehen, wie Websites zur Last werden.",
+    "paragraphs": [
+      "Ich habe viele Jahre WordPress- und Webflow-Websites gebaut. Die Websites waren gut. Das Problem kam danach: Updates, Plugins, die sich nicht vertragen, und für jede kleine Änderung eine Mail an mich.",
+      "Meine Kunden wollten nicht ständig fragen müssen. Sie wollten ihre Öffnungszeiten selbst ändern, ein neues Foto einsetzen oder eine Stellenanzeige veröffentlichen. Sofort, ohne ein System lernen zu müssen.",
+      "Heute geht genau das. Ich baue Ihre Website so, dass Ihre KI sie für Sie pflegen kann. Sie schreiben, was Sie wollen, und es passiert. Und wenn Sie doch Hilfe brauchen, bin ich da."
+    ]
+  },
+  "values": {
+    "kicker": "Worauf Sie sich verlassen können",
+    "heading": "So arbeite ich",
+    "items": [
+      { "icon": "handshake", "title": "Persönlich", "text": "Sie sprechen immer direkt mit mir. Kein Ticketsystem, kein wechselnder Ansprechpartner." },
+      { "icon": "key", "title": "Ehrlich", "text": "Feste Preise, klare Aussagen. Wenn etwas nicht zu Ihnen passt, sage ich es Ihnen vorher." },
+      { "icon": "rocket", "title": "Unabhängig", "text": "Ihre Website gehört Ihnen. Mein Ziel ist, dass Sie mich für den Alltag gar nicht mehr brauchen." }
+    ]
+  },
+  "personal": {
+    "image": "/media/andy-nanuk.webp",
+    "imageAlt": "Andy Bittner mit seinem Hund Nanuk im Park",
+    "heading": "Abseits vom Bildschirm",
+    "text": "Wenn ich nicht an Websites arbeite, bin ich mit Nanuk unterwegs, meinem Hund aus Kroatien. Nanuk sorgt dafür, dass ich auch an vollen Tagen rauskomme. [Platzhalter: Andy prüfen und anpassen]"
+  },
+  "cta": {
+    "heading": "Lernen wir uns kennen.",
+    "text": "Machen Sie den Website-Check oder buchen Sie direkt 15 Minuten mit mir. Unverbindlich und kostenlos.",
+    "primaryLabel": "Website-Check starten",
+    "secondaryLabel": "15 Min. Gespräch buchen"
+  }
+}

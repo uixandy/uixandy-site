@@ -1,0 +1,76 @@
+---
+export interface Props {
+  kicker?: string;
+  heading: string;
+  lead?: string;
+  align?: "left" | "center";
+  as?: "h1" | "h2";
+  tone?: "light" | "dark";
+}
+
+const {
+  kicker,
+  heading,
+  lead,
+  align = "left",
+  as: Tag = "h2",
+  tone = "light",
+} = Astro.props;
+---
+
+<header class:list={["section-head", `section-head--${align}`, `section-head--${tone}`]} data-reveal>
+  {kicker && <p class="section-head__kicker">{kicker}</p>}
+  <Tag class="section-head__heading">{heading}</Tag>
+  {lead && <p class="section-head__lead">{lead}</p>}
+  <slot />
+</header>
+
+<style>
+  .section-head {
+    max-width: 44rem;
+    margin-bottom: var(--ux-space-7);
+  }
+
+  .section-head--center {
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .section-head__kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ux-space-2);
+    margin-bottom: var(--ux-space-4);
+    font-size: var(--ux-text-sm);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ux-teal-ink);
+  }
+
+  .section-head__kicker::before {
+    content: "";
+    width: 1.5rem;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--ux-gradient);
+  }
+
+  .section-head__lead {
+    margin-top: var(--ux-space-5);
+    font-size: var(--ux-text-lg);
+    color: var(--ux-muted);
+  }
+
+  .section-head--dark .section-head__heading {
+    color: var(--ux-on-dark);
+  }
+
+  .section-head--dark .section-head__kicker {
+    color: var(--ux-teal);
+  }
+
+  .section-head--dark .section-head__lead {
+    color: var(--ux-on-dark-muted);
+  }
+</style>

@@ -1,0 +1,67 @@
+{
+  "seoTitle": "Preise: Website ab 990 € netto, per KI selbst pflegbar | uixandy",
+  "seoDescription": "Feste Preise für Ihre neue Website: Start 990 €, Individuell ab 1.490 €, optionale Betreuung 39 € im Monat. Per Chat mit Ihrer KI selbst pflegbar.",
+  "hero": {
+    "kicker": "Preise",
+    "heading": "Feste Preise. Sie wissen vorher, was es kostet.",
+    "lead": "Keine Stundensätze, keine Überraschungen. Unsicher, welches Paket passt? Der Website-Check sagt es Ihnen in 60 Sekunden."
+  },
+  "process": {
+    "kicker": "Buchen",
+    "heading": "Direkt starten, ohne Risiko",
+    "lead": "Damit Sie nicht erst auf ein Angebot warten müssen, können Sie direkt buchen. Wir prüfen trotzdem jedes Projekt, bevor es losgeht.",
+    "items": [
+      {
+        "title": "Website-Check ausfüllen",
+        "text": "Ein paar Fragen zu Umfang und Funktionen. Danach sehen Sie sofort, welches Paket passt.",
+        "example": ""
+      },
+      {
+        "title": "Anzahlung oder Gespräch",
+        "text": "Zahlen Sie 50 % an und wir legen los. Oder buchen Sie erst ein kostenloses Gespräch von 15 Minuten.",
+        "example": ""
+      },
+      {
+        "title": "Prüfung innerhalb von 48 Stunden",
+        "text": "Passt alles, starten wir. Passt Ihr Projekt nicht ins Paket, bekommen Sie ein Angebot oder die Anzahlung komplett zurück.",
+        "example": ""
+      }
+    ]
+  },
+  "faq": {
+    "kicker": "Fragen zu den Preisen",
+    "heading": "Gut zu wissen",
+    "items": [
+      {
+        "question": "Warum ist das günstiger als bei einer Agentur?",
+        "answer": "Weil wir keine Zeit in Technik verlieren, die Sie nicht brauchen. Kein WordPress, keine Plugins, kein Baukasten. Wir bauen schlank und schnell, und Sie zahlen nicht für Änderungen, die Sie selbst machen können."
+      },
+      {
+        "question": "Was gehört nicht zu den Paketen?",
+        "answer": "Texte schreiben wir nicht komplett neu, wir übernehmen und verbessern Ihre vorhandenen Inhalte. Professionelle Fotos, Logo-Entwicklung und Online-Shops sind nicht enthalten. Hosting und Ihr KI-Abo zahlen Sie direkt beim jeweiligen Anbieter."
+      },
+      {
+        "question": "Wann zahle ich den Rest?",
+        "answer": "Die zweite Hälfte zahlen Sie, wenn die Website fertig ist und Sie sie abgenommen haben."
+      },
+      {
+        "question": "Brauche ich die Betreuung?",
+        "answer": "Nein. Die meisten Kunden kommen mit ihrer KI gut allein zurecht. Die Betreuung ist für alle, die sich um gar nichts kümmern möchten. Sie ist monatlich kündbar."
+      },
+      {
+        "question": "Was passiert, wenn mein Projekt größer ist als gedacht?",
+        "answer": "Dann sagen wir es Ihnen vor dem Start. Sie bekommen ein festes Angebot oder Ihre Anzahlung zurück. Es wird nie heimlich teurer."
+      },
+      {
+        "question": "Sind die Preise netto?",
+        "answer": "Ja. Alle Preise verstehen sich zuzüglich 19 % Mehrwertsteuer. Sie bekommen eine ordentliche Rechnung."
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Welches Paket passt zu Ihnen?",
+    "text": "Der Website-Check sagt es Ihnen in 60 Sekunden. Danach buchen Sie direkt oder sprechen erst kurz mit mir.",
+    "primaryLabel": "Website-Check starten",
+    "secondaryLabel": "15 Min. Gespräch buchen"
+  }
+}

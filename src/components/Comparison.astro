@@ -1,0 +1,129 @@
+---
+import Icon from "./Icon.astro";
+
+export interface Props {
+  oldLabel: string;
+  newLabel: string;
+  rows: { topic: string; old: string; new: string }[];
+}
+
+const { oldLabel, newLabel, rows } = Astro.props;
+---
+
+<div class="cmp" data-reveal>
+  <div class="cmp__head" aria-hidden="true">
+    <span></span>
+    <span class="cmp__col cmp__col--old">{oldLabel}</span>
+    <span class="cmp__col cmp__col--new">{newLabel}</span>
+  </div>
+  <dl class="cmp__rows">
+    {
+      rows.map((row) => (
+        <div class="cmp__row">
+          <dt>{row.topic}</dt>
+          <dd class="cmp__old">
+            <Icon name="minus" size={16} />
+            <span><span class="cmp__label">{oldLabel}: </span>{row.old}</span>
+          </dd>
+          <dd class="cmp__new">
+            <Icon name="check" size={16} />
+            <span><span class="cmp__label">{newLabel}: </span>{row.new}</span>
+          </dd>
+        </div>
+      ))
+    }
+  </dl>
+</div>
+
+<style>
+  .cmp {
+    border-radius: var(--ux-radius-lg);
+    border: 1px solid var(--ux-border);
+    background: var(--ux-bg);
+    overflow: hidden;
+  }
+
+  .cmp__head {
+    display: none;
+  }
+
+  .cmp__rows {
+    margin: 0;
+  }
+
+  .cmp__row {
+    display: grid;
+    gap: var(--ux-space-3);
+    padding: var(--ux-space-5);
+    border-top: 1px solid var(--ux-border);
+  }
+
+  .cmp__row:first-child {
+    border-top: 0;
+  }
+
+  .cmp__row dt {
+    font-family: var(--ux-font-display);
+    color: var(--ux-navy-deep);
+  }
+
+  .cmp__row dd {
+    display: flex;
+    gap: var(--ux-space-3);
+    align-items: flex-start;
+    margin: 0;
+  }
+
+  .cmp__row :global(.icon) {
+    margin-top: 0.3em;
+  }
+
+  .cmp__old {
+    color: var(--ux-muted);
+  }
+
+  .cmp__new {
+    color: var(--ux-ink);
+    font-weight: 700;
+  }
+
+  .cmp__new :global(.icon) {
+    color: var(--ux-teal-ink);
+  }
+
+  .cmp__label {
+    font-weight: 400;
+    color: var(--ux-muted);
+  }
+
+  @media (min-width: 52rem) {
+    .cmp__head,
+    .cmp__row {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr 1.3fr;
+      gap: var(--ux-space-6);
+      align-items: start;
+    }
+
+    .cmp__head {
+      padding: var(--ux-space-4) var(--ux-space-5);
+      background: var(--ux-surface);
+      font-weight: 700;
+      font-size: var(--ux-text-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .cmp__col--old {
+      color: var(--ux-muted);
+    }
+
+    .cmp__col--new {
+      color: var(--ux-teal-ink);
+    }
+
+    .cmp__label {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,644 @@
+media:
+  input: public/media
+  output: /media
+  categories: [image, video]
+
+components:
+  icon:
+    label: Symbol
+    type: select
+    options:
+      values:
+        - { value: chat, label: Chat }
+        - { value: chats, label: Mehrere Chats }
+        - { value: envelope, label: E-Mail }
+        - { value: wrench, label: Werkzeug }
+        - { value: lock, label: Schloss }
+        - { value: lockKey, label: Schloss mit Schlüssel }
+        - { value: key, label: Schlüssel }
+        - { value: shield, label: Schutzschild }
+        - { value: lightning, label: Blitz }
+        - { value: globe, label: Weltkugel }
+        - { value: undo, label: Rückgängig }
+        - { value: creditCard, label: Kreditkarte }
+        - { value: search, label: Lupe }
+        - { value: mobile, label: Handy }
+        - { value: pencil, label: Stift }
+        - { value: checkCircle, label: Haken }
+        - { value: calendar, label: Kalender }
+        - { value: rocket, label: Rakete }
+        - { value: sparkle, label: Funkeln (KI) }
+        - { value: storefront, label: Laden }
+        - { value: files, label: Seiten }
+        - { value: translate, label: Sprachen }
+        - { value: briefcase, label: Aktentasche }
+        - { value: article, label: Artikel }
+        - { value: calculator, label: Rechner }
+        - { value: handshake, label: Handschlag }
+        - { value: paintBrush, label: Pinsel }
+        - { value: plugs, label: Verbindung }
+        - { value: gauge, label: Tacho }
+
+  cards:
+    label: Karten
+    type: object
+    list: true
+    fields:
+      - name: icon
+        component: icon
+      - name: title
+        label: Titel
+        type: string
+      - name: text
+        label: Text
+        type: text
+
+  steps:
+    label: Schritte
+    type: object
+    list: true
+    fields:
+      - name: title
+        label: Titel
+        type: string
+      - name: text
+        label: Text
+        type: text
+      - name: example
+        label: Beispiel-Nachricht (optional)
+        type: string
+        description: "Erscheint als Chat-Blase unter dem Schritt. Leer lassen = keine Blase."
+
+  faq:
+    label: Fragen und Antworten
+    type: object
+    list: true
+    fields:
+      - name: question
+        label: Frage
+        type: string
+      - name: answer
+        label: Antwort
+        type: text
+
+  cta:
+    label: Abschluss-Bereich (Call to Action)
+    type: object
+    fields:
+      - name: heading
+        label: Überschrift
+        type: string
+      - name: text
+        label: Text
+        type: text
+      - name: primaryLabel
+        label: Haupt-Button (führt zum Website-Check)
+        type: string
+      - name: secondaryLabel
+        label: Zweiter Button (führt zur Terminbuchung)
+        type: string
+
+  compare:
+    label: Vergleichstabelle
+    type: object
+    fields:
+      - name: kicker
+        label: Kleine Überschrift
+        type: string
+      - name: heading
+        label: Überschrift
+        type: string
+      - name: oldLabel
+        label: Spalte links (alt)
+        type: string
+      - name: newLabel
+        label: Spalte rechts (neu)
+        type: string
+      - name: rows
+        label: Zeilen
+        type: object
+        list: true
+        fields:
+          - { name: topic, label: Thema, type: string }
+          - { name: old, label: Alt, type: string }
+          - { name: new, label: Neu, type: string }
+
+  pageHero:
+    label: Kopfbereich
+    type: object
+    fields:
+      - { name: kicker, label: Kleine Überschrift, type: string }
+      - { name: heading, label: Hauptüberschrift (H1), type: string }
+      - { name: lead, label: Einleitungstext, type: text }
+
+content:
+  - name: pages
+    label: Seiten
+    type: group
+    items:
+      - name: home
+        label: Startseite
+        type: file
+        path: src/data/pages/home.json
+        format: json
+        fields:
+          - { name: seoTitle, label: Seitentitel (Google), type: string, required: true }
+          - { name: seoDescription, label: Kurzbeschreibung (Google), type: text, required: true }
+          - { name: ogImage, label: Vorschaubild Social Media, type: image }
+          - name: hero
+            label: Kopfbereich
+            type: object
+            fields:
+              - { name: kicker, label: Kleine Überschrift, type: string }
+              - { name: heading, label: Hauptüberschrift (H1), type: string }
+              - name: headingHighlight
+                label: Hervorgehobener Teil der Überschrift
+                type: string
+                description: "Wird im Farbverlauf dargestellt. Muss genau so in der Überschrift vorkommen."
+              - { name: lead, label: Einleitungstext, type: text }
+              - { name: primaryLabel, label: Haupt-Button, type: string }
+              - { name: secondaryLabel, label: Zweiter Button (zu den Preisen), type: string }
+              - { name: trust, label: Vertrauens-Punkte unter den Buttons, type: string, list: true }
+              - name: demo
+                label: Chat-Animation
+                type: object
+                fields:
+                  - { name: siteName, label: Name der Beispiel-Website, type: string }
+                  - { name: siteTagline, label: Untertitel der Beispiel-Website, type: string }
+                  - { name: hoursOld, label: Öffnungszeiten vorher, type: string }
+                  - { name: hoursNew, label: Öffnungszeiten nachher, type: string }
+                  - { name: banner, label: Hinweis-Banner (erscheint nach der Änderung), type: string }
+                  - { name: userMessage, label: Nachricht an die KI, type: text }
+                  - { name: aiMessage, label: Antwort der KI, type: text }
+                  - { name: statusPending, label: Status während Veröffentlichung, type: string }
+                  - { name: statusLive, label: Status nach Veröffentlichung, type: string }
+                  - { name: caption, label: Bildunterschrift, type: string }
+          - name: problem
+            label: Bereich Probleme
+            type: object
+            fields:
+              - { name: kicker, label: Kleine Überschrift, type: string }
+              - { name: heading, label: Überschrift, type: string }
+              - { name: lead, label: Einleitungstext, type: text }
+              - { name: items, component: cards }
+          - name: how
+            label: Bereich So funktioniert's
+            type: object
+            fields:
+              - { name: kicker, label: Kleine Überschrift, type: string }
+              - { name: heading, label: Überschrift, type: string }
+              - { name: lead, label: Einleitungstext, type: text }
+              - { name: items, component: steps }
+              - { name: linkLabel, label: Link-Text zur Detailseite, type: string }
+          - name: video
+            label: Bereich Video
+            type: object
+            fields:
+              - { name: kicker, label: Kleine Überschrift, type: string }
+              - { name: heading, label: Überschrift, type: string }
+              - name: src
+                label: Video-Datei (MP4)
+                type: file
+                description: "Leer lassen = Platzhalter wird angezeigt."
+              - { name: poster, label: Vorschaubild des Videos, type: image }
+              - { name: placeholderText, label: Text im Platzhalter, type: text }
+              - { name: caption, label: Bildunterschrift, type: string }
+          - name: benefits
+            label: Bereich Vorteile
+            type: object
+            fields:
+              - { name: kicker, label: Kleine Überschrift, type: string }
+              - { name: heading, label: Überschrift, type: string }
+              - { name: lead, label: Einleitungstext, type: text }
+              - { name: items, component: cards }
+          - name: pricing
+            label: Bereich Preise (Pakete selbst unter "Pakete und Preise")
+            type: object
+            fields:
+              - { name: kicker, label: Kleine Überschrift, type: string }
+              - { name: heading, label: Überschrift, type: string }
+              - { name: lead, label: Einleitungstext, type: text }
+          - name: proof
+            label: Bereich Kundenstimmen
+            type: object
+            fields:
+              - { name: kicker, label: Kleine Überschrift, type: string }
+              - { name: heading, label: Überschrift, type: string }
+              - name: items
+                label: Kundenstimmen
+                type: object
+                list: true
+                fields:
+                  - { name: quote, label: Zitat, type: text }
+                  - { name: name, label: Name, type: string }
+                  - { name: role, label: Firma / Rolle, type: string }
+                  - { name: placeholder, label: Noch Platzhalter (gestrichelter Rahmen), type: boolean }
+              - { name: linkLabel, label: Link-Text zu den Beispielen, type: string }
+          - name: faq
+            label: Bereich Fragen
+            type: object
+            fields:
+              - { name: kicker, label: Kleine Überschrift, type: string }
+              - { name: heading, label: Überschrift, type: string }
+              - { name: items, component: faq }
+          - { name: cta, component: cta }
+
+      - name: so-funktionierts
+        label: So funktioniert's
+        type: file
+        path: src/data/pages/so-funktionierts.json
+        format: json
+        fields:
+          - { name: seoTitle, label: Seitentitel (Google), type: string, required: true }
+          - { name: seoDescription, label: Kurzbeschreibung (Google), type: text, required: true }
+          - { name: hero, component: pageHero }
+          - name: steps
+            label: Bereich Ablauf
+            type: object
+            fields:
+              - { name: kicker, label: Kleine Überschrift, type: string }
+              - { name: heading, label: Überschrift, type: string }
+              - { name: items, component: steps }
+          - name: examples
+            label: Bereich Beispiel-Nachrichten
+            type: object
+            fields:
+              - { name: kicker, label: Kleine Überschrift, type: string }
+              - { name: heading, label: Überschrift, type: string }
+              - { name: lead, label: Einleitungstext, type: text }
+              - { name: items, component: cards }
+          - name: safety
+            label: Bereich Sicherheit
+            type: object
+            fields:
+              - { name: kicker, label: Kleine Überschrift, type: string }
+              - { name: heading, label: Überschrift, type: string }
+              - { name: lead, label: Einleitungstext, type: text }
+              - { name: items, component: cards }
+          - { name: compare, component: compare }
+          - { name: cta, component: cta }
+
+      - name: preise
+        label: Preise
+        type: file
+        path: src/data/pages/preise.json
+        format: json
+        fields:
+          - { name: seoTitle, label: Seitentitel (Google), type: string, required: true }
+          - { name: seoDescription, label: Kurzbeschreibung (Google), type: text, required: true }
+          - { name: hero, component: pageHero }
+          - name: process
+            label: Bereich Buchungsablauf
+            type: object
+            fields:
+              - { name: kicker, label: Kleine Überschrift, type: string }
+              - { name: heading, label: Überschrift, type: string }
+              - { name: lead, label: Einleitungstext, type: text }
+              - { name: items, component: steps }
+          - name: faq
+            label: Bereich Fragen
+            type: object
+            fields:
+              - { name: kicker, label: Kleine Überschrift, type: string }
+              - { name: heading, label: Überschrift, type: string }
+              - { name: items, component: faq }
+          - { name: cta, component: cta }
+
+      - name: beispiele
+        label: Beispiele
+        type: file
+        path: src/data/pages/beispiele.json
+        format: json
+        fields:
+          - { name: seoTitle, label: Seitentitel (Google), type: string, required: true }
+          - { name: seoDescription, label: Kurzbeschreibung (Google), type: text, required: true }
+          - { name: hero, component: pageHero }
+          - name: cases
+            label: Kundenprojekte
+            type: object
+            list: true
+            fields:
+              - { name: name, label: Firmenname, type: string }
+              - { name: industry, label: Branche, type: string }
+              - { name: image, label: Screenshot, type: image }
+              - { name: imageAlt, label: Bildbeschreibung, type: string }
+              - { name: url, label: Link zur Website, type: string }
+              - { name: before, label: Vorher, type: text }
+              - { name: after, label: Jetzt, type: text }
+              - { name: quote, label: Zitat, type: text }
+              - { name: quoteName, label: Name zum Zitat, type: string }
+              - { name: placeholder, label: Noch Platzhalter, type: boolean }
+          - { name: cta, component: cta }
+
+      - name: wordpress-alternative
+        label: WordPress-Alternative
+        type: file
+        path: src/data/pages/wordpress-alternative.json
+        format: json
+        fields:
+          - { name: seoTitle, label: Seitentitel (Google), type: string, required: true }
+          - { name: seoDescription, label: Kurzbeschreibung (Google), type: text, required: true }
+          - { name: hero, component: pageHero }
+          - name: answer
+            label: Kurze Antwort (oben, für Google und KI-Suchen)
+            type: object
+            fields:
+              - { name: heading, label: Überschrift, type: string }
+              - { name: text, label: Text (40 bis 60 Wörter), type: text }
+          - { name: compare, component: compare }
+          - name: fit
+            label: Bereich Wann WordPress besser passt
+            type: object
+            fields:
+              - { name: kicker, label: Kleine Überschrift, type: string }
+              - { name: heading, label: Überschrift, type: string }
+              - { name: lead, label: Einleitungstext, type: text }
+              - { name: items, component: cards }
+          - name: faq
+            label: Bereich Fragen
+            type: object
+            fields:
+              - { name: kicker, label: Kleine Überschrift, type: string }
+              - { name: heading, label: Überschrift, type: string }
+              - { name: items, component: faq }
+          - { name: cta, component: cta }
+
+      - name: ueber-mich
+        label: Über mich
+        type: file
+        path: src/data/pages/ueber-mich.json
+        format: json
+        fields:
+          - { name: seoTitle, label: Seitentitel (Google), type: string, required: true }
+          - { name: seoDescription, label: Kurzbeschreibung (Google), type: text, required: true }
+          - name: hero
+            label: Kopfbereich
+            type: object
+            fields:
+              - { name: kicker, label: Kleine Überschrift, type: string }
+              - { name: heading, label: Hauptüberschrift (H1), type: string }
+              - { name: lead, label: Einleitungstext, type: text }
+              - { name: image, label: Foto, type: image }
+              - { name: imageAlt, label: Bildbeschreibung, type: string }
+          - name: story
+            label: Bereich Geschichte
+            type: object
+            fields:
+              - { name: kicker, label: Kleine Überschrift, type: string }
+              - { name: heading, label: Überschrift, type: string }
+              - { name: paragraphs, label: Absätze, type: text, list: true }
+          - name: values
+            label: Bereich Arbeitsweise
+            type: object
+            fields:
+              - { name: kicker, label: Kleine Überschrift, type: string }
+              - { name: heading, label: Überschrift, type: string }
+              - { name: items, component: cards }
+          - name: personal
+            label: Bereich Persönlich
+            type: object
+            fields:
+              - { name: image, label: Foto, type: image }
+              - { name: imageAlt, label: Bildbeschreibung, type: string }
+              - { name: heading, label: Überschrift, type: string }
+              - { name: text, label: Text, type: text }
+          - { name: cta, component: cta }
+
+      - name: website-check
+        label: Website-Check
+        type: file
+        path: src/data/pages/website-check.json
+        format: json
+        fields:
+          - { name: seoTitle, label: Seitentitel (Google), type: string, required: true }
+          - { name: seoDescription, label: Kurzbeschreibung (Google), type: text, required: true }
+          - { name: hero, component: pageHero }
+          - name: form
+            label: Formular-Texte
+            type: object
+            description: "Nur die sichtbaren Texte. Die Werte (value) der Antworten bitte nicht ändern, daran hängt die Paket-Empfehlung."
+            fields:
+              - { name: websiteLabel, label: Frage 1, type: string }
+              - { name: websitePlaceholder, label: Frage 1 Platzhalter, type: string }
+              - { name: pagesLabel, label: Frage 2, type: string }
+              - name: pagesOptions
+                label: Frage 2 Antworten
+                type: object
+                list: true
+                fields:
+                  - { name: value, label: Interner Wert (nicht ändern), type: string }
+                  - { name: label, label: Text, type: string }
+              - { name: featuresLabel, label: Frage 3, type: string }
+              - { name: featuresHint, label: Frage 3 Hinweis, type: string }
+              - name: featuresOptions
+                label: Frage 3 Antworten
+                type: object
+                list: true
+                fields:
+                  - { name: value, label: Interner Wert (nicht ändern), type: string }
+                  - { name: label, label: Text, type: string }
+              - { name: timingLabel, label: Frage 4, type: string }
+              - name: timingOptions
+                label: Frage 4 Antworten
+                type: object
+                list: true
+                fields:
+                  - { name: value, label: Interner Wert (nicht ändern), type: string }
+                  - { name: label, label: Text, type: string }
+              - { name: contactLabel, label: Überschrift Kontaktdaten, type: string }
+              - { name: nameLabel, label: Feld Name, type: string }
+              - { name: emailLabel, label: Feld E-Mail, type: string }
+              - { name: companyLabel, label: Feld Firma, type: string }
+              - { name: messageLabel, label: Feld Nachricht, type: string }
+              - { name: consentText, label: Einwilligungstext, type: text }
+              - { name: submitLabel, label: Button-Text, type: string }
+              - { name: sendingLabel, label: Button-Text beim Senden, type: string }
+              - { name: errorText, label: Fehlermeldung, type: text }
+          - name: results
+            label: Ergebnis-Texte
+            type: object
+            fields:
+              - name: start
+                label: Ergebnis Start
+                type: object
+                fields:
+                  - { name: title, label: Überschrift, type: string }
+                  - { name: text, label: Text, type: text }
+              - name: individuell
+                label: Ergebnis Individuell
+                type: object
+                fields:
+                  - { name: title, label: Überschrift, type: string }
+                  - { name: text, label: Text, type: text }
+              - name: gespraech
+                label: Ergebnis Gespräch empfohlen
+                type: object
+                fields:
+                  - { name: title, label: Überschrift, type: string }
+                  - { name: text, label: Text, type: text }
+              - { name: shopNote, label: Hinweis bei Online-Shop, type: string }
+              - { name: depositLabel, label: Button Anzahlung, type: string }
+              - { name: callLabel, label: Button Gespräch, type: string }
+              - { name: refundNote, label: Hinweis Rückerstattung, type: text }
+              - { name: sentNote, label: Bestätigung nach dem Absenden, type: string }
+
+      - name: ratgeber-hub
+        label: Ratgeber (Übersicht)
+        type: file
+        path: src/data/pages/ratgeber.json
+        format: json
+        fields:
+          - { name: seoTitle, label: Seitentitel (Google), type: string, required: true }
+          - { name: seoDescription, label: Kurzbeschreibung (Google), type: text, required: true }
+          - { name: hero, component: pageHero }
+          - { name: emptyText, label: Text wenn noch keine Beiträge, type: string }
+          - { name: readMoreLabel, label: Link-Text Weiterlesen, type: string }
+
+      - name: impressum
+        label: Impressum
+        type: file
+        path: src/data/pages/impressum.json
+        format: json
+        fields:
+          - { name: seoTitle, label: Seitentitel (Google), type: string, required: true }
+          - { name: seoDescription, label: Kurzbeschreibung (Google), type: text, required: true }
+          - { name: heading, label: Überschrift, type: string }
+          - { name: notice, label: Hinweis-Kasten (leer lassen), type: text }
+          - { name: bodyHtml, label: Inhalt, type: rich-text }
+      - name: datenschutz
+        label: Datenschutz
+        type: file
+        path: src/data/pages/datenschutz.json
+        format: json
+        fields:
+          - { name: seoTitle, label: Seitentitel (Google), type: string, required: true }
+          - { name: seoDescription, label: Kurzbeschreibung (Google), type: text, required: true }
+          - { name: heading, label: Überschrift, type: string }
+          - { name: notice, label: Hinweis-Kasten (leer lassen, wenn fertig), type: text }
+          - { name: bodyHtml, label: Inhalt, type: rich-text }
+      - name: agb
+        label: AGB
+        type: file
+        path: src/data/pages/agb.json
+        format: json
+        fields:
+          - { name: seoTitle, label: Seitentitel (Google), type: string, required: true }
+          - { name: seoDescription, label: Kurzbeschreibung (Google), type: text, required: true }
+          - { name: heading, label: Überschrift, type: string }
+          - { name: notice, label: Hinweis-Kasten (leer lassen, wenn fertig), type: text }
+          - { name: bodyHtml, label: Inhalt, type: rich-text }
+
+  - name: ratgeber
+    label: Ratgeber-Beiträge
+    type: collection
+    path: src/content/ratgeber
+    filename: "{primary}.md"
+    format: yaml-frontmatter
+    view:
+      primary: title
+      sort: pubDate
+      order: desc
+      columns: [title, pubDate, draft]
+    fields:
+      - name: title
+        label: Titel
+        type: string
+        required: true
+      - name: description
+        label: Teaser (für Übersicht und Google)
+        type: text
+        required: true
+      - name: answer
+        label: Kurze Antwort (40 bis 60 Wörter, steht oben im Beitrag)
+        type: text
+        required: true
+      - { name: seoTitle, label: Seitentitel Google (optional), type: string }
+      - { name: seoDescription, label: Kurzbeschreibung Google (optional), type: text }
+      - { name: ogImage, label: Vorschaubild Social Media (optional), type: image }
+      - { name: pubDate, label: Veröffentlicht am, type: date, required: true }
+      - { name: updatedDate, label: Aktualisiert am (optional), type: date }
+      - { name: draft, label: Entwurf (nicht veröffentlichen), type: boolean }
+      - { name: body, label: Inhalt, type: rich-text, options: { format: markdown } }
+
+  - name: packages
+    label: Pakete und Preise
+    type: file
+    path: src/data/packages.json
+    format: json
+    fields:
+      - { name: vatNote, label: Hinweis MwSt., type: string }
+      - { name: depositNote, label: Hinweis Anzahlung, type: text }
+      - name: items
+        label: Pakete
+        type: object
+        list: true
+        fields:
+          - { name: id, label: Interne ID (nicht ändern), type: string }
+          - { name: name, label: Name, type: string }
+          - { name: price, label: Preis, type: string }
+          - { name: pricePrefix, label: Vor dem Preis (z. B. "ab"), type: string }
+          - { name: deposit, label: Anzahlung, type: string }
+          - { name: tagline, label: Kurzbeschreibung, type: text }
+          - { name: featured, label: Hervorgehoben, type: boolean }
+          - { name: delivery, label: Lieferzeit, type: string }
+          - { name: features, label: Leistungen, type: string, list: true }
+          - { name: ctaLabel, label: Button-Text, type: string }
+      - name: care
+        label: Betreuung
+        type: object
+        fields:
+          - { name: name, label: Name, type: string }
+          - { name: price, label: Preis, type: string }
+          - { name: period, label: Zeitraum, type: string }
+          - { name: tagline, label: Kurzbeschreibung, type: text }
+          - { name: features, label: Leistungen, type: string, list: true }
+      - name: notIncluded
+        label: Hinweis Online-Shops
+        type: object
+        fields:
+          - { name: heading, label: Überschrift, type: string }
+          - { name: text, label: Text, type: text }
+
+  - name: site
+    label: Firmendaten und Links
+    type: file
+    path: src/data/site.json
+    format: json
+    fields:
+      - { name: title, label: Name, type: string, required: true }
+      - { name: legalName, label: Rechtlicher Name, type: string }
+      - { name: claim, label: Claim (Standard-Beschreibung), type: text }
+      - { name: email, label: E-Mail, type: string }
+      - { name: phone, label: Telefon (Anzeige), type: string }
+      - { name: phoneHref, label: Telefon (Link, z. B. +4915678735632), type: string }
+      - { name: logoPath, label: Standard-Vorschaubild, type: string }
+      - name: address
+        label: Adresse
+        type: object
+        fields:
+          - { name: street, label: Straße, type: string }
+          - { name: postalCode, label: PLZ, type: string }
+          - { name: city, label: Ort, type: string }
+      - name: nav
+        label: Hauptmenü
+        type: object
+        list: true
+        fields:
+          - { name: label, label: Text, type: string }
+          - { name: href, label: Link, type: string }
+      - name: primaryCta
+        label: Button im Menü
+        type: object
+        fields:
+          - { name: label, label: Text, type: string }
+          - { name: href, label: Link, type: string }
+      - name: booking
+        label: Buchung und Formular
+        type: object
+        fields:
+          - { name: calUrl, label: Cal.com Link (15-Min.-Gespräch), type: string }
+          - { name: stripeStart, label: Stripe Zahlungslink Anzahlung Start, type: string }
+          - { name: stripeIndividuell, label: Stripe Zahlungslink Anzahlung Individuell, type: string }
+          - { name: formEndpoint, label: Formspree-Adresse Website-Check, type: string }
+      - { name: footerBlurb, label: Footer-Text, type: text }
+      - { name: copyright, label: Copyright-Zeile, type: string }

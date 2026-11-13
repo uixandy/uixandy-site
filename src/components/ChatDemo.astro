@@ -1,0 +1,441 @@
+---
+/**
+ * Hero visual: a chat with the client's AI updates a sample website. Pure CSS loop (12s).
+ * Reduced motion = static final state. All texts come from CMS (home.json > hero.demo).
+ */
+import Icon from "./Icon.astro";
+
+export interface Props {
+  demo: {
+    siteName: string;
+    siteTagline: string;
+    hoursOld: string;
+    hoursNew: string;
+    banner: string;
+    userMessage: string;
+    aiMessage: string;
+    statusPending: string;
+    statusLive: string;
+    caption: string;
+  };
+}
+
+const { demo } = Astro.props;
+---
+
+<figure class="cd" aria-label={demo.caption}>
+  <div class="cd__site" aria-hidden="true">
+    <div class="cd__chrome">
+      <span></span><span></span><span></span>
+      <p class="cd__url">{demo.siteName.toLowerCase().replace(/\s+/g, "-")}.de</p>
+    </div>
+    <div class="cd__banner">{demo.banner}</div>
+    <div class="cd__page">
+      <div class="cd__nav">
+        <strong>{demo.siteName}</strong>
+        <i></i><i></i><i></i>
+      </div>
+      <div class="cd__hero">
+        <p class="cd__title">{demo.siteName}</p>
+        <p class="cd__tagline">{demo.siteTagline}</p>
+        <span class="cd__cta">Termin buchen</span>
+      </div>
+      <div class="cd__hours">
+        <Icon name="calendar" size={18} />
+        <span class="cd__hours-text">
+          <span class="cd__hours-old">{demo.hoursOld}</span>
+          <span class="cd__hours-new">{demo.hoursNew}</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cd__chat">
+    <div class="cd__chat-head">
+      <span class="cd__avatar"><Icon name="sparkle" size={16} /></span>
+      <span>Ihre KI</span>
+    </div>
+    <div class="cd__msgs">
+      <p class="cd__msg cd__msg--user">{demo.userMessage}</p>
+      <div class="cd__reply">
+        <p class="cd__typing" aria-hidden="true"><i></i><i></i><i></i></p>
+        <p class="cd__msg cd__msg--ai">{demo.aiMessage}</p>
+      </div>
+      <p class="cd__status">
+        <span class="cd__status-pending">{demo.statusPending}</span>
+        <span class="cd__status-live"><Icon name="check" size={14} /> {demo.statusLive}</span>
+      </p>
+    </div>
+  </div>
+  <figcaption class="cd__caption">{demo.caption}</figcaption>
+</figure>
+
+<style>
+  .cd {
+    --cd-cycle: 12s;
+    position: relative;
+    margin: 0;
+    isolation: isolate;
+  }
+
+  .cd::before {
+    content: "";
+    position: absolute;
+    inset: 8% -6% 12% 10%;
+    z-index: -1;
+    border-radius: 40%;
+    background: var(--ux-gradient);
+    filter: blur(60px);
+    opacity: 0.28;
+  }
+
+  /* Sample website */
+
+  .cd__site {
+    width: 92%;
+    border-radius: var(--ux-radius-lg);
+    background: var(--ux-bg);
+    box-shadow: var(--ux-shadow-lg);
+    border: 1px solid var(--ux-border);
+    overflow: hidden;
+    font-size: var(--ux-text-sm);
+  }
+
+  .cd__chrome {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 14px;
+    background: var(--ux-surface);
+    border-bottom: 1px solid var(--ux-border);
+  }
+
+  .cd__chrome > span {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--ux-border);
+  }
+
+  .cd__url {
+    margin-left: 10px;
+    padding: 2px 12px;
+    border-radius: var(--ux-radius-pill);
+    background: var(--ux-bg);
+    color: var(--ux-muted);
+    font-size: var(--ux-text-xs);
+  }
+
+  .cd__banner {
+    display: grid;
+    place-items: center;
+    height: 30px;
+    clip-path: inset(0 0 100% 0);
+    background: var(--ux-teal);
+    color: var(--ux-navy-deep);
+    font-weight: 700;
+    font-size: var(--ux-text-xs);
+  }
+
+  .cd__page {
+    padding: 14px 18px 20px;
+  }
+
+  .cd__nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    font-family: var(--ux-font-display);
+    color: var(--ux-navy-deep);
+  }
+
+  .cd__nav strong {
+    margin-right: auto;
+  }
+
+  .cd__nav i {
+    width: 34px;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--ux-surface-2);
+  }
+
+  .cd__hero {
+    padding: 26px 22px;
+    border-radius: var(--ux-radius-md);
+    background:
+      radial-gradient(20rem 10rem at 100% 0%, rgb(0 195 160 / 0.45), transparent 70%),
+      linear-gradient(135deg, #0d3a55, #0b5c6b);
+    color: var(--ux-on-dark);
+  }
+
+  .cd__title {
+    font-family: var(--ux-font-display);
+    font-size: 1.5rem;
+    line-height: 1.1;
+  }
+
+  .cd__tagline {
+    margin-top: 6px;
+    color: var(--ux-on-dark-muted);
+  }
+
+  .cd__cta {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 6px 14px;
+    border-radius: var(--ux-radius-pill);
+    background: var(--ux-on-dark);
+    color: var(--ux-navy-deep);
+    font-weight: 700;
+    font-size: var(--ux-text-xs);
+  }
+
+  .cd__hours {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 10px 12px;
+    border-radius: var(--ux-radius-sm);
+    background: var(--ux-surface);
+    color: var(--ux-navy);
+    font-weight: 700;
+  }
+
+  .cd__hours-text {
+    display: grid;
+  }
+
+  .cd__hours-old,
+  .cd__hours-new {
+    grid-area: 1 / 1;
+  }
+
+  .cd__hours-new {
+    opacity: 0;
+  }
+
+  /* Chat */
+
+  .cd__chat {
+    position: relative;
+    width: min(86%, 26rem);
+    margin: -14px 0 0 auto;
+    padding: 14px;
+    border-radius: var(--ux-radius-lg);
+    background: var(--ux-navy-deep);
+    color: var(--ux-on-dark);
+    box-shadow: var(--ux-shadow-lg);
+    border: 1px solid var(--ux-border-dark);
+    font-size: var(--ux-text-sm);
+    line-height: 1.45;
+  }
+
+  .cd__chat-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--ux-border-dark);
+    font-weight: 700;
+  }
+
+  .cd__avatar {
+    display: inline-grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--ux-gradient);
+  }
+
+  .cd__msgs {
+    display: grid;
+    gap: 10px;
+    min-height: 12rem;
+    align-content: start;
+  }
+
+  .cd__msg {
+    padding: 10px 12px;
+    border-radius: 14px;
+  }
+
+  .cd__msg--user {
+    justify-self: end;
+    max-width: 92%;
+    background: var(--ux-teal);
+    color: var(--ux-navy-deep);
+    border-bottom-right-radius: 4px;
+  }
+
+  .cd__msg--ai {
+    max-width: 92%;
+    background: rgb(255 255 255 / 0.08);
+    border-bottom-left-radius: 4px;
+  }
+
+  .cd__reply {
+    display: grid;
+  }
+
+  .cd__reply > * {
+    grid-area: 1 / 1;
+    align-self: start;
+  }
+
+  .cd__typing {
+    display: flex;
+    opacity: 0;
+    gap: 4px;
+    width: fit-content;
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: rgb(255 255 255 / 0.08);
+  }
+
+  .cd__typing i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--ux-on-dark-muted);
+  }
+
+  .cd__status {
+    display: grid;
+    font-size: var(--ux-text-xs);
+    font-weight: 700;
+  }
+
+  .cd__status > span {
+    grid-area: 1 / 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    width: fit-content;
+    padding: 4px 10px;
+    border-radius: var(--ux-radius-pill);
+  }
+
+  .cd__status-pending {
+    background: rgb(255 255 255 / 0.08);
+    color: var(--ux-on-dark-muted);
+    opacity: 0;
+  }
+
+  .cd__status-live {
+    background: rgb(0 195 160 / 0.18);
+    color: var(--ux-teal);
+  }
+
+  .cd__caption {
+    margin-top: var(--ux-space-4);
+    font-size: var(--ux-text-xs);
+    color: var(--ux-muted);
+    text-align: right;
+  }
+
+  /* Final state (also the reduced-motion state) */
+  .cd__banner {
+    clip-path: inset(0);
+  }
+
+  .cd__hours-old {
+    opacity: 0;
+  }
+
+  .cd__hours-new {
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .cd__msg--user { animation: cd-user var(--cd-cycle) var(--ux-ease) infinite both; }
+    .cd__typing { animation: cd-typing var(--cd-cycle) linear infinite both; }
+    .cd__typing i { animation: cd-dot 0.9s ease-in-out infinite; }
+    .cd__typing i:nth-child(2) { animation-delay: 0.15s; }
+    .cd__typing i:nth-child(3) { animation-delay: 0.3s; }
+    .cd__msg--ai { animation: cd-ai var(--cd-cycle) var(--ux-ease) infinite both; }
+    .cd__status-pending { animation: cd-pending var(--cd-cycle) linear infinite both; }
+    .cd__status-live { animation: cd-live var(--cd-cycle) var(--ux-ease) infinite both; }
+    .cd__banner { animation: cd-banner var(--cd-cycle) var(--ux-ease) infinite both; }
+    .cd__hours-old { animation: cd-old var(--cd-cycle) linear infinite both; }
+    .cd__hours-new { animation: cd-new var(--cd-cycle) linear infinite both; }
+    .cd__hours { animation: cd-flash var(--cd-cycle) linear infinite both; }
+  }
+
+  @keyframes cd-user {
+    0%, 5% { opacity: 0; transform: translateY(8px); }
+    9%, 92% { opacity: 1; transform: none; }
+    97%, 100% { opacity: 0; }
+  }
+
+  @keyframes cd-typing {
+    0%, 15% { opacity: 0; }
+    17%, 30% { opacity: 1; }
+    32%, 100% { opacity: 0; }
+  }
+
+  @keyframes cd-dot {
+    0%, 100% { opacity: 0.3; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(-3px); }
+  }
+
+  @keyframes cd-ai {
+    0%, 31% { opacity: 0; transform: translateY(8px); }
+    35%, 92% { opacity: 1; transform: none; }
+    97%, 100% { opacity: 0; }
+  }
+
+  @keyframes cd-pending {
+    0%, 38% { opacity: 0; }
+    40%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  @keyframes cd-live {
+    0%, 50% { opacity: 0; transform: scale(0.9); }
+    53%, 92% { opacity: 1; transform: none; }
+    97%, 100% { opacity: 0; }
+  }
+
+  @keyframes cd-banner {
+    0%, 52% { clip-path: inset(0 0 100% 0); }
+    56%, 94% { clip-path: inset(0); }
+    99%, 100% { clip-path: inset(0 0 100% 0); }
+  }
+
+  @keyframes cd-old {
+    0%, 52% { opacity: 1; }
+    54%, 96% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes cd-new {
+    0%, 52% { opacity: 0; }
+    54%, 96% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
+  @keyframes cd-flash {
+    0%, 52% { background: var(--ux-surface); }
+    55% { background: rgb(0 195 160 / 0.35); }
+    70%, 100% { background: var(--ux-surface); }
+  }
+
+  @media (max-width: 40rem) {
+    .cd__site {
+      width: 100%;
+    }
+
+    .cd__chat {
+      width: 92%;
+    }
+
+    .cd__caption {
+      text-align: left;
+    }
+  }
+</style>

@@ -1,0 +1,63 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import Section from "../components/Section.astro";
+import SectionHead from "../components/SectionHead.astro";
+import Steps from "../components/Steps.astro";
+import FeatureCards from "../components/FeatureCards.astro";
+import Comparison from "../components/Comparison.astro";
+import CtaBand from "../components/CtaBand.astro";
+import page from "../data/pages/so-funktionierts.json";
+import site from "../data/site.json";
+import { resolveSeo } from "../lib/seo";
+
+const seo = resolveSeo(page);
+---
+
+<BaseLayout title={seo.title} description={seo.description} ogImage={seo.ogImage}>
+  <PageHero
+    kicker={page.hero.kicker}
+    heading={page.hero.heading}
+    lead={page.hero.lead}
+    primary={{ label: page.cta.primaryLabel, href: site.primaryCta.href }}
+    secondary={{ label: "Preise ansehen", href: "/preise/" }}
+  />
+
+  <Section id="ablauf" flush="top">
+    <SectionHead kicker={page.steps.kicker} heading={page.steps.heading} />
+    <div class="four-steps">
+      <Steps items={page.steps.items} />
+    </div>
+  </Section>
+
+  <Section id="beispiele" tone="soft">
+    <SectionHead kicker={page.examples.kicker} heading={page.examples.heading} lead={page.examples.lead} />
+    <FeatureCards items={page.examples.items} />
+  </Section>
+
+  <Section id="sicherheit" tone="dark">
+    <SectionHead kicker={page.safety.kicker} heading={page.safety.heading} lead={page.safety.lead} tone="dark" />
+    <FeatureCards items={page.safety.items} columns={2} tone="dark" />
+  </Section>
+
+  <Section id="vergleich">
+    <SectionHead kicker={page.compare.kicker} heading={page.compare.heading} />
+    <Comparison oldLabel={page.compare.oldLabel} newLabel={page.compare.newLabel} rows={page.compare.rows} />
+  </Section>
+
+  <CtaBand
+    heading={page.cta.heading}
+    text={page.cta.text}
+    primary={{ label: page.cta.primaryLabel, href: site.primaryCta.href }}
+    secondary={{ label: page.cta.secondaryLabel, href: site.booking.calUrl }}
+  />
+</BaseLayout>
+
+<style>
+  @media (min-width: 56rem) {
+    .four-steps :global(.steps) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--ux-space-6);
+    }
+  }
+</style>

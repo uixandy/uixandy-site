@@ -1,0 +1,47 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import Section from "../components/Section.astro";
+import SectionHead from "../components/SectionHead.astro";
+import PackageCards from "../components/PackageCards.astro";
+import Steps from "../components/Steps.astro";
+import Faq from "../components/Faq.astro";
+import CtaBand from "../components/CtaBand.astro";
+import page from "../data/pages/preise.json";
+import site from "../data/site.json";
+import packages from "../data/packages.json";
+import { resolveSeo } from "../lib/seo";
+import { faqJsonLd, servicesJsonLd } from "../lib/jsonld";
+
+const seo = resolveSeo(page);
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  ogImage={seo.ogImage}
+  jsonLd={[servicesJsonLd(packages.items), faqJsonLd(page.faq.items)]}
+>
+  <PageHero kicker={page.hero.kicker} heading={page.hero.heading} lead={page.hero.lead} />
+
+  <Section id="pakete" flush="top">
+    <PackageCards />
+  </Section>
+
+  <Section id="buchen" tone="soft">
+    <SectionHead kicker={page.process.kicker} heading={page.process.heading} lead={page.process.lead} />
+    <Steps items={page.process.items} />
+  </Section>
+
+  <Section id="faq" narrow>
+    <SectionHead kicker={page.faq.kicker} heading={page.faq.heading} align="center" />
+    <Faq items={page.faq.items} />
+  </Section>
+
+  <CtaBand
+    heading={page.cta.heading}
+    text={page.cta.text}
+    primary={{ label: page.cta.primaryLabel, href: site.primaryCta.href }}
+    secondary={{ label: page.cta.secondaryLabel, href: site.booking.calUrl }}
+  />
+</BaseLayout>

@@ -1,0 +1,242 @@
+---
+import packages from "../data/packages.json";
+import Button from "./Button.astro";
+import Icon from "./Icon.astro";
+
+export interface Props {
+  showCare?: boolean;
+  showNotIncluded?: boolean;
+}
+
+const { showCare = true, showNotIncluded = true } = Astro.props;
+---
+
+<div class="pkgs">
+  <div class="pkgs__grid" data-reveal-stagger>
+    {
+      packages.items.map((pkg) => (
+        <article class:list={["pkg", { "pkg--featured": pkg.featured }]}>
+          {pkg.featured && <p class="pkg__badge">Am häufigsten gewählt</p>}
+          <h3 class="pkg__name">{pkg.name}</h3>
+          <p class="pkg__price">
+            {pkg.pricePrefix && <span class="pkg__prefix">{pkg.pricePrefix}</span>}
+            {pkg.price}
+          </p>
+          <p class="pkg__tagline">{pkg.tagline}</p>
+          <ul class="pkg__features">
+            {pkg.features.map((f) => (
+              <li>
+                <Icon name="check" size={16} />
+                <span>{f}</span>
+              </li>
+            ))}
+          </ul>
+          <p class="pkg__delivery">Lieferzeit: {pkg.delivery}</p>
+          <Button
+            href={`/website-check/?paket=${pkg.id}`}
+            variant={pkg.featured ? "accent" : "primary"}
+            arrow
+          >
+            {pkg.ctaLabel}
+          </Button>
+        </article>
+      ))
+    }
+
+    {
+      showCare && (
+        <article class="pkg pkg--care">
+          <h3 class="pkg__name">{packages.care.name}</h3>
+          <p class="pkg__price">
+            {packages.care.price}
+            <span class="pkg__period">{packages.care.period}</span>
+          </p>
+          <p class="pkg__tagline">{packages.care.tagline}</p>
+          <ul class="pkg__features">
+            {packages.care.features.map((f) => (
+              <li>
+                <Icon name="check" size={16} />
+                <span>{f}</span>
+              </li>
+            ))}
+          </ul>
+        </article>
+      )
+    }
+  </div>
+
+  <p class="pkgs__note">{packages.vatNote} {packages.depositNote}</p>
+
+  {
+    showNotIncluded && (
+      <aside class="pkgs__no">
+        <Icon name="storefront" size={28} />
+        <div>
+          <p class="pkgs__no-head">{packages.notIncluded.heading}</p>
+          <p>{packages.notIncluded.text}</p>
+        </div>
+      </aside>
+    )
+  }
+</div>
+
+<style>
+  .pkgs__grid {
+    display: grid;
+    gap: var(--ux-space-5);
+    align-items: stretch;
+  }
+
+  .pkg {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: var(--ux-space-7) var(--ux-space-6) var(--ux-space-6);
+    border-radius: var(--ux-radius-lg);
+    background: var(--ux-bg);
+    border: 1px solid var(--ux-border);
+  }
+
+  .pkg--featured {
+    color: var(--ux-on-dark);
+    background:
+      radial-gradient(30rem 18rem at 100% 0%, rgb(0 195 160 / 0.3), transparent 65%),
+      var(--ux-navy-deep);
+    border-color: transparent;
+    box-shadow: var(--ux-shadow-lg);
+  }
+
+  .pkg--care {
+    background: var(--ux-surface);
+  }
+
+  .pkg__badge {
+    position: absolute;
+    top: var(--ux-space-5);
+    right: var(--ux-space-5);
+    padding: 4px 12px;
+    border-radius: var(--ux-radius-pill);
+    background: var(--ux-teal);
+    color: var(--ux-navy-deep);
+    font-size: var(--ux-text-xs);
+    font-weight: 700;
+  }
+
+  .pkg__name {
+    font-size: var(--ux-text-xl);
+  }
+
+  .pkg__price {
+    margin-top: var(--ux-space-4);
+    font-family: var(--ux-font-display);
+    font-size: var(--ux-text-3xl);
+    line-height: 1;
+    color: var(--ux-navy);
+  }
+
+  .pkg--featured .pkg__price {
+    color: var(--ux-on-dark);
+  }
+
+  .pkg__prefix,
+  .pkg__period {
+    font-family: var(--ux-font-body);
+    font-size: var(--ux-text-base);
+    font-weight: 400;
+    color: var(--ux-muted);
+  }
+
+  .pkg__prefix {
+    margin-right: 0.35rem;
+  }
+
+  .pkg__period {
+    margin-left: 0.35rem;
+  }
+
+  .pkg--featured .pkg__prefix {
+    color: var(--ux-on-dark-muted);
+  }
+
+  .pkg__tagline {
+    margin-top: var(--ux-space-4);
+    color: var(--ux-muted);
+  }
+
+  .pkg--featured .pkg__tagline {
+    color: var(--ux-on-dark-muted);
+  }
+
+  .pkg__features {
+    list-style: none;
+    margin: var(--ux-space-6) 0;
+    padding: 0;
+    display: grid;
+    align-content: start;
+    gap: var(--ux-space-3);
+    flex: 1;
+  }
+
+  .pkg__features li {
+    display: flex;
+    gap: var(--ux-space-3);
+    align-items: flex-start;
+  }
+
+  .pkg__features :global(.icon) {
+    margin-top: 0.3em;
+    color: var(--ux-teal-ink);
+  }
+
+  .pkg--featured .pkg__features :global(.icon) {
+    color: var(--ux-teal);
+  }
+
+  .pkg__delivery {
+    margin-bottom: var(--ux-space-5);
+    font-size: var(--ux-text-sm);
+    color: var(--ux-muted);
+  }
+
+  .pkg--featured .pkg__delivery {
+    color: var(--ux-on-dark-muted);
+  }
+
+  .pkgs__note {
+    margin-top: var(--ux-space-5);
+    font-size: var(--ux-text-sm);
+    color: var(--ux-muted);
+    text-align: center;
+  }
+
+  .pkgs__no {
+    display: flex;
+    gap: var(--ux-space-4);
+    align-items: flex-start;
+    max-width: 44rem;
+    margin: var(--ux-space-7) auto 0;
+    padding: var(--ux-space-5);
+    border: 1px dashed var(--ux-border);
+    border-radius: var(--ux-radius-md);
+    color: var(--ux-muted);
+  }
+
+  .pkgs__no :global(.icon) {
+    color: var(--ux-navy);
+  }
+
+  .pkgs__no-head {
+    font-weight: 700;
+    color: var(--ux-ink);
+  }
+
+  @media (min-width: 64rem) {
+    .pkgs__grid {
+      grid-template-columns: 1fr 1.08fr 0.92fr;
+    }
+
+    .pkg--featured {
+      margin-block: calc(-1 * var(--ux-space-4));
+    }
+  }
+</style>

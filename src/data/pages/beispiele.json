@@ -1,0 +1,53 @@
+{
+  "seoTitle": "Beispiele: Websites, die Kunden per Chat pflegen | uixandy",
+  "seoDescription": "Echte Kundenprojekte: Wie kleine Unternehmen ihre Website ohne WordPress und ohne Agentur pflegen, per Chat mit ihrer KI.",
+  "hero": {
+    "kicker": "Beispiele",
+    "heading": "Unternehmen, die ihre Website schon per Chat pflegen.",
+    "lead": "Vom Friseursalon bis zum Beratungsunternehmen. Alle haben eines gemeinsam: Für eine Änderung schreibt niemand mehr eine Mail an die Agentur."
+  },
+  "cases": [
+    {
+      "name": "Lovely Hair",
+      "industry": "Friseursalon",
+      "image": "",
+      "imageAlt": "Website von Lovely Hair",
+      "url": "",
+      "before": "[Platzhalter] Wie war es vorher? Zum Beispiel: alte Website, Änderungen nur über Dritte.",
+      "after": "Neue, schnelle Website. Öffnungszeiten, Leistungen und Bilder pflegt der Salon selbst.",
+      "quote": "[Platzhalter] Zitat nach Freigabe.",
+      "quoteName": "[Name]",
+      "placeholder": true
+    },
+    {
+      "name": "Intecra GmbH",
+      "industry": "Beratung für Arbeits- und Maschinensicherheit",
+      "image": "",
+      "imageAlt": "Website der Intecra GmbH",
+      "url": "",
+      "before": "WordPress-Website, jede inhaltliche Änderung lief über einen Entwickler.",
+      "after": "Kompletter Neuaufbau mit Ratgeber und Stellenangeboten. Neue Beiträge und Jobs legt das Team selbst an.",
+      "quote": "[Platzhalter] Zitat nach Freigabe.",
+      "quoteName": "[Name]",
+      "placeholder": true
+    },
+    {
+      "name": "sikamedia",
+      "industry": "Agentur",
+      "image": "",
+      "imageAlt": "Website von sikamedia",
+      "url": "",
+      "before": "[Platzhalter] Wie war es vorher?",
+      "after": "[Platzhalter] Neuaufbau ohne WordPress. Ergebnis folgt nach Launch.",
+      "quote": "[Platzhalter] Zitat nach Freigabe.",
+      "quoteName": "[Name]",
+      "placeholder": true
+    }
+  ],
+  "cta": {
+    "heading": "Ihre Website könnte die nächste sein.",
+    "text": "Machen Sie den Website-Check und sehen Sie in 60 Sekunden, welches Paket passt.",
+    "primaryLabel": "Website-Check starten",
+    "secondaryLabel": "15 Min. Gespräch buchen"
+  }
+}

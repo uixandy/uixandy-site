@@ -1,0 +1,63 @@
+{
+  "vatNote": "Alle Preise netto, zzgl. 19 % MwSt.",
+  "depositNote": "Sie zahlen 50 % zum Start. Passt Ihr Projekt nach unserer Prüfung nicht ins Paket, bekommen Sie ein Angebot oder die Anzahlung komplett zurück.",
+  "items": [
+    {
+      "id": "start",
+      "name": "Start",
+      "price": "990 €",
+      "pricePrefix": "",
+      "deposit": "495 €",
+      "tagline": "Die professionelle Website für Ihr Unternehmen. Fertig, schnell und von Ihnen selbst pflegbar.",
+      "featured": false,
+      "delivery": "meist 2 bis 3 Wochen nach Erhalt der Inhalte",
+      "features": [
+        "Bis zu 6 Seiten, z. B. Start, Leistungen, Über uns, Kontakt",
+        "Kontaktformular mit Spam-Schutz",
+        "Design in Ihren Farben, mit Ihrem Logo",
+        "Perfekt auf dem Handy, sehr schnelle Ladezeiten",
+        "Google-Grundlagen: Titel, Beschreibungen, Sitemap",
+        "Übernahme Ihrer Texte und Bilder von der alten Website",
+        "KI-Einrichtung: Wir verbinden Ihre KI mit Ihrer Website",
+        "30 Minuten Übergabe per Video-Call"
+      ],
+      "ctaLabel": "Start buchen"
+    },
+    {
+      "id": "individuell",
+      "name": "Individuell",
+      "price": "1.490 €",
+      "pricePrefix": "ab",
+      "deposit": "745 €",
+      "tagline": "Für alles, was über eine klassische Firmen-Website hinausgeht.",
+      "featured": true,
+      "delivery": "meist 3 bis 5 Wochen nach Erhalt der Inhalte",
+      "features": [
+        "Alles aus Start",
+        "Mehr Seiten nach Bedarf",
+        "Ratgeber oder Blog, Stellenangebote",
+        "Mehrsprachig (z. B. Deutsch und Englisch)",
+        "Terminbuchung, Rechner, Formulare mit mehreren Schritten",
+        "Einbindung Ihrer Tools (Newsletter, CRM, Kalender)",
+        "Umzug mit Weiterleitungen, damit Google-Rankings bleiben"
+      ],
+      "ctaLabel": "Individuell anfragen"
+    }
+  ],
+  "care": {
+    "name": "Betreuung",
+    "price": "39 €",
+    "period": "pro Monat",
+    "tagline": "Optional. Für alle, die sich um gar nichts kümmern möchten.",
+    "features": [
+      "Monatlicher Technik- und Sicherheits-Check",
+      "Hilfe per E-Mail, wenn die KI mal hakt",
+      "Eine kleine Änderung pro Monat machen wir für Sie",
+      "Monatlich kündbar"
+    ]
+  },
+  "notIncluded": {
+    "heading": "Online-Shops machen wir bewusst nicht.",
+    "text": "Ein Shop hat Lager, Zahlungen, Versand und eine eigene Verwaltung. Das passt nicht zu einer Website, die Sie per Chat pflegen. Für Shops empfehlen wir Shopify."
+  }
+}

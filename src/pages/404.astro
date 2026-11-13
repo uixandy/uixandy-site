@@ -1,0 +1,14 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+---
+
+<BaseLayout title="Seite nicht gefunden | uixandy" description="Diese Seite gibt es nicht (mehr)." noindex>
+  <PageHero
+    kicker="Fehler 404"
+    heading="Diese Seite gibt es nicht (mehr)."
+    lead="Vielleicht hat sich die Adresse geändert. Hier geht es weiter:"
+    primary={{ label: "Zur Startseite", href: "/" }}
+    secondary={{ label: "Website-Check", href: "/website-check/" }}
+  />
+</BaseLayout>
