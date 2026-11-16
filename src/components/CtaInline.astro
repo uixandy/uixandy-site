@@ -1,0 +1,58 @@
+---
+/** Light mid-page nudge: one sentence, the Website-Check button, a quiet link to the call. */
+import Button from "./Button.astro";
+
+export interface Props {
+  text: string;
+  primary: { label: string; href: string };
+  link?: { label: string; href: string };
+}
+
+const { text, primary, link } = Astro.props;
+---
+
+<div class="cta-inline" data-reveal>
+  <p class="cta-inline__text">{text}</p>
+  <div class="cta-inline__actions">
+    <Button href={primary.href} size="lg" arrow>{primary.label}</Button>
+    {link && <a class="cta-inline__link" href={link.href}>{link.label}</a>}
+  </div>
+</div>
+
+<style>
+  .cta-inline {
+    display: grid;
+    justify-items: center;
+    gap: var(--ux-space-5);
+    margin-top: clamp(2.5rem, 2rem + 2vw, 4rem);
+    text-align: center;
+  }
+
+  .cta-inline__text {
+    max-width: 34rem;
+    font-family: var(--ux-font-display);
+    font-size: var(--ux-text-xl);
+    line-height: var(--ux-leading-snug);
+    color: var(--ux-navy-deep);
+  }
+
+  .cta-inline__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--ux-space-4) var(--ux-space-6);
+  }
+
+  .cta-inline__link {
+    font-weight: 700;
+    color: var(--ux-navy);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color var(--ux-dur-hover) var(--ux-ease-out);
+  }
+
+  .cta-inline__link:hover {
+    color: var(--ux-teal-ink);
+  }
+</style>

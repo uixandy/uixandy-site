@@ -3,6 +3,7 @@ import { render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import CtaBand from "../../components/CtaBand.astro";
 import site from "../../data/site.json";
+import page from "../../data/pages/ratgeber.json";
 import { getPublishedRatgeber, formatDate, ratgeberHref, type RatgeberEntry } from "../../lib/ratgeber";
 import { articleJsonLd, breadcrumbJsonLd } from "../../lib/jsonld";
 import { absoluteUrl } from "../../lib/seo";
@@ -62,10 +63,10 @@ const description = data.seoDescription || data.description;
   </article>
 
   <CtaBand
-    heading="Eine Website, die Sie per Chat pflegen?"
-    text="Machen Sie den Website-Check und sehen Sie in 60 Sekunden, welches Paket passt."
-    primary={{ label: "Website-Check starten", href: site.primaryCta.href }}
-    secondary={{ label: "Preise ansehen", href: "/preise/" }}
+    heading={page.cta.heading}
+    text={page.cta.text}
+    primary={{ label: page.cta.primaryLabel, href: site.primaryCta.href }}
+    secondary={site.secondaryCta}
   />
 </BaseLayout>
 

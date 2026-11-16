@@ -12,15 +12,34 @@
     "city": "München"
   },
   "nav": [
-    { "label": "So funktioniert's", "href": "/so-funktionierts/" },
-    { "label": "Preise", "href": "/preise/" },
-    { "label": "Beispiele", "href": "/beispiele/" },
-    { "label": "Ratgeber", "href": "/ratgeber/" },
-    { "label": "Über mich", "href": "/ueber-mich/" }
+    {
+      "label": "So funktioniert's",
+      "href": "/so-funktionierts/"
+    },
+    {
+      "label": "Preise",
+      "href": "/preise/"
+    },
+    {
+      "label": "Beispiele",
+      "href": "/beispiele/"
+    },
+    {
+      "label": "Ratgeber",
+      "href": "/ratgeber/"
+    },
+    {
+      "label": "Über mich",
+      "href": "/ueber-mich/"
+    }
   ],
   "primaryCta": {
     "label": "Website-Check",
     "href": "/website-check/"
+  },
+  "secondaryCta": {
+    "label": "Preise ansehen",
+    "href": "/preise/"
   },
   "booking": {
     "calUrl": "https://cal.com/PLATZHALTER-uixandy/15min",

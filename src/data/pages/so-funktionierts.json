@@ -15,28 +15,40 @@
         "text": "Sie beantworten ein paar Fragen zu Ihrer Website. Danach wissen Sie Preis und Paket. Buchen Sie direkt oder sprechen Sie erst 15 Minuten mit mir.",
         "example": "",
         "visual": "check",
-        "tags": ["Etwa 60 Sekunden", "Preis sofort sichtbar"]
+        "tags": [
+          "Etwa 60 Sekunden",
+          "Preis sofort sichtbar"
+        ]
       },
       {
         "title": "Wir bauen Ihre neue Website",
         "text": "Ihr Design, Ihre Farben, Ihr Logo. Texte und Bilder von der alten Website übernehmen wir. Sie geben Feedback, wir passen an, bis alles sitzt.",
         "example": "",
         "visual": "build",
-        "tags": ["Ihr Design", "Texte übernommen"]
+        "tags": [
+          "Ihr Design",
+          "Texte übernommen"
+        ]
       },
       {
         "title": "Übergabe und KI-Einrichtung",
         "text": "Die Website liegt in Ihrem eigenen Konto. Ihre KI läuft auf Ihrem Computer. Im Video-Call helfen wir Ihnen, sie mit der Website zu verbinden, und zeigen, wie Sie Änderungen machen.",
         "example": "",
         "visual": "connect",
-        "tags": ["Ihr eigenes Konto", "Per Video-Call"]
+        "tags": [
+          "Ihr eigenes Konto",
+          "Per Video-Call"
+        ]
       },
       {
         "title": "Ab jetzt: einfach schreiben",
         "text": "Sie schreiben Ihrer KI eine Nachricht. Sie ändert die Website, speichert eine neue Version und stellt sie online. Meist ist alles nach wenigen Minuten live.",
         "example": "„Füge bei den Leistungen Balayage für 89 € hinzu.“",
         "visual": "live",
-        "tags": ["Kein Login", "Jede Version gespeichert"]
+        "tags": [
+          "Kein Login",
+          "Jede Version gespeichert"
+        ]
       }
     ]
   },
@@ -45,12 +57,36 @@
     "heading": "Das können Sie Ihrer KI schreiben",
     "lead": "Ein paar typische Nachrichten von Kunden. Alles, was Sie sonst der Agentur gemailt hätten.",
     "items": [
-      { "icon": "calendar", "title": "Öffnungszeiten", "text": "„Zwischen Weihnachten und Neujahr haben wir geschlossen. Bitte oben einen Hinweis einblenden.“" },
-      { "icon": "paintBrush", "title": "Bilder", "text": "„Tausche das Foto auf der Startseite gegen das neue vom Team aus. Es liegt im Anhang.“" },
-      { "icon": "files", "title": "Neue Seite", "text": "„Leg eine Seite für unser neues Angebot Kinderhaarschnitt an, im gleichen Stil wie die anderen.“" },
-      { "icon": "briefcase", "title": "Stellenanzeige", "text": "„Wir suchen eine Auszubildende ab August. Bitte eine Stellenanzeige unter Karriere ergänzen.“" },
-      { "icon": "pencil", "title": "Texte", "text": "„Der Text über uns ist zu lang. Mach ihn halb so lang und freundlicher.“" },
-      { "icon": "search", "title": "Google", "text": "„Wir werden bei Google nicht für Landsberg gefunden. Was können wir auf der Seite verbessern?“" }
+      {
+        "icon": "calendar",
+        "title": "Öffnungszeiten",
+        "text": "„Zwischen Weihnachten und Neujahr haben wir geschlossen. Bitte oben einen Hinweis einblenden.“"
+      },
+      {
+        "icon": "paintBrush",
+        "title": "Bilder",
+        "text": "„Tausche das Foto auf der Startseite gegen das neue vom Team aus. Es liegt im Anhang.“"
+      },
+      {
+        "icon": "files",
+        "title": "Neue Seite",
+        "text": "„Leg eine Seite für unser neues Angebot Kinderhaarschnitt an, im gleichen Stil wie die anderen.“"
+      },
+      {
+        "icon": "briefcase",
+        "title": "Stellenanzeige",
+        "text": "„Wir suchen eine Auszubildende ab August. Bitte eine Stellenanzeige unter Karriere ergänzen.“"
+      },
+      {
+        "icon": "pencil",
+        "title": "Texte",
+        "text": "„Der Text über uns ist zu lang. Mach ihn halb so lang und freundlicher.“"
+      },
+      {
+        "icon": "search",
+        "title": "Google",
+        "text": "„Wir werden bei Google nicht für Landsberg gefunden. Was können wir auf der Seite verbessern?“"
+      }
     ]
   },
   "safety": {
@@ -58,10 +94,26 @@
     "heading": "Sie können nichts kaputt machen.",
     "lead": "Die häufigste Sorge ist: Was, wenn die KI etwas falsch macht? Darum ist die Website so gebaut, dass jeder Schritt rückgängig gemacht werden kann.",
     "items": [
-      { "icon": "undo", "title": "Jede Änderung ist eine Version", "text": "Jede Änderung wird einzeln gespeichert. Ein Satz genügt, und die KI stellt die vorherige Version wieder her." },
-      { "icon": "shield", "title": "Kein WordPress, keine Plugins", "text": "Es gibt keine Datenbank und keine Plugins, die man aktualisieren muss. Damit fallen die häufigsten Sicherheitsprobleme weg." },
-      { "icon": "pencil", "title": "Editor als Alternative", "text": "Texte und Bilder können Sie jederzeit auch selbst in einem einfachen Editor ändern, ganz ohne KI." },
-      { "icon": "handshake", "title": "Hilfe, wenn es hakt", "text": "Mit der Betreuung für 39 € im Monat schauen wir drauf, wenn etwas nicht klappt, und machen eine kleine Änderung pro Monat für Sie." }
+      {
+        "icon": "undo",
+        "title": "Jede Änderung ist eine Version",
+        "text": "Jede Änderung wird einzeln gespeichert. Ein Satz genügt, und die KI stellt die vorherige Version wieder her."
+      },
+      {
+        "icon": "shield",
+        "title": "Kein WordPress, keine Plugins",
+        "text": "Es gibt keine Datenbank und keine Plugins, die man aktualisieren muss. Damit fallen die häufigsten Sicherheitsprobleme weg."
+      },
+      {
+        "icon": "pencil",
+        "title": "Editor als Alternative",
+        "text": "Texte und Bilder können Sie jederzeit auch selbst in einem einfachen Editor ändern, ganz ohne KI."
+      },
+      {
+        "icon": "handshake",
+        "title": "Hilfe, wenn es hakt",
+        "text": "Mit der Betreuung für 39 € im Monat schauen wir drauf, wenn etwas nicht klappt, und machen eine kleine Änderung pro Monat für Sie."
+      }
     ]
   },
   "compare": {
@@ -70,12 +122,36 @@
     "oldLabel": "Bisher",
     "newLabel": "Mit uixandy",
     "rows": [
-      { "topic": "Neue Öffnungszeiten", "old": "Mail an die Agentur, warten, Rechnung", "new": "Ein Satz an Ihre KI, nach Minuten online" },
-      { "topic": "Neues Foto", "old": "Login, Bild verkleinern, hochladen, hoffen", "new": "Foto in den Chat legen, fertig" },
-      { "topic": "Fehler gemacht", "old": "Backup suchen oder Agentur anrufen", "new": "„Mach das rückgängig.“" },
-      { "topic": "Sicherheit", "old": "WordPress- und Plugin-Updates jeden Monat", "new": "Nichts zu aktualisieren" },
-      { "topic": "Anbieter wechseln", "old": "Baukasten: neu anfangen", "new": "Alles liegt in Ihrem Konto, Sie nehmen es mit" }
+      {
+        "topic": "Neue Öffnungszeiten",
+        "old": "Mail an die Agentur, warten, Rechnung",
+        "new": "Ein Satz an Ihre KI, nach Minuten online"
+      },
+      {
+        "topic": "Neues Foto",
+        "old": "Login, Bild verkleinern, hochladen, hoffen",
+        "new": "Foto in den Chat legen, fertig"
+      },
+      {
+        "topic": "Fehler gemacht",
+        "old": "Backup suchen oder Agentur anrufen",
+        "new": "„Mach das rückgängig.“"
+      },
+      {
+        "topic": "Sicherheit",
+        "old": "WordPress- und Plugin-Updates jeden Monat",
+        "new": "Nichts zu aktualisieren"
+      },
+      {
+        "topic": "Anbieter wechseln",
+        "old": "Baukasten: neu anfangen",
+        "new": "Alles liegt in Ihrem Konto, Sie nehmen es mit"
+      }
     ]
+  },
+  "nudge": {
+    "text": "So einfach kann Ihre Website sein. Welches Paket zu Ihnen passt, sehen Sie in 60 Sekunden.",
+    "linkLabel": "Lieber erst 15 Minuten sprechen"
   },
   "cta": {
     "heading": "Klingt gut? Dann schauen wir uns Ihre Website an.",

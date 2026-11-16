@@ -113,6 +113,13 @@ components:
         label: Zweiter Button (führt zur Terminbuchung)
         type: string
 
+  nudge:
+    label: Hinweis mitten auf der Seite (mit Website-Check-Button)
+    type: object
+    fields:
+      - { name: text, label: Satz über dem Button, type: text }
+      - { name: linkLabel, label: Link-Text (führt zur Terminbuchung), type: string }
+
   compare:
     label: Vergleichstabelle
     type: object
@@ -317,6 +324,7 @@ content:
               - { name: lead, label: Einleitungstext, type: text }
               - { name: items, component: cards }
           - { name: compare, component: compare }
+          - { name: nudge, component: nudge }
           - { name: cta, component: cta }
 
       - name: preise
@@ -343,6 +351,7 @@ content:
               - { name: kicker, label: Kleine Überschrift, type: string }
               - { name: heading, label: Überschrift, type: string }
               - { name: items, component: faq }
+          - { name: nudge, component: nudge }
           - { name: cta, component: cta }
 
       - name: beispiele
@@ -402,6 +411,7 @@ content:
               - { name: kicker, label: Kleine Überschrift, type: string }
               - { name: heading, label: Überschrift, type: string }
               - { name: items, component: faq }
+          - { name: nudge, component: nudge }
           - { name: cta, component: cta }
 
       - name: ueber-mich
@@ -572,6 +582,13 @@ content:
           - { name: hero, component: pageHero }
           - { name: emptyText, label: Text wenn noch keine Beiträge, type: string }
           - { name: readMoreLabel, label: Link-Text Weiterlesen, type: string }
+          - name: cta
+            label: Abschluss-Bereich (Übersicht und alle Beiträge)
+            type: object
+            fields:
+              - { name: heading, label: Überschrift, type: string }
+              - { name: text, label: Text, type: text }
+              - { name: primaryLabel, label: Haupt-Button (führt zum Website-Check), type: string }
 
       - name: impressum
         label: Impressum
@@ -711,6 +728,12 @@ content:
         fields:
           - { name: label, label: Text, type: string }
           - { name: href, label: Link, type: string }
+      - name: secondaryCta
+        label: Zweiter Button im Kopfbereich (z. B. Preise ansehen)
+        type: object
+        fields:
+          - { name: label, label: Text, type: string }
+          - { name: href, label: Link, type: string }
       - name: booking
         label: Buchung und Formular
         type: object
@@ -719,5 +742,6 @@ content:
           - { name: stripeStart, label: Stripe Zahlungslink Anzahlung Start, type: string }
           - { name: stripeIndividuell, label: Stripe Zahlungslink Anzahlung Individuell, type: string }
           - { name: formEndpoint, label: Formspree-Adresse Website-Check, type: string }
+          - { name: analyzerUrl, label: Adresse Website-Analyse (leer = Analyse aus), type: string }
       - { name: footerBlurb, label: Footer-Text, type: text }
       - { name: copyright, label: Copyright-Zeile, type: string }

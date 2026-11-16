@@ -16,12 +16,36 @@
     "oldLabel": "WordPress",
     "newLabel": "uixandy",
     "rows": [
-      { "topic": "Pflege", "old": "Login ins Backend, Pagebuilder lernen", "new": "Ihrer KI schreiben, was sich ändern soll" },
-      { "topic": "Updates", "old": "WordPress, Theme und Plugins regelmäßig aktualisieren", "new": "Keine Updates nötig" },
-      { "topic": "Sicherheit", "old": "Plugins und Login sind häufige Angriffsziele", "new": "Kein Login, keine Datenbank, kaum Angriffsfläche" },
-      { "topic": "Geschwindigkeit", "old": "Oft langsam durch Plugins und Pagebuilder", "new": "Sehr schnell, weil fertige Seiten ausgeliefert werden" },
-      { "topic": "Fehler rückgängig machen", "old": "Backup-Plugin, falls vorhanden", "new": "Jede Änderung ist eine Version, ein Satz genügt" },
-      { "topic": "Laufende Kosten", "old": "Hosting, Premium-Plugins, Wartungsvertrag", "new": "Hosting direkt beim Anbieter, Betreuung optional" }
+      {
+        "topic": "Pflege",
+        "old": "Login ins Backend, Pagebuilder lernen",
+        "new": "Ihrer KI schreiben, was sich ändern soll"
+      },
+      {
+        "topic": "Updates",
+        "old": "WordPress, Theme und Plugins regelmäßig aktualisieren",
+        "new": "Keine Updates nötig"
+      },
+      {
+        "topic": "Sicherheit",
+        "old": "Plugins und Login sind häufige Angriffsziele",
+        "new": "Kein Login, keine Datenbank, kaum Angriffsfläche"
+      },
+      {
+        "topic": "Geschwindigkeit",
+        "old": "Oft langsam durch Plugins und Pagebuilder",
+        "new": "Sehr schnell, weil fertige Seiten ausgeliefert werden"
+      },
+      {
+        "topic": "Fehler rückgängig machen",
+        "old": "Backup-Plugin, falls vorhanden",
+        "new": "Jede Änderung ist eine Version, ein Satz genügt"
+      },
+      {
+        "topic": "Laufende Kosten",
+        "old": "Hosting, Premium-Plugins, Wartungsvertrag",
+        "new": "Hosting direkt beim Anbieter, Betreuung optional"
+      }
     ]
   },
   "fit": {
@@ -29,9 +53,21 @@
     "heading": "Wann WordPress weiterhin die bessere Wahl ist",
     "lead": "Nicht jede Website sollte von WordPress weg. In diesen Fällen raten wir selbst davon ab.",
     "items": [
-      { "icon": "storefront", "title": "Große Online-Shops", "text": "Wer viele Produkte, Lager und Versand verwaltet, ist mit einem Shopsystem wie Shopify besser beraten." },
-      { "icon": "lockKey", "title": "Mitgliederbereiche", "text": "Websites mit Login, Kundenkonten und geschützten Inhalten brauchen ein System dahinter." },
-      { "icon": "chats", "title": "Viele Redakteure gleichzeitig", "text": "Wenn täglich zehn Leute Beiträge mit Freigabeprozess veröffentlichen, ist ein klassisches CMS sinnvoll." }
+      {
+        "icon": "storefront",
+        "title": "Große Online-Shops",
+        "text": "Wer viele Produkte, Lager und Versand verwaltet, ist mit einem Shopsystem wie Shopify besser beraten."
+      },
+      {
+        "icon": "lockKey",
+        "title": "Mitgliederbereiche",
+        "text": "Websites mit Login, Kundenkonten und geschützten Inhalten brauchen ein System dahinter."
+      },
+      {
+        "icon": "chats",
+        "title": "Viele Redakteure gleichzeitig",
+        "text": "Wenn täglich zehn Leute Beiträge mit Freigabeprozess veröffentlichen, ist ein klassisches CMS sinnvoll."
+      }
     ]
   },
   "faq": {
@@ -55,6 +91,10 @@
         "answer": "In der Regel nicht. Es gibt keine Plugins und kein System, das aktualisiert werden muss. Wer trotzdem jemanden an der Seite haben möchte, bucht unsere Betreuung für 39 € im Monat."
       }
     ]
+  },
+  "nudge": {
+    "text": "Texte und Bilder übernehmen wir. Was Ihr Umzug kostet, sehen Sie im Website-Check in 60 Sekunden.",
+    "linkLabel": "Lieber erst 15 Minuten sprechen"
   },
   "cta": {
     "heading": "Raus aus WordPress, ohne Stress.",

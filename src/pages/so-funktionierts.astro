@@ -7,6 +7,7 @@ import StepDeck from "../components/StepDeck.astro";
 import FeatureCards from "../components/FeatureCards.astro";
 import Comparison from "../components/Comparison.astro";
 import CtaBand from "../components/CtaBand.astro";
+import CtaInline from "../components/CtaInline.astro";
 import page from "../data/pages/so-funktionierts.json";
 import site from "../data/site.json";
 import { resolveSeo } from "../lib/seo";
@@ -20,12 +21,17 @@ const seo = resolveSeo(page);
     heading={page.hero.heading}
     lead={page.hero.lead}
     primary={{ label: page.cta.primaryLabel, href: site.primaryCta.href }}
-    secondary={{ label: "Preise ansehen", href: "/preise/" }}
+    secondary={site.secondaryCta}
   />
 
   <Section id="ablauf" flush="top">
     <SectionHead kicker={page.steps.kicker} heading={page.steps.heading} />
     <StepDeck items={page.steps.items} />
+    <CtaInline
+      text={page.nudge.text}
+      primary={{ label: page.cta.primaryLabel, href: site.primaryCta.href }}
+      link={{ label: page.nudge.linkLabel, href: site.booking.calUrl }}
+    />
   </Section>
 
   <Section id="beispiele" tone="soft">

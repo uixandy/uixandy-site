@@ -7,6 +7,7 @@ import Comparison from "../components/Comparison.astro";
 import FeatureCards from "../components/FeatureCards.astro";
 import Faq from "../components/Faq.astro";
 import CtaBand from "../components/CtaBand.astro";
+import CtaInline from "../components/CtaInline.astro";
 import page from "../data/pages/wordpress-alternative.json";
 import site from "../data/site.json";
 import { resolveSeo } from "../lib/seo";
@@ -21,7 +22,7 @@ const seo = resolveSeo(page);
     heading={page.hero.heading}
     lead={page.hero.lead}
     primary={{ label: page.cta.primaryLabel, href: site.primaryCta.href }}
-    secondary={{ label: "Preise ansehen", href: "/preise/" }}
+    secondary={site.secondaryCta}
   />
 
   <Section flush="top" narrow>
@@ -34,6 +35,11 @@ const seo = resolveSeo(page);
   <Section id="vergleich">
     <SectionHead kicker={page.compare.kicker} heading={page.compare.heading} />
     <Comparison oldLabel={page.compare.oldLabel} newLabel={page.compare.newLabel} rows={page.compare.rows} />
+    <CtaInline
+      text={page.nudge.text}
+      primary={{ label: page.cta.primaryLabel, href: site.primaryCta.href }}
+      link={{ label: page.nudge.linkLabel, href: site.booking.calUrl }}
+    />
   </Section>
 
   <Section id="wann-wordpress" tone="soft">

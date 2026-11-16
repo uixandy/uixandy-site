@@ -7,6 +7,7 @@ import PackageCards from "../components/PackageCards.astro";
 import StepDeck from "../components/StepDeck.astro";
 import Faq from "../components/Faq.astro";
 import CtaBand from "../components/CtaBand.astro";
+import CtaInline from "../components/CtaInline.astro";
 import page from "../data/pages/preise.json";
 import site from "../data/site.json";
 import packages from "../data/packages.json";
@@ -31,6 +32,11 @@ const seo = resolveSeo(page);
   <Section id="buchen" tone="soft">
     <SectionHead kicker={page.process.kicker} heading={page.process.heading} lead={page.process.lead} />
     <StepDeck items={page.process.items} />
+    <CtaInline
+      text={page.nudge.text}
+      primary={{ label: page.cta.primaryLabel, href: site.primaryCta.href }}
+      link={{ label: page.nudge.linkLabel, href: site.booking.calUrl }}
+    />
   </Section>
 
   <Section id="faq" narrow>
