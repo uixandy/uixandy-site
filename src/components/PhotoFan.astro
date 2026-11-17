@@ -1,7 +1,6 @@
 ---
 /**
- * Three photos: the middle one upright, the outer two tilted.
- * On reveal the outer photos slide out from behind the middle one.
+ * Three photos that scrub from stacked (inside) to a fan (outside) as you scroll.
  */
 export interface Props {
   images: { image: string; alt: string }[];
@@ -11,24 +10,79 @@ const { images } = Astro.props;
 const photos = images.slice(0, 3);
 ---
 
-<div class="fan" data-reveal>
-  {
-    photos.map((p, i) => (
-      <figure class={`fan__card fan__card--${i + 1}`}>
-        <img src={p.image} alt={p.alt} width="800" height="1000" loading="lazy" decoding="async" />
-      </figure>
-    ))
-  }
+<div class="fan-scrub" data-fan-scrub style="--fan-p: 0">
+  <div class="fan-scrub__sticky">
+    <div class="fan" aria-hidden="false">
+      {
+        photos.map((p, i) => (
+          <figure class={`fan__card fan__card--${i + 1}`}>
+            <img src={p.image} alt={p.alt} width="800" height="1000" loading="lazy" decoding="async" />
+          </figure>
+        ))
+      }
+    </div>
+  </div>
 </div>
 
+<script>
+  const scrub = document.querySelector<HTMLElement>("[data-fan-scrub]");
+  if (!scrub) {
+    /* no fan on this page */
+  } else if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    scrub.style.setProperty("--fan-p", "1");
+  } else {
+    let active = true;
+    let last = "";
+    const update = () => {
+      const rect = scrub.getBoundingClientRect();
+      const range = Math.max(1, scrub.offsetHeight - window.innerHeight);
+      const p = Math.min(1, Math.max(0, -rect.top / range));
+      const next = p.toFixed(4);
+      if (next !== last) {
+        last = next;
+        scrub.style.setProperty("--fan-p", next);
+      }
+    };
+    const io = new IntersectionObserver(
+      (entries) => {
+        active = entries.some((e) => e.isIntersecting);
+        if (active) update();
+      },
+      { rootMargin: "20% 0px" },
+    );
+    io.observe(scrub);
+    const tick = () => {
+      if (active) update();
+      requestAnimationFrame(tick);
+    };
+    update();
+    requestAnimationFrame(tick);
+    addEventListener("resize", update, { passive: true });
+  }
+</script>
+
 <style>
+  .fan-scrub {
+    --fan-p: 0;
+    /* Tall enough that sticky scrub always has travel, even on short viewports */
+    height: calc(100vh + 42rem);
+    margin-block: var(--ux-space-4) var(--ux-space-6);
+  }
+
+  .fan-scrub__sticky {
+    position: sticky;
+    top: calc(var(--ux-header-h, 4.5rem) + 1.5rem);
+    display: grid;
+    place-items: center;
+    min-height: min(72vh, 36rem);
+  }
+
   .fan {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     align-items: center;
-    max-width: 58rem;
+    width: min(100%, 58rem);
     margin-inline: auto;
-    padding-block: var(--ux-space-6) var(--ux-space-8);
   }
 
   .fan__card {
@@ -39,61 +93,78 @@ const photos = images.slice(0, 3);
     overflow: hidden;
     background: var(--ux-surface-2);
     box-shadow: var(--ux-shadow-lg);
-    transition:
-      transform 0.9s var(--ux-ease-out),
-      box-shadow var(--ux-dur-hover) var(--ux-ease-out);
+    will-change: transform;
   }
 
   .fan__card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: scale 0.8s var(--ux-ease-out);
   }
 
+  /* p=0 stacked in the middle → p=1 fan open */
   .fan__card--1 {
     z-index: 1;
-    transform: translate(10%, 2.5rem) rotate(-8deg) scale(0.92);
+    transform:
+      translate(
+        calc((1 - var(--fan-p)) * 72% + var(--fan-p) * 10%),
+        calc(var(--fan-p) * 2.5rem)
+      )
+      rotate(calc(var(--fan-p) * -8deg))
+      scale(calc(0.88 + var(--fan-p) * 0.04));
   }
 
   .fan__card--2 {
     z-index: 2;
-    transform: scale(1.08);
+    transform: scale(calc(1 + var(--fan-p) * 0.08));
   }
 
   .fan__card--3 {
     z-index: 1;
-    transform: translate(-10%, 2.5rem) rotate(8deg) scale(0.92);
+    transform:
+      translate(
+        calc((1 - var(--fan-p)) * -72% + var(--fan-p) * -10%),
+        calc(var(--fan-p) * 2.5rem)
+      )
+      rotate(calc(var(--fan-p) * 8deg))
+      scale(calc(0.88 + var(--fan-p) * 0.04));
   }
 
-  .fan__card--1:hover {
-    transform: translate(4%, 1.75rem) rotate(-4deg) scale(0.95);
-  }
-
-  .fan__card--2:hover {
-    transform: scale(1.08) translateY(-6px);
-  }
-
-  .fan__card--3:hover {
-    transform: translate(-4%, 1.75rem) rotate(4deg) scale(0.95);
-  }
-
-  .fan__card:hover {
-    z-index: 3;
-    box-shadow: 0 34px 80px -24px rgb(0 33 53 / 0.45);
-  }
-
-  .fan__card:hover img {
-    scale: 1.04;
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    .js .fan:not(.is-revealed) .fan__card--1 {
-      transform: translateX(70%) scale(0.85);
+  @media (max-width: 40rem) {
+    .fan-scrub {
+      height: calc(100vh + 32rem);
     }
 
-    .js .fan:not(.is-revealed) .fan__card--3 {
-      transform: translateX(-70%) scale(0.85);
+    .fan__card--1 {
+      transform:
+        translate(
+          calc((1 - var(--fan-p)) * 55% + var(--fan-p) * 6%),
+          calc(var(--fan-p) * 1.5rem)
+        )
+        rotate(calc(var(--fan-p) * -6deg))
+        scale(calc(0.9 + var(--fan-p) * 0.02));
+    }
+
+    .fan__card--3 {
+      transform:
+        translate(
+          calc((1 - var(--fan-p)) * -55% + var(--fan-p) * -6%),
+          calc(var(--fan-p) * 1.5rem)
+        )
+        rotate(calc(var(--fan-p) * 6deg))
+        scale(calc(0.9 + var(--fan-p) * 0.02));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fan-scrub {
+      height: auto;
+    }
+
+    .fan-scrub__sticky {
+      position: relative;
+      top: auto;
+      min-height: 0;
     }
   }
 </style>

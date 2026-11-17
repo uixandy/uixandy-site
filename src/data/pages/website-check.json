@@ -68,7 +68,12 @@
     "unreachable": "Wir konnten die Website gerade nicht erreichen. Kein Problem, wir schauen sie uns persönlich an.",
     "disclaimer": "Das ist eine automatische, vorläufige Einschätzung. Wir prüfen jedes Projekt persönlich. Passt es nicht ins Paket, bekommen Sie ein Angebot oder die Anzahlung zurück, und innerhalb von 7 Tagen nach Zahlung können Sie ohne Angabe von Gründen zurücktreten.",
     "prefilledNote": "Nach der Analyse vorausgewählt. Bitte kurz prüfen.",
-    "otherUrl": "Andere Adresse eingeben"
+    "otherUrl": "Andere Adresse eingeben",
+    "overviewHeading": "Stimmt das so für Ihre neue Website?",
+    "overviewHint": "Ändern Sie, was fehlt oder was Sie nicht mehr brauchen. Danach fragen wir nur noch nach dem Zeitplan.",
+    "overviewPagesLabel": "Ungefähre Seitenzahl",
+    "overviewFeaturesLabel": "Funktionen",
+    "overviewContinue": "Passt so, weiter"
   },
   "results": {
     "start": {

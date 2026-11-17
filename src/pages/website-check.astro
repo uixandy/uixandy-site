@@ -79,9 +79,38 @@ const TOTAL = 5;
               }
             </ul>
             <p class="an__unreachable" data-an-unreachable hidden>{analyze.unreachable}</p>
-            <p class="an__note">{analyze.disclaimer}</p>
+            <p class="an__note" data-an-note>{analyze.disclaimer}</p>
+
+            <div class="ov" data-overview hidden>
+              <p class="step__q ov__title">{analyze.overviewHeading}</p>
+              <p class="step__hint">{analyze.overviewHint}</p>
+              <p class="ov__label">{analyze.overviewPagesLabel}</p>
+              <div class="options">
+                {
+                  form.pagesOptions.map((o) => (
+                    <label class="option">
+                      <input type="radio" name="seiten" value={o.value} data-overview-input data-pages-ov disabled />
+                      <span>{o.label}</span>
+                    </label>
+                  ))
+                }
+              </div>
+              <p class="ov__label">{analyze.overviewFeaturesLabel}</p>
+              <p class="step__hint">{form.featuresHint}</p>
+              <div class="options options--grid">
+                {
+                  form.featuresOptions.map((o) => (
+                    <label class="option option--check">
+                      <input type="checkbox" name="funktionen" value={o.value} data-overview-input data-feature-ov disabled />
+                      <span><b class="option__box"><Icon name="check" size={12} /></b>{o.label}</span>
+                    </label>
+                  ))
+                }
+              </div>
+            </div>
+
             <div class="step__actions">
-              <Button type="button" size="lg" arrow data-next data-an-continue disabled>{form.nextLabel}</Button>
+              <Button type="button" size="lg" arrow data-an-continue disabled>{form.nextLabel}</Button>
               <button type="button" class="step__link" data-an-other>{analyze.otherUrl}</button>
             </div>
           </div>
@@ -94,7 +123,7 @@ const TOTAL = 5;
             {
               form.pagesOptions.map((o) => (
                 <label class="option">
-                  <input type="radio" name="seiten" value={o.value} data-auto />
+                  <input type="radio" name="seiten" value={o.value} data-auto data-pages-step />
                   <span>{o.label}<Icon name="arrowRight" size={18} /></span>
                 </label>
               ))
@@ -110,7 +139,7 @@ const TOTAL = 5;
             {
               form.featuresOptions.map((o) => (
                 <label class="option option--check">
-                  <input type="checkbox" name="funktionen" value={o.value} data-feature />
+                  <input type="checkbox" name="funktionen" value={o.value} data-feature data-feature-step />
                   <span><b class="option__box"><Icon name="check" size={12} /></b>{o.label}</span>
                 </label>
               ))
@@ -248,6 +277,9 @@ const TOTAL = 5;
   };
 
   let current = 0;
+  let skipMode = false;
+
+  const pathOf = () => (skipMode ? [0, 3, 4] : [0, 1, 2, 3, 4]);
 
   const show = (index: number, dir: 1 | -1 = 1) => {
     current = Math.max(0, Math.min(steps.length - 1, index));
@@ -255,16 +287,32 @@ const TOTAL = 5;
       s.classList.toggle("is-active", i === current);
       s.classList.toggle("is-back", i === current && dir === -1);
     });
-    const total = Number(count?.dataset.total ?? steps.length);
-    if (bar) bar.style.width = `${((current + 1) / total) * 100}%`;
+    const path = pathOf();
+    const pos = Math.max(0, path.indexOf(current));
+    const total = path.length;
+    if (bar) bar.style.width = `${((pos + 1) / total) * 100}%`;
     if (count) {
       count.textContent = (count.dataset.template ?? "")
-        .replace("{n}", String(current + 1))
+        .replace("{n}", String(pos + 1))
         .replace("{total}", String(total));
     }
-    if (back) back.hidden = current === 0;
-    const focusable = steps[current]?.querySelector<HTMLElement>("input:not([type=hidden]), button");
-    if (index > 0) focusable?.focus({ preventScroll: true });
+    if (back) back.hidden = pos === 0;
+    const focusable = steps[current]?.querySelector<HTMLElement>(
+      "input:not([type=hidden]):not([disabled]), button:not([disabled])",
+    );
+    if (index > 0 || skipMode) focusable?.focus({ preventScroll: true });
+  };
+
+  const goNext = () => {
+    const path = pathOf();
+    const i = path.indexOf(current);
+    show(path[Math.min(i + 1, path.length - 1)]);
+  };
+
+  const goBack = () => {
+    const path = pathOf();
+    const i = path.indexOf(current);
+    show(path[Math.max(i - 1, 0)], -1);
   };
 
   if (wiz && form && steps.length) {
@@ -272,19 +320,33 @@ const TOTAL = 5;
     show(0);
 
     form.querySelectorAll<HTMLElement>("[data-next]").forEach((btn) =>
-      btn.addEventListener("click", () => show(current + 1)),
+      btn.addEventListener("click", () => goNext()),
     );
 
     const urlInput = form.querySelector<HTMLInputElement>("[data-website]");
     const urlPanel = form.querySelector<HTMLElement>("[data-url-panel]");
     const anPanel = form.querySelector<HTMLElement>("[data-analyze-panel]");
     const anContinue = form.querySelector<HTMLButtonElement>("[data-an-continue]");
+    const anContinueText = anContinue?.querySelector("span");
+    const anContinueDefault = anContinueText?.textContent ?? "";
+    const overview = form.querySelector<HTMLElement>("[data-overview]");
+    const anNote = form.querySelector<HTMLElement>("[data-an-note]");
     const analysisField = form.querySelector<HTMLInputElement>("[data-analysis]");
     const analyzerUrl = wiz.dataset.analyzer ?? "";
     const t = JSON.parse(wiz.dataset.analyzeTexts ?? "{}");
     let analyzedHost = "";
+    let overviewReady = false;
 
     const fill = (s: string, n: number | string) => String(s ?? "").replace("{n}", String(n));
+
+    const setInputsActive = (overviewOn: boolean) => {
+      form.querySelectorAll<HTMLInputElement>("[data-pages-step], [data-feature-step]").forEach((el) => {
+        el.disabled = overviewOn;
+      });
+      form.querySelectorAll<HTMLInputElement>("[data-overview-input]").forEach((el) => {
+        el.disabled = !overviewOn;
+      });
+    };
 
     const setRow = (key: string, value: string) => {
       const row = anPanel?.querySelector<HTMLElement>(`[data-an-row="${key}"]`);
@@ -294,35 +356,46 @@ const TOTAL = 5;
       if (v) v.textContent = value;
     };
 
-    const prefill = (data: any) => {
-      const pages = typeof data.pages === "number" ? data.pages : null;
+    const prefillOverview = (data: any) => {
+      const pages = typeof data.pages === "number" ? data.pages : typeof data.linkedPages === "number" ? data.linkedPages : null;
       const bucket = pages === null ? "" : pages <= 6 ? "bis-6" : pages <= 15 ? "7-15" : "ueber-15";
-      if (bucket) {
-        const radio = form.querySelector<HTMLInputElement>(`input[name="seiten"][value="${bucket}"]`);
-        if (radio) radio.checked = true;
-        steps[1]?.querySelector<HTMLElement>("[data-prefilled-note]")?.removeAttribute("hidden");
-      }
-      const found: string[] = Array.isArray(data.features) ? data.features : [];
-      let any = false;
-      form.querySelectorAll<HTMLInputElement>("[data-feature]").forEach((box) => {
-        if (found.includes(box.value)) {
-          box.checked = true;
-          any = true;
-        }
+      form.querySelectorAll<HTMLInputElement>("[data-pages-ov]").forEach((radio) => {
+        radio.checked = radio.value === bucket;
       });
-      if (any) {
-        steps[2]?.querySelector<HTMLElement>("[data-prefilled-note]")?.removeAttribute("hidden");
-        form.querySelector("[data-feature]")?.dispatchEvent(new Event("change"));
-      }
+      const found: string[] = Array.isArray(data.features) ? data.features : [];
+      form.querySelectorAll<HTMLInputElement>("[data-feature-ov]").forEach((box) => {
+        box.checked = found.includes(box.value);
+      });
+    };
+
+    const enterOverview = () => {
+      skipMode = true;
+      overviewReady = true;
+      setInputsActive(true);
+      overview?.removeAttribute("hidden");
+      anNote?.setAttribute("hidden", "");
+      if (anContinueText) anContinueText.textContent = t.overviewContinue ?? anContinueDefault;
+      show(0);
+    };
+
+    const resetOverview = () => {
+      skipMode = false;
+      overviewReady = false;
+      setInputsActive(false);
+      overview?.setAttribute("hidden", "");
+      anNote?.removeAttribute("hidden");
+      if (anContinueText) anContinueText.textContent = anContinueDefault;
     };
 
     const runAnalysis = async (raw: string) => {
       if (!urlPanel || !anPanel || !anContinue) return;
+      resetOverview();
       urlPanel.hidden = true;
       anPanel.hidden = false;
       anContinue.disabled = true;
       anPanel.querySelectorAll<HTMLElement>("[data-an-row]").forEach((row) => {
         row.classList.remove("is-done");
+        row.removeAttribute("hidden");
         const v = row.querySelector<HTMLElement>("[data-an-value]");
         if (v) v.textContent = t.working ?? "";
       });
@@ -345,8 +418,8 @@ const TOTAL = 5;
         anPanel.querySelectorAll<HTMLElement>("[data-an-row]").forEach((row) => row.setAttribute("hidden", ""));
         anPanel.querySelector<HTMLElement>("[data-an-unreachable]")?.removeAttribute("hidden");
         if (analysisField) analysisField.value = "nicht erreichbar";
+        overviewReady = false;
       } else {
-        anPanel.querySelectorAll<HTMLElement>("[data-an-row]").forEach((row) => row.removeAttribute("hidden"));
         const pause = reduced ? 0 : 350;
         const featureText = (data.features ?? []).map((f: string) => t.features?.[f] ?? f).join(", ");
         const rows: [string, string][] = [
@@ -359,7 +432,8 @@ const TOTAL = 5;
           setRow(key, value);
           if (pause) await new Promise((r) => window.setTimeout(r, pause));
         }
-        prefill(data);
+        prefillOverview(data);
+        enterOverview();
         if (analysisField) {
           analysisField.value = [
             `System: ${data.cms?.label ?? "unbekannt"}`,
@@ -378,7 +452,8 @@ const TOTAL = 5;
     const onUrlNext = () => {
       const raw = urlInput?.value.trim() ?? "";
       if (!raw || !analyzerUrl) {
-        show(current + 1);
+        resetOverview();
+        goNext();
         return;
       }
       if (raw === analyzedHost && anPanel) {
@@ -398,7 +473,21 @@ const TOTAL = 5;
       }
     });
 
+    anContinue?.addEventListener("click", () => {
+      if (overviewReady) {
+        const pages = form.querySelector<HTMLInputElement>("[data-pages-ov]:checked");
+        if (!pages) {
+          form.querySelector<HTMLInputElement>("[data-pages-ov]")?.focus();
+          return;
+        }
+        goNext();
+        return;
+      }
+      goNext();
+    });
+
     form.querySelector("[data-an-other]")?.addEventListener("click", () => {
+      resetOverview();
       if (anPanel) anPanel.hidden = true;
       if (urlPanel) urlPanel.hidden = false;
       urlInput?.focus();
@@ -407,26 +496,28 @@ const TOTAL = 5;
     form.querySelector("[data-no-website]")?.addEventListener("click", () => {
       if (urlInput) urlInput.value = "";
       if (analysisField) analysisField.value = "";
-      show(current + 1);
+      resetOverview();
+      goNext();
     });
 
     form.querySelectorAll<HTMLInputElement>("[data-auto]").forEach((input) =>
       input.addEventListener("click", () => {
-        window.setTimeout(() => show(current + 1), reduced ? 0 : 260);
+        window.setTimeout(() => goNext(), reduced ? 0 : 260);
       }),
     );
 
-    form.querySelectorAll<HTMLInputElement>("[data-feature]").forEach((input) =>
+    form.querySelectorAll<HTMLInputElement>("[data-feature-step]").forEach((input) =>
       input.addEventListener("change", () => {
         if (!featuresNext) return;
-        const some = form.querySelectorAll("[data-feature]:checked").length > 0;
+        const some = form.querySelectorAll("[data-feature-step]:checked").length > 0;
         const label = some ? featuresNext.dataset.some : featuresNext.dataset.none;
         const span = featuresNext.querySelector("span");
         if (span && label) span.textContent = label;
       }),
     );
 
-    back?.addEventListener("click", () => show(current - 1, -1));
+    setInputsActive(false);
+    back?.addEventListener("click", () => goBack());
   }
 
   const params = new URLSearchParams(location.search);
@@ -650,6 +741,30 @@ const TOTAL = 5;
   }
 
   .an__title {
+    margin-bottom: var(--ux-space-2);
+  }
+
+  .ov {
+    margin-top: var(--ux-space-6);
+    padding-top: var(--ux-space-6);
+    border-top: 1px solid var(--ux-border);
+  }
+
+  .ov[hidden] {
+    display: none;
+  }
+
+  .ov__title {
+    margin-bottom: var(--ux-space-2);
+  }
+
+  .ov__label {
+    margin: var(--ux-space-5) 0 var(--ux-space-3);
+    font-weight: 700;
+    color: var(--ux-navy-deep);
+  }
+
+  .ov .options {
     margin-bottom: var(--ux-space-2);
   }
 

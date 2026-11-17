@@ -543,6 +543,11 @@ content:
               - { name: disclaimer, label: Hinweis unter der Analyse, type: text }
               - { name: prefilledNote, label: Hinweis bei vorausgewählten Antworten, type: string }
               - { name: otherUrl, label: Link andere Adresse, type: string }
+              - { name: overviewHeading, label: Überschrift Übersicht nach Analyse, type: string }
+              - { name: overviewHint, label: Hinweis unter der Übersicht, type: text }
+              - { name: overviewPagesLabel, label: Label Seitenzahl in Übersicht, type: string }
+              - { name: overviewFeaturesLabel, label: Label Funktionen in Übersicht, type: string }
+              - { name: overviewContinue, label: Button Übersicht weiter, type: string }
           - name: results
             label: Ergebnis-Texte
             type: object
