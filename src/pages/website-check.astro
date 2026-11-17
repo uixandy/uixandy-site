@@ -269,13 +269,14 @@ const TOTAL = 5;
   /** Extras that count toward Individuell / Gespräch. Shop is decline, not an extra. */
   const EXTRAS = ["blog", "jobs", "sprachen", "termine", "rechner", "formulare", "login"];
 
+  // More pages (7–15 or 15+) counts like one function → Individuell.
+  // Gespräch only for 2+ extras, or still-open scope (unklar). Shop = decline.
   const recommend = (pages: string, features: string[]): Outcome => {
     if (features.includes("shop")) return "shop";
     const extras = features.filter((f) => EXTRAS.includes(f));
     if (extras.length >= 2) return "gespraech";
-    if (pages === "ueber-15" || pages === "unklar") return "gespraech";
-    if (pages === "7-15") return "individuell";
-    if (extras.length === 1) return "individuell";
+    if (pages === "unklar") return "gespraech";
+    if (pages === "7-15" || pages === "ueber-15" || extras.length === 1) return "individuell";
     return "start";
   };
 

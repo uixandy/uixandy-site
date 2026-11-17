@@ -91,6 +91,11 @@ const locs = (xml) => Array.from(xml.matchAll(/<loc>\s*([^<\s]+)\s*<\/loc>/gi), 
 
 const isPage = (u) => !/\.(jpe?g|png|gif|webp|svg|pdf|zip|mp4|xml)(\?|$)/i.test(u);
 
+/** Prefer WP page sitemaps. Posts/authors/categories inflate "Seiten" and are not package pages. */
+const isPageSitemap = (u) => /page[-_]?sitemap|wp-sitemap-pages|pages[-_]?sitemap/i.test(u);
+const isNoiseSitemap = (u) =>
+  /(image|video|attachment|author|tag|category|kategorie|post[-_]?sitemap|wp-sitemap-posts|news[-_]?sitemap)/i.test(u);
+
 const sitemapUrls = async (origin) => {
   const robots = await get(new URL("/robots.txt", origin), 5000);
   const declared = Array.from(robots.text.matchAll(/^sitemap:\s*(\S+)/gim), (m) => m[1]);
@@ -100,10 +105,10 @@ const sitemapUrls = async (origin) => {
     const res = await get(sm, 6000);
     if (!res.ok || !/<(urlset|sitemapindex)/i.test(res.text)) continue;
     if (/<sitemapindex/i.test(res.text)) {
-      const children = locs(res.text)
-        .filter((u) => !/(image|video|attachment|author|tag|category|kategorie)/i.test(u))
-        .slice(0, 8);
-      const nested = await Promise.all(children.map((c) => get(c, 6000)));
+      const children = locs(res.text);
+      const pageOnly = children.filter(isPageSitemap);
+      const usable = (pageOnly.length ? pageOnly : children.filter((u) => !isNoiseSitemap(u))).slice(0, 8);
+      const nested = await Promise.all(usable.map((c) => get(c, 6000)));
       return nested.flatMap((n) => (n.ok ? locs(n.text) : [])).filter(isPage);
     }
     return locs(res.text).filter(isPage);
@@ -215,7 +220,7 @@ export default {
     if (!target) return json({ error: "url" }, 400, origin);
 
     const bypass = request.headers.get("cache-control")?.includes("no-cache") || new URL(request.url).searchParams.has("fresh");
-    const cacheKey = new Request(`https://analyzer.cache/v4/${target.hostname}`);
+    const cacheKey = new Request(`https://analyzer.cache/v5/${target.hostname}`);
     const cache = caches.default;
     if (!bypass) {
       const hit = await cache.match(cacheKey);
