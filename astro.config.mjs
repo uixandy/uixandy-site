@@ -13,7 +13,7 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      filter: (page) => !/\/(style-guide|danke)\//.test(page),
+      filter: (page) => !/\/(style-guide|danke|agb|datenschutz)\//.test(page),
     }),
   ],
 });

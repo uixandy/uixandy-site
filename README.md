@@ -26,4 +26,4 @@ Search the repo for `Platzhalter` / `PLATZHALTER`.
 - [x] Personal photos kept; no dog name in copy
 - [x] Datenschutz + AGB (no lawyer; keep improving as needed)
 - [x] Ratgeber: KI-Bearbeiten, WordPress-Pflege-Kosten, Texte selbst ändern
-- [ ] Ship: promote staging → Vercel production only when Andy says ship
+- [x] Ship: staging → production (2026-11-17, sha `23038d3`)
