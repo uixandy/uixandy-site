@@ -65,6 +65,10 @@ const TOTAL = 5;
           <div class="an" data-analyze-panel hidden aria-live="polite">
             <p class="step__q an__title">{analyze.heading}</p>
             <p class="an__host" data-an-host></p>
+            <p class="an__wait" data-an-wait hidden>{analyze.waitingNote}</p>
+            <div class="an__progress" data-an-progress hidden aria-hidden="true">
+              <span class="an__progress-bar" data-an-progress-bar></span>
+            </div>
             <ul class="an__list">
               {
                 [
@@ -355,13 +359,21 @@ const TOTAL = 5;
       }
     };
 
+    const waitEl = anPanel?.querySelector<HTMLElement>("[data-an-wait]");
+    const progressWrap = anPanel?.querySelector<HTMLElement>("[data-an-progress]");
+    const progressBar = anPanel?.querySelector<HTMLElement>("[data-an-progress-bar]");
+    const setProgress = (pct: number) => {
+      if (progressBar) progressBar.style.width = `${Math.max(0, Math.min(100, pct))}%`;
+    };
+
     const runAnalysis = async (raw: string) => {
       if (!urlPanel || !anPanel || !anContinue) return;
       urlPanel.hidden = true;
       anPanel.hidden = false;
       anContinue.disabled = true;
-      anPanel.querySelectorAll<HTMLElement>("[data-an-row]").forEach((row) => {
-        row.classList.remove("is-done");
+      const rows = Array.from(anPanel.querySelectorAll<HTMLElement>("[data-an-row]"));
+      rows.forEach((row) => {
+        row.classList.remove("is-done", "is-active");
         row.removeAttribute("hidden");
         const v = row.querySelector<HTMLElement>("[data-an-value]");
         if (v) v.textContent = t.working ?? "";
@@ -369,6 +381,16 @@ const TOTAL = 5;
       anPanel.querySelector<HTMLElement>("[data-an-unreachable]")?.setAttribute("hidden", "");
       const hostEl = anPanel.querySelector<HTMLElement>("[data-an-host]");
       if (hostEl) hostEl.textContent = raw.replace(/^https?:\/\//i, "").replace(/\/.*$/, "");
+
+      if (waitEl) waitEl.hidden = false;
+      if (progressWrap) progressWrap.hidden = false;
+      setProgress(8);
+      let tick = 0;
+      const pulse = window.setInterval(() => {
+        tick += 1;
+        setProgress(Math.min(72, 8 + tick * 2.2));
+        rows.forEach((row, i) => row.classList.toggle("is-active", i === tick % rows.length && !row.classList.contains("is-done")));
+      }, reduced ? 900 : 700);
 
       let data: any = null;
       try {
@@ -381,21 +403,28 @@ const TOTAL = 5;
         data = null;
       }
 
+      window.clearInterval(pulse);
+      rows.forEach((row) => row.classList.remove("is-active"));
+      setProgress(78);
+
       if (!data?.reachable) {
-        anPanel.querySelectorAll<HTMLElement>("[data-an-row]").forEach((row) => row.setAttribute("hidden", ""));
+        rows.forEach((row) => row.setAttribute("hidden", ""));
         anPanel.querySelector<HTMLElement>("[data-an-unreachable]")?.removeAttribute("hidden");
         if (analysisField) analysisField.value = "nicht erreichbar";
+        setProgress(100);
       } else {
         const pause = reduced ? 0 : 280;
         const featureText = (data.features ?? []).map((f: string) => t.features?.[f] ?? f).join(", ");
-        const rows: [string, string][] = [
+        const filled: [string, string][] = [
           ["system", data.cms?.label ?? t.noSystem],
           ["pages", typeof data.pages === "number" ? fill(t.pagesSitemap, data.pages) : data.linkedPages ? fill(t.pagesLinks, data.linkedPages) : t.pagesUnknown],
           ["features", featureText || t.noFeatures],
           ["speed", data.speed?.score != null ? fill(t.speedScore, data.speed.score) : t.speedUnknown],
         ];
-        for (const [key, value] of rows) {
+        for (let i = 0; i < filled.length; i++) {
+          const [key, value] = filled[i];
           setRow(key, value);
+          setProgress(78 + ((i + 1) / filled.length) * 22);
           if (pause) await new Promise((r) => window.setTimeout(r, pause));
         }
         prefill(data);
@@ -409,6 +438,7 @@ const TOTAL = 5;
           ].join(" | ");
         }
       }
+      if (waitEl) waitEl.hidden = true;
       analyzedHost = raw;
       anContinue.disabled = false;
       anContinue.focus({ preventScroll: true });
@@ -797,6 +827,41 @@ const TOTAL = 5;
     margin: 0;
     font-weight: 600;
     color: var(--ux-navy-deep);
+  }
+
+  .an__wait {
+    clear: both;
+    margin: 0 0 var(--ux-space-3);
+    font-size: var(--ux-text-sm);
+    font-weight: 600;
+    color: var(--ux-muted);
+  }
+
+  .an__wait[hidden],
+  .an__progress[hidden] {
+    display: none;
+  }
+
+  .an__progress {
+    height: 0.35rem;
+    margin: 0 0 var(--ux-space-5);
+    overflow: hidden;
+    border-radius: 999px;
+    background: var(--ux-border);
+  }
+
+  .an__progress-bar {
+    display: block;
+    height: 100%;
+    width: 0;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--ux-teal-ink), var(--ux-navy));
+    transition: width 0.45s var(--ux-ease-out);
+  }
+
+  .an__row.is-active:not(.is-done) {
+    border-color: rgb(0 134 111 / 0.45);
+    background: rgb(0 195 160 / 0.06);
   }
 
   .an__note {

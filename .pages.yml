@@ -532,6 +532,7 @@ content:
               - { name: rowFeatures, label: Zeile Funktionen, type: string }
               - { name: rowSpeed, label: Zeile Ladezeit, type: string }
               - { name: working, label: Text während der Prüfung, type: string }
+              - { name: waitingNote, label: Hinweis Wartezeit (damit es nicht hängt wirkt), type: string }
               - { name: noSystem, label: Kein System erkannt, type: string }
               - { name: pagesSitemap, label: Seitenzahl aus Sitemap, type: string }
               - { name: pagesLinks, label: Seitenzahl aus Links, type: string }
