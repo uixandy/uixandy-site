@@ -15,9 +15,10 @@ const featureLabels = Object.fromEntries(form.featuresOptions.map((o) => [o.valu
 const analyzeTexts = { ...analyze, features: featureLabels };
 const pkg = Object.fromEntries(packages.items.map((p) => [p.id, p]));
 const outcomes = [
-  { id: "start", ...results.start, pkg: pkg.start, stripe: site.booking.stripeStart },
-  { id: "individuell", ...results.individuell, pkg: pkg.individuell, stripe: site.booking.stripeIndividuell },
-  { id: "gespraech", ...results.gespraech, pkg: pkg.individuell, stripe: "" },
+  { id: "start", ...results.start, pkg: pkg.start, stripe: site.booking.stripeStart, showPrice: true },
+  { id: "individuell", ...results.individuell, pkg: pkg.individuell, stripe: site.booking.stripeIndividuell, showPrice: true },
+  { id: "gespraech", ...results.gespraech, pkg: null, stripe: "", showPrice: false },
+  { id: "shop", ...results.shop, pkg: null, stripe: "", showPrice: false },
 ];
 const TOTAL = 5;
 ---
@@ -202,18 +203,26 @@ const TOTAL = 5;
               {results.sentNote}
             </p>
             <h2>{o.title}</h2>
-            <p class="result__price">
-              {o.pkg.pricePrefix && <span>{o.pkg.pricePrefix}</span>}
-              {o.pkg.price}
-              <small>netto</small>
-            </p>
+            {
+              o.showPrice && o.pkg && (
+                <p class="result__price">
+                  {o.pkg.pricePrefix && <span>{o.pkg.pricePrefix}</span>}
+                  {o.pkg.price}
+                  <small>netto</small>
+                </p>
+              )
+            }
             <p class="result__text">{o.text}</p>
-            <p class="result__shop" data-shop-note hidden>
-              <Icon name="storefront" size={20} />
-              {results.shopNote}
-            </p>
+            {
+              o.id === "shop" && (
+                <p class="result__shop">
+                  <Icon name="storefront" size={20} />
+                  {results.shopNote}
+                </p>
+              )
+            }
             <div class="result__actions">
-              {o.stripe ? (
+              {o.stripe && o.pkg ? (
                 <>
                   <Button href={o.stripe} variant="light" size="lg" arrow data-stripe>
                     {results.depositLabel} ({o.pkg.deposit})
@@ -224,7 +233,7 @@ const TOTAL = 5;
                 </>
               ) : (
                 <Button href={site.booking.calUrl} variant="light" size="lg" arrow data-cal>
-                  {results.callLabel}
+                  {o.id === "shop" ? results.shopCallLabel : results.callLabel}
                 </Button>
               )}
             </div>
@@ -237,7 +246,7 @@ const TOTAL = 5;
 </BaseLayout>
 
 <script>
-  type Outcome = "start" | "individuell" | "gespraech";
+  type Outcome = "start" | "individuell" | "gespraech" | "shop";
 
   const wiz = document.querySelector<HTMLElement>("[data-wiz]");
   const form = document.querySelector<HTMLFormElement>("[data-check]");
@@ -253,11 +262,16 @@ const TOTAL = 5;
   const featuresNext = form?.querySelector<HTMLButtonElement>("[data-features-next]");
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  const INDIVIDUAL = ["blog", "jobs", "sprachen", "termine", "rechner", "formulare"];
+  /** Extras that count toward Individuell / Gespräch. Shop is decline, not an extra. */
+  const EXTRAS = ["blog", "jobs", "sprachen", "termine", "rechner", "formulare", "login"];
 
   const recommend = (pages: string, features: string[]): Outcome => {
-    if (features.includes("login") || pages === "ueber-15" || pages === "unklar") return "gespraech";
-    if (pages === "7-15" || features.some((f) => INDIVIDUAL.includes(f))) return "individuell";
+    if (features.includes("shop")) return "shop";
+    const extras = features.filter((f) => EXTRAS.includes(f));
+    if (extras.length >= 2) return "gespraech";
+    if (pages === "ueber-15" || pages === "unklar") return "gespraech";
+    if (pages === "7-15") return "individuell";
+    if (extras.length === 1) return "individuell";
     return "start";
   };
 
@@ -527,9 +541,6 @@ const TOTAL = 5;
 
     result.querySelectorAll<HTMLElement>("[data-outcome]").forEach((card) => {
       card.hidden = card.dataset.outcome !== outcome;
-    });
-    result.querySelectorAll<HTMLElement>("[data-shop-note]").forEach((n) => {
-      n.hidden = !features.includes("shop");
     });
     result.querySelectorAll<HTMLAnchorElement>("[data-stripe]").forEach((a) => {
       a.href = withParams(a.href, { prefilled_email: email });

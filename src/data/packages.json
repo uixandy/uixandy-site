@@ -8,12 +8,13 @@
       "price": "990 €",
       "pricePrefix": "",
       "deposit": "495 €",
-      "tagline": "Die professionelle Website für Ihr Unternehmen. Fertig, schnell und von Ihnen selbst pflegbar.",
+      "tagline": "Bis zu 6 Seiten und ein Kontaktformular. Fertig, schnell und von Ihnen selbst pflegbar.",
       "featured": false,
       "delivery": "meist 2 bis 3 Wochen nach Erhalt der Inhalte",
       "features": [
         "Bis zu 6 Seiten, z. B. Start, Leistungen, Über uns, Kontakt",
         "Kontaktformular mit Spam-Schutz",
+        "Keine Extra-Funktionen (Blog, Termine, Login usw.)",
         "Design in Ihren Farben, mit Ihrem Logo",
         "Perfekt auf dem Handy, sehr schnelle Ladezeiten",
         "Google-Grundlagen: Titel, Beschreibungen, Sitemap",
@@ -27,21 +28,20 @@
       "id": "individuell",
       "name": "Individuell",
       "price": "1.490 €",
-      "pricePrefix": "ab",
+      "pricePrefix": "",
       "deposit": "745 €",
-      "tagline": "Für alles, was über eine klassische Firmen-Website hinausgeht.",
+      "tagline": "Mehr Seiten oder genau eine Zusatzfunktion. Fester Preis.",
       "featured": true,
       "delivery": "meist 3 bis 5 Wochen nach Erhalt der Inhalte",
       "features": [
         "Alles aus Start",
-        "Mehr Seiten nach Bedarf",
-        "Ratgeber oder Blog, Stellenangebote",
-        "Mehrsprachig (z. B. Deutsch und Englisch)",
-        "Terminbuchung, Rechner, Formulare mit mehreren Schritten",
+        "7 bis 15 Seiten, oder bis 6 Seiten plus eine Extra-Funktion",
+        "Eine Zusatzfunktion: z. B. Blog, Stellen, Sprachen, Termine, Rechner oder Mehrschritt-Formular",
         "Einbindung Ihrer Tools (Newsletter, CRM, Kalender)",
-        "Umzug mit Weiterleitungen, damit Google-Rankings bleiben"
+        "Umzug mit Weiterleitungen, damit Google-Rankings bleiben",
+        "Mehrere Zusatzfunktionen oder Login: erst kurzes Gespräch"
       ],
-      "ctaLabel": "Individuell anfragen"
+      "ctaLabel": "Individuell buchen"
     }
   ],
   "care": {

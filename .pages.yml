@@ -565,7 +565,14 @@ content:
                 fields:
                   - { name: title, label: Überschrift, type: string }
                   - { name: text, label: Text, type: text }
+              - name: shop
+                label: Ergebnis Online-Shop (Ablehnung)
+                type: object
+                fields:
+                  - { name: title, label: Überschrift, type: string }
+                  - { name: text, label: Text, type: text }
               - { name: shopNote, label: Hinweis bei Online-Shop, type: string }
+              - { name: shopCallLabel, label: Button Gespräch ohne Shop, type: string }
               - { name: depositLabel, label: Button Anzahlung, type: string }
               - { name: callLabel, label: Button Gespräch, type: string }
               - { name: refundNote, label: Hinweis Rückerstattung, type: text }

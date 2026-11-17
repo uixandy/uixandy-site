@@ -1,19 +1,19 @@
 {
-  "seoTitle": "Preise: Website ab 990 € netto, per KI selbst pflegbar | uixandy",
-  "seoDescription": "Feste Preise für Ihre neue Website: Start 990 €, Individuell ab 1.490 €, optionale Betreuung 39 € im Monat. Per Chat mit Ihrer KI selbst pflegbar.",
+  "seoTitle": "Preise: Website 990 € oder 1.490 € netto | uixandy",
+  "seoDescription": "Feste Preise: Start 990 € (bis 6 Seiten und Formular), Individuell 1.490 € (mehr Seiten oder eine Zusatzfunktion). Mehr Funktionen: kurzes Gespräch. Keine Online-Shops.",
   "hero": {
     "kicker": "Preise",
     "heading": "Feste Preise. Sie wissen vorher, was es kostet.",
-    "lead": "Keine Stundensätze, keine Überraschungen. Unsicher, welches Paket passt? Der Website-Check sagt es Ihnen in 60 Sekunden."
+    "lead": "Start 990 € oder Individuell 1.490 €. Anzahlung nur, wenn das Paket klar passt. Unsicher? Der Website-Check sagt es in 60 Sekunden."
   },
   "process": {
     "kicker": "Buchen",
     "heading": "Direkt starten, ohne Risiko",
-    "lead": "Damit Sie nicht erst auf ein Angebot warten müssen, können Sie direkt buchen. Wir prüfen trotzdem jedes Projekt, bevor es losgeht.",
+    "lead": "Passen Start oder Individuell, zahlen Sie 50 % an. Bei mehreren Funktionen oder offenem Umfang sprechen wir erst 15 Minuten.",
     "items": [
       {
         "title": "Website-Check ausfüllen",
-        "text": "Ein paar Fragen zu Umfang und Funktionen. Danach sehen Sie sofort, welches Paket passt.",
+        "text": "Fragen zu Seiten und Funktionen. Danach sehen Sie sofort: Start, Individuell oder Gespräch.",
         "example": "",
         "visual": "check",
         "tags": [
@@ -23,7 +23,7 @@
       },
       {
         "title": "Anzahlung oder Gespräch",
-        "text": "Zahlen Sie 50 % an und wir legen los. Oder buchen Sie erst ein kostenloses Gespräch von 15 Minuten.",
+        "text": "Bei Start und Individuell: 50 % Anzahlung und wir legen los. Bei mehreren Zusatzfunktionen oder unklarem Umfang: erst das kostenlose 15-Minuten-Gespräch.",
         "example": "",
         "visual": "pay",
         "tags": [
@@ -47,6 +47,10 @@
     "kicker": "Fragen zu den Preisen",
     "heading": "Gut zu wissen",
     "items": [
+      {
+        "question": "Wann ist Start, wann Individuell, wann ein Gespräch?",
+        "answer": "Start (990 €): bis zu 6 Seiten und ein Kontaktformular, sonst nichts Extra. Individuell (1.490 €): mehr Seiten (7 bis 15) oder genau eine Zusatzfunktion. Zwei oder mehr Zusatzfunktionen, mehr als 15 Seiten oder noch unklar: kurzes Gespräch, keine Anzahlung vorher. Online-Shops bauen wir nicht."
+      },
       {
         "question": "Warum ist das günstiger als bei einer Agentur?",
         "answer": "Weil wir keine Zeit in Technik verlieren, die Sie nicht brauchen. Kein WordPress, keine Plugins, kein Baukasten. Wir bauen schlank und schnell, und Sie zahlen nicht für Änderungen, die Sie selbst machen können."

@@ -42,7 +42,7 @@ GitHub account: `gh auth switch --user uixandy` before push, switch back to `wow
 | Punctuation | No em dashes anywhere |
 | NAP | Andreas Bittner, Tal 44, 80331 München, +49 156 787 356 32, info@uixandy.com |
 
-Prices: Start 990 € netto, Individuell ab 1.490 €, Betreuung 39 €/Monat. No shops (recommend Shopify). Change only in `packages.json`.
+Prices: Start 990 € netto (bis 6 Seiten + Formular), Individuell 1.490 € (mehr Seiten oder eine Zusatzfunktion), 2+ Funktionen / unklar = Gespräch. No shops. Change in `packages.json` + Website-Check `recommend()`.
 
 ---
 

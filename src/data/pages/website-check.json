@@ -73,17 +73,22 @@
   "results": {
     "start": {
       "title": "Ihr Paket: Start",
-      "text": "Ihr Projekt passt in unser Paket Start. Zahlen Sie die Hälfte an und wir legen los, oder sprechen Sie erst 15 Minuten mit mir."
+      "text": "Bis zu 6 Seiten und ein Kontaktformular, ohne Extra-Funktionen. Das ist unser Paket Start für 990 €. Zahlen Sie die Hälfte an und wir legen los, oder sprechen Sie erst 15 Minuten mit mir."
     },
     "individuell": {
       "title": "Ihr Paket: Individuell",
-      "text": "Ihre Wünsche gehen über eine klassische Firmen-Website hinaus. Das Paket Individuell startet bei 1.490 €. Den genauen Preis bekommen Sie nach unserer Prüfung, oder Sie besprechen es direkt mit mir."
+      "text": "Mehr Seiten oder genau eine Zusatzfunktion. Das ist unser Paket Individuell für 1.490 €. Zahlen Sie die Hälfte an und wir legen los, oder sprechen Sie erst 15 Minuten mit mir."
     },
     "gespraech": {
       "title": "Lassen Sie uns kurz sprechen",
-      "text": "Ihr Projekt ist etwas größer oder noch offen. In einem kurzen Gespräch klären wir Umfang und Preis. Das Paket Individuell startet bei 1.490 €."
+      "text": "Mehrere Zusatzfunktionen oder ein noch offener Umfang. In 15 Minuten klären wir, was Sinn macht und was es kostet. Eine Anzahlung gibt es hier erst nach dem Gespräch."
     },
-    "shopNote": "Hinweis: Online-Shops bauen wir bewusst nicht. Alles andere schauen wir uns gerne an.",
+    "shop": {
+      "title": "Online-Shops bauen wir nicht",
+      "text": "Lager, Zahlungen und Versand gehören nicht zu unseren Websites. Wenn Sie eine klassische Firmen-Website ohne Shop brauchen, sprechen wir gerne 15 Minuten darüber."
+    },
+    "shopNote": "Für Shops empfehlen wir Shopify. Wir bauen bewusst keine Online-Shops.",
+    "shopCallLabel": "15 Min. ohne Shop sprechen",
     "depositLabel": "Anzahlung zahlen und starten",
     "callLabel": "15 Min. Gespräch buchen",
     "refundNote": "Wir prüfen Ihre Angaben innerhalb von 48 Stunden. Passt das Projekt nicht ins Paket, bekommen Sie ein Angebot oder die Anzahlung komplett zurück. Und falls Sie es sich anders überlegen: Innerhalb von 7 Tagen nach Zahlung erstatten wir die Anzahlung ohne Angabe von Gründen.",

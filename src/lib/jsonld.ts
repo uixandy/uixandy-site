@@ -20,7 +20,7 @@ export function organizationJsonLd(): JsonLd {
     telephone: site.phoneHref,
     logo: absoluteUrl("/favicon.svg"),
     image: absoluteUrl("/media/og-default.jpg"),
-    priceRange: "990 € bis 1.490 €+",
+    priceRange: "990 € bis 1.490 €",
     areaServed: [
       { "@type": "Country", name: "Deutschland" },
       { "@type": "Country", name: "Österreich" },
