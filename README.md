@@ -19,7 +19,8 @@ Search the repo for `Platzhalter` / `PLATZHALTER`.
 - [x] Stripe Payment Links (live, netto + Tax) + branding/logo/invoice template → `site.json > booking`
 - [x] Calendly 30-Min. Erstgespräch → `site.json > booking.calUrl`
 - [ ] Calendly Kunden-Sprechstunde → `site.json > booking.calClientUrl` (create event, then paste URL)
-- [ ] Testimonials with permission (Lovely Hair, Intecra, sikamedia) → `home.json > proof`
+- [x] Testimonials: Ahmet, Anja Wagner, Wolfgang Spitzkopf → `home.json > proof`
+- [ ] Later: Wolfgang's Semmeleck as Beispiele case after Astro rebuild
 - [x] Case screenshots: Lovely Hair, Intecra (live URLs); sikamedia copy live, URL after domain cutover → `beispiele.json`
 - [ ] Case quotes with permission → `beispiele.json` + `home.json > proof`
 - [ ] Hosting cost per month → `home.json` FAQ

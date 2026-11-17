@@ -146,7 +146,7 @@
   },
   "proof": {
     "kicker": "Kunden",
-    "heading": "Diese Unternehmen pflegen ihre Website schon per Chat.",
+    "heading": "Was Kunden über die Zusammenarbeit sagen.",
     "items": [
       {
         "quote": "Früher habe ich für jeden Text und jede Stellenanzeige jemanden gebraucht. Jetzt schreibe ich meiner KI, was sich ändern soll, und die Website ist aktuell. Das spart uns Zeit und Nerven.",
@@ -155,16 +155,16 @@
         "placeholder": false
       },
       {
-        "quote": "[Platzhalter] Zitat folgt nach Freigabe.",
-        "name": "[Name]",
-        "role": "Lovely Hair, Friseursalon",
-        "placeholder": true
+        "quote": "Andy hat innerhalb kürzester Zeit meine Website kreativ neu gestaltet, eine Landingpage gebaut, einen bestehenden Online-Kurs mit komplexen Strukturen integriert und alle meine technischen Fragen beantwortet. Seine Professionalität ist genial.",
+        "name": "Anja Wagner",
+        "role": "Allsenses, Energie Expertin",
+        "placeholder": false
       },
       {
-        "quote": "[Platzhalter] Zitat folgt nach Freigabe.",
-        "name": "[Name]",
-        "role": "sikamedia",
-        "placeholder": true
+        "quote": "Die Zusammenarbeit mit Andy war sehr professionell und effizient. Er hat sich sehr viel Gedanken um die Bedürfnisse der Besucher und somit den Anforderungen der Website gemacht und diese mit allen nötigen Funktionen in kurzer Zeit umgesetzt.",
+        "name": "Wolfgang Spitzkopf",
+        "role": "Wolfgang's Semmeleck",
+        "placeholder": false
       }
     ],
     "linkLabel": "Alle Beispiele ansehen"
