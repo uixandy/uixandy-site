@@ -4,9 +4,10 @@
   box-sizing: border-box;
 }
 
-/* CtaBand sits after a Section — never add a second full section-y on top. */
+/* CtaBand sits after a Section / article — never add a second full section-y on top. */
 .section + section.cta-band,
-.page-hero + section.cta-band {
+.page-hero + section.cta-band,
+.article + section.cta-band {
   padding-top: 0;
 }
 
