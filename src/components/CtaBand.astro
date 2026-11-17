@@ -51,8 +51,9 @@ const textLines = text?.split("\n").map((line) => line.trim()).filter(Boolean) ?
 </section>
 
 <style>
+  /* Top gap comes from the previous .section bottom pad — never stack two section-y gaps. */
   .cta-band {
-    padding-block: var(--ux-section-y);
+    padding-block: 0 var(--ux-section-y);
   }
 
   .cta-band__box {

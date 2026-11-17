@@ -4,6 +4,12 @@
   box-sizing: border-box;
 }
 
+/* CtaBand sits after a Section — never add a second full section-y on top. */
+.section + section.cta-band,
+.page-hero + section.cta-band {
+  padding-top: 0;
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--ux-header-h) + var(--ux-space-4));
