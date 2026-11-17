@@ -1,8 +1,8 @@
-/* Display: Bricolage Grotesque — character without techno mono */
-@import "@fontsource/bricolage-grotesque/latin-600.css";
-@import "@fontsource/bricolage-grotesque/latin-700.css";
-@import "@fontsource/bricolage-grotesque/latin-ext-600.css";
-@import "@fontsource/bricolage-grotesque/latin-ext-700.css";
+/* Display: Outfit — soft modern geometric, calm to read at size */
+@import "@fontsource/outfit/latin-600.css";
+@import "@fontsource/outfit/latin-700.css";
+@import "@fontsource/outfit/latin-ext-600.css";
+@import "@fontsource/outfit/latin-ext-700.css";
 
 /* Body: IBM Plex Sans — clear German UI copy */
 @import "@fontsource/ibm-plex-sans/latin-400.css";

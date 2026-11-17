@@ -18,8 +18,8 @@
   --ux-on-dark-muted: #b9cdd6;
   --ux-border-dark: rgb(255 255 255 / 0.14);
 
-  /* Type — Bricolage Grotesque (headings) + IBM Plex Sans (body). */
-  --ux-font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  /* Type — Outfit (headings) + IBM Plex Sans (body). Calm character, not techno. */
+  --ux-font-display: "Outfit", "Segoe UI", system-ui, sans-serif;
   --ux-font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
   --ux-text-xs: 0.8125rem;
   --ux-text-sm: 0.9375rem;
