@@ -63,17 +63,12 @@
     "pagesLinks": "Mindestens {n} verlinkte Seiten",
     "pagesUnknown": "Nicht automatisch zählbar",
     "noFeatures": "Keine besonderen Funktionen gefunden",
-    "speedScore": "{n} von 100 Punkten (Google PageSpeed)",
+    "speedScore": "{n} von 100 Punkten",
     "speedUnknown": "Konnte gerade nicht gemessen werden",
     "unreachable": "Wir konnten die Website gerade nicht erreichen. Kein Problem, wir schauen sie uns persönlich an.",
-    "disclaimer": "Das ist eine automatische, vorläufige Einschätzung. Wir prüfen jedes Projekt persönlich. Passt es nicht ins Paket, bekommen Sie ein Angebot oder die Anzahlung zurück, und innerhalb von 7 Tagen nach Zahlung können Sie ohne Angabe von Gründen zurücktreten.",
-    "prefilledNote": "Nach der Analyse vorausgewählt. Bitte kurz prüfen.",
-    "otherUrl": "Andere Adresse eingeben",
-    "overviewHeading": "Stimmt das so für Ihre neue Website?",
-    "overviewHint": "Ändern Sie, was fehlt oder was Sie nicht mehr brauchen. Danach fragen wir nur noch nach dem Zeitplan.",
-    "overviewPagesLabel": "Ungefähre Seitenzahl",
-    "overviewFeaturesLabel": "Funktionen",
-    "overviewContinue": "Passt so, weiter"
+    "disclaimer": "Vorläufige Einschätzung. Wir prüfen alles persönlich. 48 Stunden Check und 7 Tage Geld zurück.",
+    "prefilledNote": "Aus der Analyse vorausgewählt. Kurz prüfen und ggf. anpassen.",
+    "otherUrl": "Andere Adresse eingeben"
   },
   "results": {
     "start": {

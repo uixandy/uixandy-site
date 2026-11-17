@@ -69,12 +69,14 @@ const normalize = (input) => {
 const get = async (url, ms = 8000) => {
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), ms);
+  const started = Date.now();
   try {
     const res = await fetch(url, { headers: { "user-agent": UA, accept: "text/html,application/xml;q=0.9,*/*;q=0.8" }, redirect: "follow", signal: ctrl.signal });
+    const ttfb = Date.now() - started;
     const text = res.ok ? (await res.text()).slice(0, 2_000_000) : "";
-    return { ok: res.ok, url: res.url, text };
+    return { ok: res.ok, url: res.url, text, timing: { ttfb, total: Date.now() - started, bytes: text.length } };
   } catch {
-    return { ok: false, url: String(url), text: "" };
+    return { ok: false, url: String(url), text: "", timing: null };
   } finally {
     clearTimeout(timer);
   }
@@ -114,11 +116,32 @@ const linkUrls = (html, origin) =>
     }
   }).filter(Boolean);
 
-const pageSpeed = async (url) => {
+/** Always-available estimate from our own fetch (Google PSI often fails without a key). */
+const speedFromTiming = (timing) => {
+  if (!timing) return null;
+  let score = 100;
+  if (timing.ttfb > 1200) score -= 40;
+  else if (timing.ttfb > 600) score -= 25;
+  else if (timing.ttfb > 300) score -= 12;
+  if (timing.total > 3500) score -= 35;
+  else if (timing.total > 1800) score -= 20;
+  else if (timing.total > 900) score -= 10;
+  if (timing.bytes > 1_500_000) score -= 20;
+  else if (timing.bytes > 700_000) score -= 10;
+  return {
+    score: Math.max(5, Math.min(100, score)),
+    ttfbMs: timing.ttfb,
+    totalMs: timing.total,
+    source: "fetch",
+  };
+};
+
+const pageSpeed = async (url, key) => {
   const api = new URL("https://www.googleapis.com/pagespeedonline/v5/runPagespeed");
   api.searchParams.set("url", url);
   api.searchParams.set("strategy", "mobile");
   api.searchParams.set("category", "performance");
+  if (key) api.searchParams.set("key", key);
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), 20000);
   try {
@@ -127,7 +150,9 @@ const pageSpeed = async (url) => {
     const data = await res.json();
     const score = data?.lighthouseResult?.categories?.performance?.score;
     const lcp = data?.lighthouseResult?.audits?.["largest-contentful-paint"]?.numericValue;
-    return typeof score === "number" ? { score: Math.round(score * 100), lcpSeconds: lcp ? Math.round(lcp / 100) / 10 : null } : null;
+    return typeof score === "number"
+      ? { score: Math.round(score * 100), lcpSeconds: lcp ? Math.round(lcp / 100) / 10 : null, source: "pagespeed" }
+      : null;
   } catch {
     return null;
   } finally {
@@ -135,9 +160,10 @@ const pageSpeed = async (url) => {
   }
 };
 
-const analyze = async (origin) => {
-  const [home, speed] = await Promise.all([get(origin), pageSpeed(origin.toString())]);
+const analyze = async (origin, env) => {
+  const home = await get(origin);
   if (!home.ok) return { reachable: false, host: origin.hostname };
+  const speed = (await pageSpeed(origin.toString(), env?.PSI_KEY)) || speedFromTiming(home.timing);
 
   const finalOrigin = new URL(home.url);
   const html = home.text;
@@ -181,7 +207,7 @@ export default {
     const target = normalize(new URL(request.url).searchParams.get("url"));
     if (!target) return json({ error: "url" }, 400, origin);
 
-    const cacheKey = new Request(`https://analyzer.cache/${target.hostname}`);
+    const cacheKey = new Request(`https://analyzer.cache/v2/${target.hostname}`);
     const cache = caches.default;
     const hit = await cache.match(cacheKey);
     if (hit) {
@@ -189,7 +215,7 @@ export default {
       return new Response(body, { headers: { "content-type": "application/json; charset=utf-8", ...cors(origin) } });
     }
 
-    const result = await analyze(target);
+    const result = await analyze(target, env);
     const response = json(result, 200, origin);
     if (result.reachable) ctx.waitUntil(cache.put(cacheKey, response.clone()));
     return response;

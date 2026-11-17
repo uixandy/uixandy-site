@@ -5,7 +5,7 @@ Cloudflare Worker behind the Website-Check. Step 1 sends the visitor's URL, the 
 - CMS (WordPress, Wix, Jimdo, Squarespace, Webflow, Shopify, IONOS, TYPO3, Joomla, STRATO)
 - Page count from the sitemap (robots.txt, sitemap.xml, sitemap_index.xml, wp-sitemap.xml), otherwise internal links on the homepage
 - Features: blog, jobs, termine, shop, login, sprachen
-- Google PageSpeed mobile score (often `null` without an API key because of rate limits)
+- Load-time score: Google PageSpeed when a `PSI_KEY` secret is set, otherwise a reliable estimate from our own fetch timing
 
 Results are cached per hostname for 24 hours.
 
@@ -28,4 +28,4 @@ npx wrangler deploy worker.js --name uixandy-analyzer --compatibility-date 2026-
 
 ## PageSpeed key (optional)
 
-Create a free Google PageSpeed Insights API key and add it as a Worker secret `PSI_KEY` to get the load-time row filled reliably. The Worker must then append `&key=${env.PSI_KEY}` to the PageSpeed request.
+Without a key the Worker still returns a score from fetch timing (`speed.source: "fetch"`). For Google Lighthouse scores, create a free PageSpeed Insights API key and set Worker secret `PSI_KEY`.
