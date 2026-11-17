@@ -23,7 +23,7 @@ Search the repo for `Platzhalter` / `PLATZHALTER`.
 - [x] Case screenshots + URLs: Lovely Hair, Intecra (live); sikamedia preview only until approved → `beispiele.json`
 - [ ] Case quotes with permission → `beispiele.json` + `home.json > proof`
 - [ ] Hosting cost per month → `home.json` FAQ
-- [ ] Nanuk text check → `ueber-mich.json > personal`
+- [x] Personal photos kept; no dog name in copy → `ueber-mich.json > personal`
 - [x] Datenschutz update (Vercel FRA/CDN, Formspree, Stripe, Calendly, Cloudflare Workers analyzer; no GA/Webflow)
 - [x] AGB draft online (lawyer review still recommended before first paid deposit)
 - [ ] Confirm delivery times and "second half at Abnahme" in `packages.json` / `preise.json`
