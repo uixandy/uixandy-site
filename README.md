@@ -20,7 +20,8 @@ Search the repo for `Platzhalter` / `PLATZHALTER`.
 - [x] Calendly 30-Min. Erstgespräch → `site.json > booking.calUrl`
 - [ ] Calendly Kunden-Sprechstunde → `site.json > booking.calClientUrl` (create event, then paste URL)
 - [ ] Testimonials with permission (Lovely Hair, Intecra, sikamedia) → `home.json > proof`
-- [ ] Case screenshots, URLs and facts → `beispiele.json`
+- [x] Case screenshots + URLs: Lovely Hair, Intecra (live); sikamedia preview only until approved → `beispiele.json`
+- [ ] Case quotes with permission → `beispiele.json` + `home.json > proof`
 - [ ] Hosting cost per month → `home.json` FAQ
 - [ ] Nanuk text check → `ueber-mich.json > personal`
 - [ ] Datenschutz update (deploybase, Formspree, Stripe, Calendly; remove Webflow, Google Analytics / old cookie text)

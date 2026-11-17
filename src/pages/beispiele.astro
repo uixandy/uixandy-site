@@ -42,11 +42,13 @@ const seo = resolveSeo(page);
                   <dd>{c.after}</dd>
                 </div>
               </dl>
-              <blockquote class="case__quote">
-                <Icon name="quotes" size={24} />
-                <p>{c.quote}</p>
-                <footer>{c.quoteName}</footer>
-              </blockquote>
+              {c.quote && !c.quote.startsWith("[Platzhalter]") && (
+                <blockquote class="case__quote">
+                  <Icon name="quotes" size={24} />
+                  <p>{c.quote}</p>
+                  {c.quoteName && <footer>{c.quoteName}</footer>}
+                </blockquote>
+              )}
               {c.url && (
                 <a class="case__link" href={c.url} target="_blank" rel="noopener">
                   Website ansehen <Icon name="arrowRight" size={16} />
@@ -85,7 +87,9 @@ const seo = resolveSeo(page);
     aspect-ratio: 3 / 2;
     border-radius: var(--ux-radius-lg);
     object-fit: cover;
+    object-position: top center;
     box-shadow: var(--ux-shadow-md);
+    background: var(--ux-surface);
   }
 
   .case__ph {
