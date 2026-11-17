@@ -506,15 +506,18 @@ const cards = items.map((item, i) => {
 
   .mk-link {
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: 1fr minmax(2.5rem, 1fr) 1fr;
     align-items: center;
     gap: 10px;
+    width: min(100%, 22rem);
   }
 
   .mk-link__node {
     display: grid;
     justify-items: center;
     gap: 8px;
+    width: 100%;
+    min-height: 6.5rem;
     padding: 14px 12px;
     border-radius: var(--ux-radius-md);
     background: var(--ux-bg);
@@ -522,6 +525,7 @@ const cards = items.map((item, i) => {
     font-size: var(--ux-text-xs);
     font-weight: 700;
     color: var(--ux-navy-deep);
+    box-sizing: border-box;
   }
 
   .mk-link__icon {
@@ -567,8 +571,8 @@ const cards = items.map((item, i) => {
     margin-top: 6px;
     padding: 5px 12px;
     border-radius: 99px;
-    background: var(--ux-navy-deep);
-    color: var(--ux-teal);
+    background: var(--ux-teal);
+    color: var(--ux-on-dark);
     font-size: var(--ux-text-xs);
     font-weight: 700;
   }
