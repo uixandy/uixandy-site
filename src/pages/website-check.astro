@@ -672,18 +672,16 @@ const TOTAL = 5;
   }
 
   .step__q {
-    float: left;
+    display: table;
+    float: none;
     width: 100%;
+    max-width: 100%;
     padding: 0;
     margin-bottom: var(--ux-space-5);
     font-family: var(--ux-font-display);
     font-size: var(--ux-text-2xl);
     line-height: var(--ux-leading-tight);
     color: var(--ux-navy-deep);
-  }
-
-  .step__q + * {
-    clear: both;
   }
 
   .step__hint {
@@ -910,6 +908,8 @@ const TOTAL = 5;
   .options {
     display: grid;
     gap: var(--ux-space-3);
+    width: 100%;
+    clear: both;
   }
 
   .options--grid {
