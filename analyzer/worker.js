@@ -32,7 +32,12 @@ const FEATURES = [
   { id: "blog", url: /\/(blog|ratgeber|news|aktuelles|magazin|beitraege|artikel)(\/|$)/i, html: /<article[\s>]/i },
   { id: "jobs", url: /\/(karriere|jobs?|stellen(angebote)?|ausbildung)(\/|$)/i },
   { id: "termine", html: /calendly\.com|etermin\.net|doctolib|treatwell|shore\.com|timify|termin(e)?\s*(online\s*)?buchen/i },
-  { id: "shop", url: /\/(shop|warenkorb|cart|produkt|product)s?(\/|$)/i, html: /woocommerce|cdn\.shopify\.com|add-to-cart|in den warenkorb/i },
+  // Need a real shop signal. Bare "woocommerce" in theme CSS is a common false positive.
+  {
+    id: "shop",
+    url: /\/(shop|store|warenkorb|cart|checkout)(\/|$)/i,
+    html: /cdn\.shopify\.com|add-to-cart|in den warenkorb|woocommerce-cart|wc-block-cart|product_type_|data-product_id/i,
+  },
   { id: "login", url: /\/(login|mitglieder|member|konto|account)(\/|$)/i },
 ];
 
@@ -210,7 +215,7 @@ export default {
     if (!target) return json({ error: "url" }, 400, origin);
 
     const bypass = request.headers.get("cache-control")?.includes("no-cache") || new URL(request.url).searchParams.has("fresh");
-    const cacheKey = new Request(`https://analyzer.cache/v3/${target.hostname}`);
+    const cacheKey = new Request(`https://analyzer.cache/v4/${target.hostname}`);
     const cache = caches.default;
     if (!bypass) {
       const hit = await cache.match(cacheKey);
