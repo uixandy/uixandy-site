@@ -67,7 +67,7 @@
     "speedScore": "{n} von 100 Punkten",
     "speedUnknown": "Konnte gerade nicht gemessen werden",
     "unreachable": "Wir konnten die Website gerade nicht erreichen. Kein Problem, wir schauen sie uns persönlich an.",
-    "disclaimer": "Vorläufige Einschätzung. Wir prüfen alles persönlich. 48 Stunden Check und 7 Tage Geld zurück.",
+    "disclaimer": "Vorläufige Einschätzung. Wir prüfen jedes Projekt persönlich innerhalb von 48 Stunden. Passt es nicht (z. B. Shop), gibt es die Anzahlung zurück. Plus 7 Tage Geld zurück.",
     "prefilledNote": "Aus der Analyse vorausgewählt. Kurz prüfen und ggf. anpassen.",
     "otherUrl": "Andere Adresse eingeben"
   },
@@ -92,7 +92,7 @@
     "shopCallLabel": "15 Min. über Ihre Website sprechen",
     "depositLabel": "Anzahlung zahlen und starten",
     "callLabel": "15 Min. Gespräch buchen",
-    "refundNote": "Wir prüfen Ihre Angaben innerhalb von 48 Stunden. Passt das Projekt nicht ins Paket, bekommen Sie ein Angebot oder die Anzahlung komplett zurück. Und falls Sie es sich anders überlegen: Innerhalb von 7 Tagen nach Zahlung erstatten wir die Anzahlung ohne Angabe von Gründen.",
-    "sentNote": "Ihre Angaben sind bei uns angekommen. Wir melden uns spätestens innerhalb von 48 Stunden."
+    "refundNote": "Wir prüfen Ihre Angaben innerhalb von 48 Stunden. Passt das Projekt nicht (auch wenn der Check etwas übersehen hat, z. B. einen Shop), lehnen wir ab und erstatten die Anzahlung vollständig. Zusätzlich: Innerhalb von 7 Tagen nach Zahlung erstatten wir die Anzahlung ohne Angabe von Gründen.",
+    "sentNote": "Ihre Angaben sind bei uns angekommen. Wir prüfen innerhalb von 48 Stunden persönlich und melden uns."
   }
 }

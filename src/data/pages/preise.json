@@ -33,7 +33,7 @@
       },
       {
         "title": "Prüfung innerhalb von 48 Stunden",
-        "text": "Passt alles, starten wir. Passt Ihr Projekt nicht ins Paket, bekommen Sie ein Angebot oder die Anzahlung komplett zurück. Und innerhalb von 7 Tagen nach Zahlung können Sie ohne Angabe von Gründen zurücktreten.",
+        "text": "Passt alles, starten wir. Passt es nicht (auch Shop oder anderer Umfang, den der Check übersehen hat), erstatten wir die Anzahlung vollständig. Zusätzlich: Innerhalb von 7 Tagen nach Zahlung können Sie ohne Angabe von Gründen zurücktreten.",
         "example": "",
         "visual": "review",
         "tags": [
@@ -69,7 +69,11 @@
       },
       {
         "question": "Was passiert, wenn mein Projekt größer ist als gedacht?",
-        "answer": "Dann sagen wir es Ihnen vor dem Start. Sie bekommen ein festes Angebot oder Ihre Anzahlung zurück. Es wird nie heimlich teurer."
+        "answer": "Dann sagen wir es Ihnen vor dem Start, innerhalb der 48-Stunden-Prüfung. Sie bekommen ein festes Angebot oder Ihre Anzahlung zurück. Das gilt auch, wenn ein Online-Shop oder etwas anderes nicht zu uns passt. Zusätzlich haben Sie 7 Tage Geld zurück ohne Angabe von Gründen. Es wird nie heimlich teurer."
+      },
+      {
+        "question": "Was, wenn der Website-Check etwas falsch einschätzt?",
+        "answer": "Der Check ist nur eine erste Einschätzung. Innerhalb von 48 Stunden schauen wir persönlich hin. Lehnen wir ab (zum Beispiel weil ein Shop dabei ist), bekommen Sie die Anzahlung komplett zurück."
       },
       {
         "question": "Sind die Preise netto?",
