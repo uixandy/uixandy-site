@@ -31,11 +31,11 @@
       "name": "sikamedia",
       "industry": "Online-Marketing-Agentur",
       "image": "/media/cases/sikamedia.webp",
-      "imageAlt": "Vorschau der neuen sikamedia-Website (noch nicht freigegeben)",
+      "imageAlt": "Startseite der neuen sikamedia-Website",
       "url": "",
-      "before": "Bestehende WordPress-Website der Agentur.",
-      "after": "Neuaufbau ohne WordPress. Noch nicht freigegeben; erscheint hier nach Launch und Freigabe.",
-      "placeholder": true
+      "before": "WordPress mit Pagebuilder. Inhalte und Kampagnenseiten waren schwerfällig, jede Änderung brauchte Backend-Zugang.",
+      "after": "Kompletter Neuaufbau ohne WordPress. SEO, SEA und GEO klar gegliedert. Texte, Referenzen und Angebote pflegt das Team selbst per Chat.",
+      "placeholder": false
     }
   ],
   "cta": {
