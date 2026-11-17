@@ -137,11 +137,12 @@ const speedFromTiming = (timing) => {
 };
 
 const pageSpeed = async (url, key) => {
+  if (!key) return null;
   const api = new URL("https://www.googleapis.com/pagespeedonline/v5/runPagespeed");
   api.searchParams.set("url", url);
   api.searchParams.set("strategy", "mobile");
   api.searchParams.set("category", "performance");
-  if (key) api.searchParams.set("key", key);
+  api.searchParams.set("key", key);
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), 20000);
   try {
@@ -163,6 +164,7 @@ const pageSpeed = async (url, key) => {
 const analyze = async (origin, env) => {
   const home = await get(origin);
   if (!home.ok) return { reachable: false, host: origin.hostname };
+  // Fetch timing first (always available after a successful home GET). PSI only when PSI_KEY is set.
   const speed = (await pageSpeed(origin.toString(), env?.PSI_KEY)) || speedFromTiming(home.timing);
 
   const finalOrigin = new URL(home.url);
@@ -207,17 +209,31 @@ export default {
     const target = normalize(new URL(request.url).searchParams.get("url"));
     if (!target) return json({ error: "url" }, 400, origin);
 
-    const cacheKey = new Request(`https://analyzer.cache/v2/${target.hostname}`);
+    const bypass = request.headers.get("cache-control")?.includes("no-cache") || new URL(request.url).searchParams.has("fresh");
+    const cacheKey = new Request(`https://analyzer.cache/v3/${target.hostname}`);
     const cache = caches.default;
-    const hit = await cache.match(cacheKey);
-    if (hit) {
-      const body = await hit.text();
-      return new Response(body, { headers: { "content-type": "application/json; charset=utf-8", ...cors(origin) } });
+    if (!bypass) {
+      const hit = await cache.match(cacheKey);
+      if (hit) {
+        const body = await hit.text();
+        let cached = null;
+        try {
+          cached = JSON.parse(body);
+        } catch {
+          cached = null;
+        }
+        // Drop stale entries that never stored a load-time score
+        if (cached?.reachable && cached?.speed?.score == null) {
+          ctx.waitUntil(cache.delete(cacheKey));
+        } else {
+          return new Response(body, { headers: { "content-type": "application/json; charset=utf-8", ...cors(origin) } });
+        }
+      }
     }
 
     const result = await analyze(target, env);
     const response = json(result, 200, origin);
-    if (result.reachable) ctx.waitUntil(cache.put(cacheKey, response.clone()));
+    if (result.reachable && result.speed?.score != null) ctx.waitUntil(cache.put(cacheKey, response.clone()));
     return response;
   },
 };

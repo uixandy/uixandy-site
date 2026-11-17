@@ -29,4 +29,4 @@ npx wrangler deploy worker.js --name uixandy-analyzer --compatibility-date 2026-
 
 ## PageSpeed key (optional)
 
-Without a key the Worker still returns a score from fetch timing (`speed.source: "fetch"`). For Google Lighthouse scores, create a free PageSpeed Insights API key and set Worker secret `PSI_KEY`.
+Without a key the Worker scores from fetch timing only (`speed.source: "fetch"`) and does not call Google. For Lighthouse scores, create a free PageSpeed Insights API key and set Worker secret `PSI_KEY`. Cache is `v3`; incomplete (null speed) results are not cached. `?fresh=1` or `Cache-Control: no-cache` bypasses cache.
