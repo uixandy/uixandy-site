@@ -15,13 +15,13 @@ Owner sessions through Claude Desktop or similar: also read [`CLIENT.md`](./CLIE
 |-------|--------|
 | Site | Astro 7, static, `trailingSlash: "always"` |
 | CMS | Pages CMS (`.pages.yml` → GitHub) |
-| Production | GitHub `uixandy/uixandy-site` → deploybase.eu (Node 24, `npm run build`, output `dist`) |
-| Staging | Vercel preview from branch `staging` (Hobby, non-commercial, staging only) |
+| Production | Vercel (Hobby), Function region `fra1` (Frankfurt), `npm run build` → `dist`. Domain `www.uixandy.com` |
+| Staging | Vercel preview from branch `staging` |
 | Form | Formspree (`site.json > booking.formEndpoint`) |
 | Booking | Stripe Payment Links (50 % deposit) + Calendly 30 Min. Erstgespräch (`calUrl`). Client hours: `calClientUrl` (never on marketing CTAs) |
 | Icons | Phosphor via `@phosphor-icons/core`, `src/components/Icon.astro` only |
 
-Branches: work on `staging`. Never push `main` until Andy says ship.
+Branches: work on `staging`. Promote to Vercel production only when Andy says ship.
 GitHub account: `gh auth switch --user uixandy` before push, switch back to `wowdesign-andy` after.
 
 ---

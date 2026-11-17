@@ -4,7 +4,7 @@ Astro + Pages CMS. Websites that small businesses maintain by chatting with thei
 
 - `npm install`, `npm run dev`, `npm run build` (output `dist`)
 - Rules: [`AGENTS.md`](./AGENTS.md)
-- Staging: Vercel preview of branch `staging`. Production: deploybase.eu from `main`
+- Hosting: Vercel (Hobby), Function region Frankfurt (`fra1`). Staging = branch `staging` previews. Production = promote when shipping.
 
 ## Pages
 
@@ -24,6 +24,6 @@ Search the repo for `Platzhalter` / `PLATZHALTER`.
 - [ ] Case quotes with permission → `beispiele.json` + `home.json > proof`
 - [ ] Hosting cost per month → `home.json` FAQ
 - [ ] Nanuk text check → `ueber-mich.json > personal`
-- [ ] Datenschutz update (deploybase, Formspree, Stripe, Calendly; remove Webflow, Google Analytics / old cookie text)
-- [ ] AGB written and reviewed (required before taking deposits online)
+- [x] Datenschutz update (Vercel FRA/CDN, Formspree, Stripe, Calendly, Cloudflare Workers analyzer; no GA/Webflow)
+- [x] AGB draft online (lawyer review still recommended before first paid deposit)
 - [ ] Confirm delivery times and "second half at Abnahme" in `packages.json` / `preise.json`
