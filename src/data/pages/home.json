@@ -155,10 +155,10 @@
         "placeholder": true
       },
       {
-        "quote": "[Platzhalter] Zitat folgt nach Freigabe.",
-        "name": "[Name]",
+        "quote": "Früher habe ich für jeden Text und jede Stellenanzeige jemanden gebraucht. Jetzt schreibe ich meiner KI, was sich ändern soll, und die Website ist aktuell. Das spart uns Zeit und Nerven.",
+        "name": "Ahmet",
         "role": "Intecra GmbH",
-        "placeholder": true
+        "placeholder": false
       },
       {
         "quote": "[Platzhalter] Zitat folgt nach Freigabe.",
