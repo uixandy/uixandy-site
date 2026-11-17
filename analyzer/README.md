@@ -12,6 +12,7 @@ Results are cached per hostname for 24 hours.
 - Live: `https://uixandy-analyzer.uixandy.workers.dev/?url=www.example.de`
 - Cloudflare account: info@uixandy.com
 - Frontend setting: `booking.analyzerUrl` in `src/data/site.json`. Empty value = Website-Check skips the analysis.
+- **Free tier only.** Never enable Workers Paid or any other paid Cloudflare product without Andy's explicit approval.
 
 ## CORS
 

@@ -94,11 +94,14 @@ const TOTAL = 5;
             {
               form.pagesOptions.map((o) => (
                 <label class="option">
-                  <input type="radio" name="seiten" value={o.value} data-auto />
-                  <span>{o.label}<Icon name="arrowRight" size={18} /></span>
+                  <input type="radio" name="seiten" value={o.value} data-pages />
+                  <span>{o.label}</span>
                 </label>
               ))
             }
+          </div>
+          <div class="step__actions">
+            <Button type="button" size="lg" arrow data-next data-pages-next disabled>{form.nextLabel}</Button>
           </div>
         </fieldset>
 
@@ -294,6 +297,12 @@ const TOTAL = 5;
       if (v) v.textContent = value;
     };
 
+    const pagesNext = form.querySelector<HTMLButtonElement>("[data-pages-next]");
+    const syncPagesNext = () => {
+      if (!pagesNext) return;
+      pagesNext.disabled = !form.querySelector<HTMLInputElement>("input[name=seiten]:checked");
+    };
+
     const prefill = (data: any) => {
       const pages = typeof data.pages === "number" ? data.pages : typeof data.linkedPages === "number" ? data.linkedPages : null;
       const bucket = pages === null ? "" : pages <= 6 ? "bis-6" : pages <= 15 ? "7-15" : "ueber-15";
@@ -301,6 +310,7 @@ const TOTAL = 5;
         const radio = form.querySelector<HTMLInputElement>(`input[name="seiten"][value="${bucket}"]`);
         if (radio) radio.checked = true;
         steps[1]?.querySelector<HTMLElement>("[data-prefilled-note]")?.removeAttribute("hidden");
+        syncPagesNext();
       }
       const found: string[] = Array.isArray(data.features) ? data.features : [];
       let any = false;
@@ -411,6 +421,11 @@ const TOTAL = 5;
       if (analysisField) analysisField.value = "";
       show(current + 1);
     });
+
+    form.querySelectorAll<HTMLInputElement>("[data-pages]").forEach((input) =>
+      input.addEventListener("change", syncPagesNext),
+    );
+    syncPagesNext();
 
     form.querySelectorAll<HTMLInputElement>("[data-auto]").forEach((input) =>
       input.addEventListener("click", () => {
