@@ -16,7 +16,7 @@ Old Webflow URLs redirect (`/leistungen`, `/meine-methode`, `/kontakt`, `/uber-m
 Search the repo for `Platzhalter` / `PLATZHALTER`.
 
 - [ ] Demo video (60 to 90 s) → `home.json > video.src` + poster
-- [x] Stripe Payment Links (live, brutto inkl. 19 % MwSt.) → `site.json > booking`
+- [x] Stripe Payment Links (live, netto + Tax) + branding/logo/invoice template → `site.json > booking`
 - [x] Calendly 30-Min. Erstgespräch → `site.json > booking.calUrl`
 - [ ] Calendly Kunden-Sprechstunde → `site.json > booking.calClientUrl` (create event, then paste URL)
 - [ ] Testimonials with permission (Lovely Hair, Intecra, sikamedia) → `home.json > proof`
