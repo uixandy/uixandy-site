@@ -11,6 +11,7 @@ export interface Props {
 
 const { heading, text, primary, secondary } = Astro.props;
 const headingLines = heading.split("\n").map((line) => line.trim()).filter(Boolean);
+const textLines = text?.split("\n").map((line) => line.trim()).filter(Boolean) ?? [];
 ---
 
 <section class="cta-band">
@@ -27,7 +28,20 @@ const headingLines = heading.split("\n").map((line) => line.trim()).filter(Boole
           ))
         }
       </h2>
-      {text && <p>{text}</p>}
+      {
+        textLines.length > 0 && (
+          <p>
+            {
+              textLines.map((line, i) => (
+                <>
+                  {i > 0 && <br />}
+                  {line}
+                </>
+              ))
+            }
+          </p>
+        )
+      }
       <div class="cta-band__actions">
         <Button href={primary.href} variant="light" size="lg" arrow>{primary.label}</Button>
         {secondary && <Button href={secondary.href} variant="ghost-light" size="lg">{secondary.label}</Button>}
@@ -70,10 +84,12 @@ const headingLines = heading.split("\n").map((line) => line.trim()).filter(Boole
   }
 
   .cta-band p {
-    max-width: 36rem;
+    max-width: 28em;
     margin: var(--ux-space-5) auto 0;
     font-size: var(--ux-text-lg);
+    line-height: var(--ux-leading-snug);
     color: rgb(255 255 255 / 0.85);
+    text-wrap: balance;
   }
 
   .cta-band__actions {
