@@ -11,6 +11,7 @@ import {
   type JsonLd,
 } from "../lib/jsonld";
 import { absoluteUrl } from "../lib/seo";
+import "../styles/fonts.css";
 import "../styles/tokens.css";
 import "../styles/system.css";
 
@@ -60,8 +61,6 @@ const ldPayload = [
     <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="theme-color" content="#002135" />
-    <link rel="preload" href="/fonts/Sansation-Bold.ttf" as="font" type="font/ttf" crossorigin />
-    <link rel="preload" href="/fonts/Livvic-Regular.ttf" as="font" type="font/ttf" crossorigin />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="de_DE" />
     <meta property="og:site_name" content={site.title} />

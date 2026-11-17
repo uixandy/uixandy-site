@@ -1,0 +1,13 @@
+/* Display: Manrope — modern geometric, clear at large sizes */
+@import "@fontsource/manrope/latin-600.css";
+@import "@fontsource/manrope/latin-700.css";
+@import "@fontsource/manrope/latin-ext-600.css";
+@import "@fontsource/manrope/latin-ext-700.css";
+
+/* Body: Source Sans 3 — high readability for German UI copy */
+@import "@fontsource/source-sans-3/latin-400.css";
+@import "@fontsource/source-sans-3/latin-600.css";
+@import "@fontsource/source-sans-3/latin-700.css";
+@import "@fontsource/source-sans-3/latin-ext-400.css";
+@import "@fontsource/source-sans-3/latin-ext-600.css";
+@import "@fontsource/source-sans-3/latin-ext-700.css";
