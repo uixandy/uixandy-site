@@ -8,18 +8,6 @@
   },
   "cases": [
     {
-      "name": "Lovely Hair",
-      "industry": "Friseursalon",
-      "image": "/media/cases/lovely-hair.webp",
-      "imageAlt": "Startseite von Lovely Hair, Friseursalon in Augsburg",
-      "url": "https://www.lovely-hair.de/",
-      "before": "Inhalte und Termine liefen nicht im Salon selbst. Für kleine Änderungen brauchte es immer jemanden mit Zugang zur alten Website.",
-      "after": "Neue, schnelle Website. Öffnungszeiten, Leistungen, Team und Galerie pflegt der Salon selbst. Termine buchen Kundinnen online.",
-      "quote": "",
-      "quoteName": "",
-      "placeholder": false
-    },
-    {
       "name": "Intecra GmbH",
       "industry": "Beratung für Arbeits- und Maschinensicherheit",
       "image": "/media/cases/intecra.webp",
@@ -29,6 +17,18 @@
       "after": "Kompletter Neuaufbau mit Ratgeber und Stellenangeboten. Neue Beiträge und Jobs legt das Team selbst an.",
       "quote": "Früher habe ich für jeden Text und jede Stellenanzeige jemanden gebraucht. Jetzt schreibe ich meiner KI, was sich ändern soll, und die Website ist aktuell. Das spart uns Zeit und Nerven.",
       "quoteName": "Ahmet, Intecra GmbH",
+      "placeholder": false
+    },
+    {
+      "name": "Lovely Hair",
+      "industry": "Friseursalon",
+      "image": "/media/cases/lovely-hair.webp",
+      "imageAlt": "Startseite von Lovely Hair, Friseursalon in Augsburg",
+      "url": "https://www.lovely-hair.de/",
+      "before": "Inhalte und Termine liefen nicht im Salon selbst. Für kleine Änderungen brauchte es immer jemanden mit Zugang zur alten Website.",
+      "after": "Neue, schnelle Website. Öffnungszeiten, Leistungen, Team und Galerie pflegt der Salon selbst. Termine buchen Kundinnen online.",
+      "quote": "",
+      "quoteName": "",
       "placeholder": false
     },
     {
