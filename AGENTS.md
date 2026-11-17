@@ -21,7 +21,7 @@ Owner sessions through Claude Desktop or similar: also read [`CLIENT.md`](./CLIE
 | Booking | Stripe Payment Links (50 % deposit) + Calendly 30 Min. Erstgespräch (`calUrl`). Client hours: `calClientUrl` (never on marketing CTAs) |
 | Icons | Phosphor via `@phosphor-icons/core`, `src/components/Icon.astro` only |
 
-Branches: work on `staging`. Promote to Vercel production only when Andy says ship.
+Branches: work on `staging`. Preview only on Vercel. Promote to production **only** when Andy explicitly says ship. Never promote staging to production on your own.
 GitHub account: `gh auth switch --user uixandy` before push, switch back to `wowdesign-andy` after.
 
 ---
