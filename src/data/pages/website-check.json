@@ -16,7 +16,7 @@
     "noWebsiteLabel": "Ich habe noch keine Website",
     "featuresNoneLabel": "Nichts davon, weiter",
     "moreLabel": "Firma oder Nachricht hinzufügen (optional)",
-    "pagesLabel": "Wie viele Seiten braucht Ihre Website ungefähr?",
+    "pagesLabel": "Wie viele Seiten soll die neue Website ungefähr haben?",
     "pagesOptions": [
       { "value": "bis-6", "label": "Bis zu 6 Seiten" },
       { "value": "7-15", "label": "7 bis 15 Seiten" },
