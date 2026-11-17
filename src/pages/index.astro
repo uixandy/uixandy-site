@@ -76,15 +76,19 @@ const [before, after] = hero.headingHighlight && hero.heading.includes(hero.head
     </p>
   </Section>
 
-  <Section id="video" flush="top" narrow>
-    <SectionHead kicker={home.video.kicker} heading={home.video.heading} align="center" />
-    <VideoBlock
-      src={home.video.src}
-      poster={home.video.poster}
-      placeholderText={home.video.placeholderText}
-      caption={home.video.caption}
-    />
-  </Section>
+  {
+    home.video.src && (
+      <Section id="video" flush="top" narrow>
+        <SectionHead kicker={home.video.kicker} heading={home.video.heading} align="center" />
+        <VideoBlock
+          src={home.video.src}
+          poster={home.video.poster}
+          placeholderText={home.video.placeholderText}
+          caption={home.video.caption}
+        />
+      </Section>
+    )
+  }
 
   <Section id="vorteile" tone="dark">
     <SectionHead kicker={home.benefits.kicker} heading={home.benefits.heading} tone="dark" />

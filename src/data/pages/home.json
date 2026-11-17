@@ -99,7 +99,7 @@
     "heading": "Eine echte Änderung an einer echten Website.",
     "src": "",
     "poster": "",
-    "placeholderText": "[Platzhalter] Hier kommt das Demo-Video (60 bis 90 Sekunden): Jemand schreibt der KI eine Änderung, die Website aktualisiert sich live.",
+    "placeholderText": "Hier kommt später das Demo-Video (60 bis 90 Sekunden).",
     "caption": ""
   },
   "benefits": {
@@ -195,7 +195,7 @@
       },
       {
         "question": "Was kostet das Hosting?",
-        "answer": "Ihre Website läuft bei einem Anbieter in der EU, auf Ihrem eigenen Konto. Die Kosten zahlen Sie direkt an den Anbieter, ohne Aufschlag von uns. [Platzhalter: genaue Hosting-Kosten ergänzen]"
+        "answer": "Die Website selbst kann sehr günstig laufen. Bei <a href=\"https://deploybase.eu/\" target=\"_blank\" rel=\"noopener noreferrer\">deploybase</a> ist eine einzelne Site im Free-Tarif oft kostenlos (danach ab 9 € monatlich, siehe Anbieterseite). Bei <a href=\"https://vercel.com/pricing\" target=\"_blank\" rel=\"noopener noreferrer\">Vercel</a> gibt es ebenfalls einen kostenlosen Einstieg; Details stehen unter vercel.com/pricing. Domain und E-Mail-Postfach sind davon getrennt und zahlen Sie direkt beim Domain- bzw. Mail-Anbieter. Wir empfehlen im Projekt, was zu Ihnen passt, ohne Aufschlag."
       },
       {
         "question": "Können Sie meine bestehende Website übernehmen?",

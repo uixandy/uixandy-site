@@ -15,16 +15,15 @@ Old Webflow URLs redirect (`/leistungen`, `/meine-methode`, `/kontakt`, `/uber-m
 
 Search the repo for `Platzhalter` / `PLATZHALTER`.
 
-- [ ] Demo video (60 to 90 s) → `home.json > video.src` + poster
-- [x] Stripe Payment Links (live, netto + Tax) + branding/logo/invoice template → `site.json > booking`
+- [ ] Demo video (hidden until `home.json > video.src` is set)
+- [x] Stripe Payment Links (live, netto + Tax) + AGB checkbox + branding → `site.json > booking`
 - [x] Calendly 30-Min. Erstgespräch → `site.json > booking.calUrl`
-- [ ] Calendly Kunden-Sprechstunde → `site.json > booking.calClientUrl` (create event, then paste URL)
-- [x] Testimonials: Ahmet, Anja Wagner, Wolfgang Spitzkopf → `home.json > proof`
+- [ ] Calendly Kunden-Sprechstunde → `site.json > booking.calClientUrl` (optional)
+- [x] Testimonials: Ahmet, Anja, Wolfgang → `home.json > proof`
 - [ ] Later: Wolfgang's Semmeleck as Beispiele case after Astro rebuild
-- [x] Case screenshots: Lovely Hair, Intecra (live URLs); sikamedia copy live, URL after domain cutover → `beispiele.json`
-- [ ] Case quotes with permission → `beispiele.json` + `home.json > proof`
-- [ ] Hosting cost per month → `home.json` FAQ
-- [x] Personal photos kept; no dog name in copy → `ueber-mich.json > personal`
-- [x] Datenschutz update (Vercel FRA/CDN, Formspree, Stripe, Calendly, Cloudflare Workers analyzer; no GA/Webflow)
-- [x] AGB draft online (lawyer review still recommended before first paid deposit)
-- [ ] Confirm delivery times and "second half at Abnahme" in `packages.json` / `preise.json`
+- [x] Case screenshots: Lovely Hair, Intecra (live); sikamedia copy live, no URL until published
+- [x] Hosting FAQ (deploybase / Vercel + Domain/E-Mail getrennt)
+- [x] Personal photos kept; no dog name in copy
+- [x] Datenschutz + AGB (no lawyer; keep improving as needed)
+- [x] Ratgeber: KI-Bearbeiten, WordPress-Pflege-Kosten, Texte selbst ändern
+- [ ] Ship: promote staging → Vercel production only when Andy says ship
