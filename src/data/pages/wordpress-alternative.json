@@ -94,12 +94,12 @@
   },
   "nudge": {
     "text": "Texte und Bilder übernehmen wir. Was Ihr Umzug kostet, sehen Sie im Website-Check in 60 Sekunden.",
-    "linkLabel": "Lieber erst 15 Minuten sprechen"
+    "linkLabel": "Lieber erst 30 Minuten sprechen"
   },
   "cta": {
     "heading": "Raus aus WordPress, ohne Stress.",
     "text": "Machen Sie den Website-Check. Wir sagen Ihnen in 60 Sekunden, welches Paket passt.",
     "primaryLabel": "Website-Check starten",
-    "secondaryLabel": "15 Min. Gespräch buchen"
+    "secondaryLabel": "30 Min. Gespräch buchen"
   }
 }

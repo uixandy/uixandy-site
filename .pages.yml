@@ -746,7 +746,8 @@ content:
         label: Buchung und Formular
         type: object
         fields:
-          - { name: calUrl, label: Cal.com Link (15-Min.-Gespräch), type: string }
+          - { name: calUrl, label: Calendly Erstgespräch (30 Min.), type: string }
+          - { name: calClientUrl, label: Calendly Kunden-Sprechstunde (nicht öffentlich), type: string }
           - { name: stripeStart, label: Stripe Zahlungslink Anzahlung Start, type: string }
           - { name: stripeIndividuell, label: Stripe Zahlungslink Anzahlung Individuell, type: string }
           - { name: formEndpoint, label: Formspree-Adresse Website-Check, type: string }

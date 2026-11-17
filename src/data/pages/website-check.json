@@ -74,24 +74,24 @@
   "results": {
     "start": {
       "title": "Ihr Paket: Start",
-      "text": "Bis zu 6 Seiten und ein Kontaktformular, ohne Extra-Funktionen. Das ist unser Paket Start für 990 €. Zahlen Sie die Hälfte an und wir legen los, oder sprechen Sie erst 15 Minuten mit mir."
+      "text": "Bis zu 6 Seiten und ein Kontaktformular, ohne Extra-Funktionen. Das ist unser Paket Start für 990 €. Zahlen Sie die Hälfte an und wir legen los, oder sprechen Sie erst 30 Minuten mit mir."
     },
     "individuell": {
       "title": "Ihr Paket: Individuell",
-      "text": "Mehr Seiten und/oder genau eine Zusatzfunktion. Das ist unser Paket Individuell für 1.490 €. Zahlen Sie die Hälfte an und wir legen los, oder sprechen Sie erst 15 Minuten mit mir."
+      "text": "Mehr Seiten und/oder genau eine Zusatzfunktion. Das ist unser Paket Individuell für 1.490 €. Zahlen Sie die Hälfte an und wir legen los, oder sprechen Sie erst 30 Minuten mit mir."
     },
     "gespraech": {
       "title": "Lassen Sie uns kurz sprechen",
-      "text": "Ab zwei Zusatzfunktionen (Seitenzahl egal) oder ein noch offener Umfang. In 15 Minuten klären wir, was Sinn macht und was es kostet. Eine Anzahlung gibt es hier erst nach dem Gespräch."
+      "text": "Ab zwei Zusatzfunktionen (Seitenzahl egal) oder ein noch offener Umfang. In 30 Minuten klären wir, was Sinn macht und was es kostet. Eine Anzahlung gibt es hier erst nach dem Gespräch."
     },
     "shop": {
       "title": "Für einen Online-Shop sind wir nicht die Richtigen",
-      "text": "Lager, Zahlungen und Versand stecken wir bewusst nicht in unsere Websites. Brauchen Sie eine klassische Firmen-Website ohne Shop, freue ich mich auf 15 Minuten mit Ihnen."
+      "text": "Lager, Zahlungen und Versand stecken wir bewusst nicht in unsere Websites. Brauchen Sie eine klassische Firmen-Website ohne Shop, freue ich mich auf 30 Minuten mit Ihnen."
     },
     "shopNote": "Für einen Shop passt Shopify oft besser. Gerne helfen wir bei einer Website ohne Shop-Funktion.",
-    "shopCallLabel": "15 Min. über Ihre Website sprechen",
+    "shopCallLabel": "30 Min. über Ihre Website sprechen",
     "depositLabel": "Anzahlung zahlen und starten",
-    "callLabel": "15 Min. Gespräch buchen",
+    "callLabel": "30 Min. Gespräch buchen",
     "refundNote": "Wir prüfen Ihre Angaben innerhalb von 48 Stunden. Passt das Projekt nicht (auch wenn der Check etwas übersehen hat, z. B. einen Shop), lehnen wir ab und erstatten die Anzahlung vollständig. Zusätzlich: Innerhalb von 7 Tagen nach Zahlung erstatten wir die Anzahlung ohne Angabe von Gründen.",
     "sentNote": "Ihre Angaben sind bei uns angekommen. Wir prüfen innerhalb von 48 Stunden persönlich und melden uns."
   }

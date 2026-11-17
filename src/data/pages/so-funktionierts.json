@@ -12,7 +12,7 @@
     "items": [
       {
         "title": "Website-Check und kurzes Kennenlernen",
-        "text": "Sie beantworten ein paar Fragen zu Ihrer Website. Danach wissen Sie Preis und Paket. Buchen Sie direkt oder sprechen Sie erst 15 Minuten mit mir.",
+        "text": "Sie beantworten ein paar Fragen zu Ihrer Website. Danach wissen Sie Preis und Paket. Buchen Sie direkt oder sprechen Sie erst 30 Minuten mit mir.",
         "example": "",
         "visual": "check",
         "tags": [
@@ -151,12 +151,12 @@
   },
   "nudge": {
     "text": "So einfach kann Ihre Website sein. Welches Paket zu Ihnen passt, sehen Sie in 60 Sekunden.",
-    "linkLabel": "Lieber erst 15 Minuten sprechen"
+    "linkLabel": "Lieber erst 30 Minuten sprechen"
   },
   "cta": {
     "heading": "Klingt gut? Dann schauen wir uns Ihre Website an.",
     "text": "Der Website-Check dauert 60 Sekunden. Danach sehen Sie Paket, Preis und nächste Schritte.",
     "primaryLabel": "Website-Check starten",
-    "secondaryLabel": "15 Min. Gespräch buchen"
+    "secondaryLabel": "30 Min. Gespräch buchen"
   }
 }

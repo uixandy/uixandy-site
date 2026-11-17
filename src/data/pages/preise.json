@@ -9,7 +9,7 @@
   "process": {
     "kicker": "Buchen",
     "heading": "Direkt starten, ohne Risiko",
-    "lead": "Passen Start oder Individuell, zahlen Sie 50 % an. Bei mehreren Funktionen oder offenem Umfang sprechen wir erst 15 Minuten.",
+    "lead": "Passen Start oder Individuell, zahlen Sie 50 % an. Bei mehreren Funktionen oder offenem Umfang sprechen wir erst 30 Minuten.",
     "items": [
       {
         "title": "Website-Check ausfüllen",
@@ -23,7 +23,7 @@
       },
       {
         "title": "Anzahlung oder Gespräch",
-        "text": "Bei Start und Individuell: 50 % Anzahlung und wir legen los. Bei mehreren Zusatzfunktionen oder unklarem Umfang: erst das kostenlose 15-Minuten-Gespräch.",
+        "text": "Bei Start und Individuell: 50 % Anzahlung und wir legen los. Bei mehreren Zusatzfunktionen oder unklarem Umfang: erst das kostenlose 30-Minuten-Gespräch.",
         "example": "",
         "visual": "pay",
         "tags": [
@@ -83,12 +83,12 @@
   },
   "nudge": {
     "text": "48 Stunden Prüfung, 7 Tage Geld zurück. Der erste Schritt dauert 60 Sekunden.",
-    "linkLabel": "Lieber erst 15 Minuten sprechen"
+    "linkLabel": "Lieber erst 30 Minuten sprechen"
   },
   "cta": {
     "heading": "Welches Paket passt zu Ihnen?",
     "text": "Der Website-Check sagt es Ihnen in 60 Sekunden. Danach buchen Sie direkt oder sprechen erst kurz mit mir.",
     "primaryLabel": "Website-Check starten",
-    "secondaryLabel": "15 Min. Gespräch buchen"
+    "secondaryLabel": "30 Min. Gespräch buchen"
   }
 }

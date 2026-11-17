@@ -42,7 +42,8 @@
     "href": "/preise/"
   },
   "booking": {
-    "calUrl": "https://cal.com/PLATZHALTER-uixandy/15min",
+    "calUrl": "https://calendly.com/uixandy/30-min-erstgespraech",
+    "calClientUrl": "",
     "stripeStart": "https://buy.stripe.com/PLATZHALTER-start",
     "stripeIndividuell": "https://buy.stripe.com/PLATZHALTER-individuell",
     "formEndpoint": "https://formspree.io/f/mnjybldd",

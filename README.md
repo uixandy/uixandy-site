@@ -17,11 +17,12 @@ Search the repo for `Platzhalter` / `PLATZHALTER`.
 
 - [ ] Demo video (60 to 90 s) → `home.json > video.src` + poster
 - [ ] Stripe Payment Links for both deposits → `site.json > booking`
-- [ ] Cal.com 15-min link → `site.json > booking.calUrl`
+- [x] Calendly 30-Min. Erstgespräch → `site.json > booking.calUrl`
+- [ ] Calendly Kunden-Sprechstunde → `site.json > booking.calClientUrl` (create event, then paste URL)
 - [ ] Testimonials with permission (Lovely Hair, Intecra, sikamedia) → `home.json > proof`
 - [ ] Case screenshots, URLs and facts → `beispiele.json`
 - [ ] Hosting cost per month → `home.json` FAQ
 - [ ] Nanuk text check → `ueber-mich.json > personal`
-- [ ] Datenschutz update (deploybase, Formspree, Stripe, Cal.com; remove Webflow, Cloudflare, Calendly, Google Analytics)
+- [ ] Datenschutz update (deploybase, Formspree, Stripe, Calendly; remove Webflow, Google Analytics / old cookie text)
 - [ ] AGB written and reviewed (required before taking deposits online)
 - [ ] Confirm delivery times and "second half at Abnahme" in `packages.json` / `preise.json`

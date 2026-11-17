@@ -18,7 +18,7 @@ Owner sessions through Claude Desktop or similar: also read [`CLIENT.md`](./CLIE
 | Production | GitHub `uixandy/uixandy-site` → deploybase.eu (Node 24, `npm run build`, output `dist`) |
 | Staging | Vercel preview from branch `staging` (Hobby, non-commercial, staging only) |
 | Form | Formspree (`site.json > booking.formEndpoint`) |
-| Booking | Stripe Payment Links (50 % deposit) + Cal.com 15 min |
+| Booking | Stripe Payment Links (50 % deposit) + Calendly 30 Min. Erstgespräch (`calUrl`). Client hours: `calClientUrl` (never on marketing CTAs) |
 | Icons | Phosphor via `@phosphor-icons/core`, `src/components/Icon.astro` only |
 
 Branches: work on `staging`. Never push `main` until Andy says ship.
@@ -37,7 +37,7 @@ GitHub account: `gh auth switch --user uixandy` before push, switch back to `wow
 | Logo | `src/components/Logo.astro` (official paths). No Lottie. CSS arm animation only |
 | Claim | Ihre Website. Gepflegt per Chat mit Ihrer KI. |
 | Primary CTA | Website-Check → `/website-check/` |
-| Secondary CTA | 15 Min. Gespräch → `site.json > booking.calUrl` |
+| Secondary CTA | 30 Min. Gespräch → `site.json > booking.calUrl` |
 | Voice | German, **Sie**, plain language, no jargon (no "MCP", "Git", "Repo" in public copy) |
 | Punctuation | No em dashes anywhere |
 | NAP | Andreas Bittner, Tal 44, 80331 München, +49 156 787 356 32, info@uixandy.com |
