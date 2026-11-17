@@ -44,8 +44,8 @@
   "booking": {
     "calUrl": "https://calendly.com/uixandy/30-min-erstgespraech",
     "calClientUrl": "",
-    "stripeStart": "https://buy.stripe.com/dRm4gzffqcv19Urbpv8bS00",
-    "stripeIndividuell": "https://buy.stripe.com/3cIdR92sE0Mj4A7alr8bS01",
+    "stripeStart": "https://buy.stripe.com/00w7sL4AMdz56IffFL8bS02",
+    "stripeIndividuell": "https://buy.stripe.com/eVq9ATc3e66D6If1OV8bS03",
     "formEndpoint": "https://formspree.io/f/mnjybldd",
     "analyzerUrl": "https://uixandy-analyzer.uixandy.workers.dev/"
   },
