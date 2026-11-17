@@ -1,13 +1,13 @@
-/* Display: Bricolage Grotesque — crafted character, still readable at headline sizes */
-@import "@fontsource/bricolage-grotesque/latin-600.css";
-@import "@fontsource/bricolage-grotesque/latin-700.css";
-@import "@fontsource/bricolage-grotesque/latin-ext-600.css";
-@import "@fontsource/bricolage-grotesque/latin-ext-700.css";
+/* Display: Space Mono — tech character for headlines */
+@import "@fontsource/space-mono/latin-700.css";
+@import "@fontsource/space-mono/latin-ext-700.css";
 
-/* Body: IBM Plex Sans — clear German UI copy */
-@import "@fontsource/ibm-plex-sans/latin-400.css";
-@import "@fontsource/ibm-plex-sans/latin-600.css";
-@import "@fontsource/ibm-plex-sans/latin-700.css";
-@import "@fontsource/ibm-plex-sans/latin-ext-400.css";
-@import "@fontsource/ibm-plex-sans/latin-ext-600.css";
-@import "@fontsource/ibm-plex-sans/latin-ext-700.css";
+/* Body: Space Grotesk — designed to sit with Space Mono, clear for UI copy */
+@import "@fontsource/space-grotesk/latin-400.css";
+@import "@fontsource/space-grotesk/latin-500.css";
+@import "@fontsource/space-grotesk/latin-600.css";
+@import "@fontsource/space-grotesk/latin-700.css";
+@import "@fontsource/space-grotesk/latin-ext-400.css";
+@import "@fontsource/space-grotesk/latin-ext-500.css";
+@import "@fontsource/space-grotesk/latin-ext-600.css";
+@import "@fontsource/space-grotesk/latin-ext-700.css";

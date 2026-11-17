@@ -61,7 +61,7 @@ h4 {
   font-family: var(--ux-font-display);
   font-weight: 700;
   line-height: var(--ux-leading-tight);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.04em;
   margin: 0;
   text-wrap: balance;
 }
