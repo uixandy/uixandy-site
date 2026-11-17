@@ -33,7 +33,7 @@ GitHub account: `gh auth switch --user uixandy` before push, switch back to `wow
 | Token prefix | `--ux-*` in `src/styles/tokens.css` |
 | Colors | Navy `#004b76`, navy-deep `#002135`, teal `#00c3a0`, teal-ink `#00866f` (text on white) |
 | Gradient | 120deg navy → teal (`--ux-gradient`) |
-| Fonts | Sora (display), IBM Plex Sans (body) via `@fontsource` (`src/styles/fonts.css`) |
+| Fonts | Bricolage Grotesque (display), IBM Plex Sans (body) via `@fontsource` (`src/styles/fonts.css`) |
 | Logo | `src/components/Logo.astro` (official paths). No Lottie. CSS arm animation only |
 | Claim | Ihre Website. Gepflegt per Chat mit Ihrer KI. |
 | Primary CTA | Website-Check → `/website-check/` |

@@ -18,8 +18,8 @@
   --ux-on-dark-muted: #b9cdd6;
   --ux-border-dark: rgb(255 255 255 / 0.14);
 
-  /* Type — Sora (headings) + IBM Plex Sans (body). Character without hard-to-read flourish. */
-  --ux-font-display: "Sora", "Segoe UI", system-ui, sans-serif;
+  /* Type — Bricolage Grotesque (headings) + IBM Plex Sans (body). */
+  --ux-font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
   --ux-font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
   --ux-text-xs: 0.8125rem;
   --ux-text-sm: 0.9375rem;

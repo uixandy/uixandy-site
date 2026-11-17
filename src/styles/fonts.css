@@ -1,10 +1,10 @@
-/* Display: Sora — modern geometric with a bit of character, still clear */
-@import "@fontsource/sora/latin-600.css";
-@import "@fontsource/sora/latin-700.css";
-@import "@fontsource/sora/latin-ext-600.css";
-@import "@fontsource/sora/latin-ext-700.css";
+/* Display: Bricolage Grotesque — crafted character, still readable at headline sizes */
+@import "@fontsource/bricolage-grotesque/latin-600.css";
+@import "@fontsource/bricolage-grotesque/latin-700.css";
+@import "@fontsource/bricolage-grotesque/latin-ext-600.css";
+@import "@fontsource/bricolage-grotesque/latin-ext-700.css";
 
-/* Body: IBM Plex Sans — professional, readable German text, not generic Inter */
+/* Body: IBM Plex Sans — clear German UI copy */
 @import "@fontsource/ibm-plex-sans/latin-400.css";
 @import "@fontsource/ibm-plex-sans/latin-600.css";
 @import "@fontsource/ibm-plex-sans/latin-700.css";
