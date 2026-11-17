@@ -66,6 +66,8 @@ All copy and images live in `src/data/` and `src/content/ratgeber/`. `.astro` fi
 
 **CMS sync lock:** any new editable field ⇒ JSON + `.pages.yml` in the same change, German label. Reuse the `components:` block in `.pages.yml` (cards, steps, faq, cta, compare, pageHero, icon). See `specs/patterns/cms-first-page.md`.
 
+**Pages CMS sidebar lock (client sites too):** `Seiten` → `Ratgeber`/`Blog` → `Website-Daten` (nav/footer + packages) → media from `media:`. SEO fields stay flat (`seoTitle` / `seoDescription` / optional `ogImage`) and sit **at the bottom** of each page’s fields, with maxlength hints. Do not nest SEO unless Astro readers are updated in the same change.
+
 New icon: add it to `Icon.astro` map **and** to `components.icon` in `.pages.yml`.
 
 ## Ratgeber (weekly)

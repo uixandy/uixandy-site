@@ -164,9 +164,6 @@ content:
         path: src/data/pages/home.json
         format: json
         fields:
-          - { name: seoTitle, label: Seitentitel (Google), type: string, required: true }
-          - { name: seoDescription, label: Kurzbeschreibung (Google), type: text, required: true }
-          - { name: ogImage, label: Vorschaubild Social Media, type: image }
           - name: hero
             label: Kopfbereich
             type: object
@@ -291,14 +288,32 @@ content:
               - { name: items, component: faq }
           - { name: cta, component: cta }
 
+          - name: seoTitle
+            label: Seitentitel (Google)
+            type: string
+            required: true
+            description: "Ideal 50 bis 60 Zeichen. Erscheint als blauer Link in Google."
+            options:
+              maxlength: 60
+          - name: seoDescription
+            label: Kurzbeschreibung (Google)
+            type: text
+            required: true
+            description: "Ideal 120 bis 155 Zeichen. Erscheint unter dem Titel in Google."
+            options:
+              maxlength: 155
+          - name: ogImage
+            label: Vorschaubild Social Media
+            type: image
+            description: "Optional. Wird bei Links in WhatsApp, LinkedIn usw. gezeigt."
+
+
       - name: so-funktionierts
         label: So funktioniert's
         type: file
         path: src/data/pages/so-funktionierts.json
         format: json
         fields:
-          - { name: seoTitle, label: Seitentitel (Google), type: string, required: true }
-          - { name: seoDescription, label: Kurzbeschreibung (Google), type: text, required: true }
           - { name: hero, component: pageHero }
           - name: steps
             label: Bereich Ablauf
@@ -327,14 +342,28 @@ content:
           - { name: nudge, component: nudge }
           - { name: cta, component: cta }
 
+          - name: seoTitle
+            label: Seitentitel (Google)
+            type: string
+            required: true
+            description: "Ideal 50 bis 60 Zeichen. Erscheint als blauer Link in Google."
+            options:
+              maxlength: 60
+          - name: seoDescription
+            label: Kurzbeschreibung (Google)
+            type: text
+            required: true
+            description: "Ideal 120 bis 155 Zeichen. Erscheint unter dem Titel in Google."
+            options:
+              maxlength: 155
+
+
       - name: preise
         label: Preise
         type: file
         path: src/data/pages/preise.json
         format: json
         fields:
-          - { name: seoTitle, label: Seitentitel (Google), type: string, required: true }
-          - { name: seoDescription, label: Kurzbeschreibung (Google), type: text, required: true }
           - { name: hero, component: pageHero }
           - name: process
             label: Bereich Buchungsablauf
@@ -354,14 +383,28 @@ content:
           - { name: nudge, component: nudge }
           - { name: cta, component: cta }
 
+          - name: seoTitle
+            label: Seitentitel (Google)
+            type: string
+            required: true
+            description: "Ideal 50 bis 60 Zeichen. Erscheint als blauer Link in Google."
+            options:
+              maxlength: 60
+          - name: seoDescription
+            label: Kurzbeschreibung (Google)
+            type: text
+            required: true
+            description: "Ideal 120 bis 155 Zeichen. Erscheint unter dem Titel in Google."
+            options:
+              maxlength: 155
+
+
       - name: beispiele
         label: Beispiele
         type: file
         path: src/data/pages/beispiele.json
         format: json
         fields:
-          - { name: seoTitle, label: Seitentitel (Google), type: string, required: true }
-          - { name: seoDescription, label: Kurzbeschreibung (Google), type: text, required: true }
           - { name: hero, component: pageHero }
           - name: cases
             label: Kundenprojekte
@@ -378,14 +421,28 @@ content:
               - { name: placeholder, label: Noch Platzhalter, type: boolean }
           - { name: cta, component: cta }
 
+          - name: seoTitle
+            label: Seitentitel (Google)
+            type: string
+            required: true
+            description: "Ideal 50 bis 60 Zeichen. Erscheint als blauer Link in Google."
+            options:
+              maxlength: 60
+          - name: seoDescription
+            label: Kurzbeschreibung (Google)
+            type: text
+            required: true
+            description: "Ideal 120 bis 155 Zeichen. Erscheint unter dem Titel in Google."
+            options:
+              maxlength: 155
+
+
       - name: wordpress-alternative
         label: WordPress-Alternative
         type: file
         path: src/data/pages/wordpress-alternative.json
         format: json
         fields:
-          - { name: seoTitle, label: Seitentitel (Google), type: string, required: true }
-          - { name: seoDescription, label: Kurzbeschreibung (Google), type: text, required: true }
           - { name: hero, component: pageHero }
           - name: answer
             label: Kurze Antwort (oben, für Google und KI-Suchen)
@@ -412,14 +469,28 @@ content:
           - { name: nudge, component: nudge }
           - { name: cta, component: cta }
 
+          - name: seoTitle
+            label: Seitentitel (Google)
+            type: string
+            required: true
+            description: "Ideal 50 bis 60 Zeichen. Erscheint als blauer Link in Google."
+            options:
+              maxlength: 60
+          - name: seoDescription
+            label: Kurzbeschreibung (Google)
+            type: text
+            required: true
+            description: "Ideal 120 bis 155 Zeichen. Erscheint unter dem Titel in Google."
+            options:
+              maxlength: 155
+
+
       - name: ueber-mich
         label: Über mich
         type: file
         path: src/data/pages/ueber-mich.json
         format: json
         fields:
-          - { name: seoTitle, label: Seitentitel (Google), type: string, required: true }
-          - { name: seoDescription, label: Kurzbeschreibung (Google), type: text, required: true }
           - name: hero
             label: Kopfbereich
             type: object
@@ -459,14 +530,28 @@ content:
                   - { name: alt, label: Bildbeschreibung, type: string }
           - { name: cta, component: cta }
 
+          - name: seoTitle
+            label: Seitentitel (Google)
+            type: string
+            required: true
+            description: "Ideal 50 bis 60 Zeichen. Erscheint als blauer Link in Google."
+            options:
+              maxlength: 60
+          - name: seoDescription
+            label: Kurzbeschreibung (Google)
+            type: text
+            required: true
+            description: "Ideal 120 bis 155 Zeichen. Erscheint unter dem Titel in Google."
+            options:
+              maxlength: 155
+
+
       - name: website-check
         label: Website-Check
         type: file
         path: src/data/pages/website-check.json
         format: json
         fields:
-          - { name: seoTitle, label: Seitentitel (Google), type: string, required: true }
-          - { name: seoDescription, label: Kurzbeschreibung (Google), type: text, required: true }
           - { name: hero, component: pageHero }
           - name: form
             label: Formular-Texte
@@ -577,14 +662,28 @@ content:
               - { name: refundNote, label: Hinweis Rückerstattung, type: text }
               - { name: sentNote, label: Bestätigung nach dem Absenden, type: string }
 
+          - name: seoTitle
+            label: Seitentitel (Google)
+            type: string
+            required: true
+            description: "Ideal 50 bis 60 Zeichen. Erscheint als blauer Link in Google."
+            options:
+              maxlength: 60
+          - name: seoDescription
+            label: Kurzbeschreibung (Google)
+            type: text
+            required: true
+            description: "Ideal 120 bis 155 Zeichen. Erscheint unter dem Titel in Google."
+            options:
+              maxlength: 155
+
+
       - name: ratgeber-hub
         label: Ratgeber (Übersicht)
         type: file
         path: src/data/pages/ratgeber.json
         format: json
         fields:
-          - { name: seoTitle, label: Seitentitel (Google), type: string, required: true }
-          - { name: seoDescription, label: Kurzbeschreibung (Google), type: text, required: true }
           - { name: hero, component: pageHero }
           - { name: emptyText, label: Text wenn noch keine Beiträge, type: string }
           - { name: readMoreLabel, label: Link-Text Weiterlesen, type: string }
@@ -596,42 +695,98 @@ content:
               - { name: text, label: Text, type: text }
               - { name: primaryLabel, label: Haupt-Button (führt zum Website-Check), type: string }
 
-      - name: impressum
-        label: Impressum
-        type: file
-        path: src/data/pages/impressum.json
-        format: json
-        fields:
-          - { name: seoTitle, label: Seitentitel (Google), type: string, required: true }
-          - { name: seoDescription, label: Kurzbeschreibung (Google), type: text, required: true }
-          - { name: heading, label: Überschrift, type: string }
-          - { name: notice, label: Hinweis-Kasten (leer lassen), type: text }
-          - { name: bodyHtml, label: Inhalt, type: rich-text }
-      - name: datenschutz
-        label: Datenschutz
-        type: file
-        path: src/data/pages/datenschutz.json
-        format: json
-        fields:
-          - { name: seoTitle, label: Seitentitel (Google), type: string, required: true }
-          - { name: seoDescription, label: Kurzbeschreibung (Google), type: text, required: true }
-          - { name: heading, label: Überschrift, type: string }
-          - { name: notice, label: Hinweis-Kasten (leer lassen, wenn fertig), type: text }
-          - { name: bodyHtml, label: Inhalt, type: rich-text }
-      - name: agb
-        label: AGB
-        type: file
-        path: src/data/pages/agb.json
-        format: json
-        fields:
-          - { name: seoTitle, label: Seitentitel (Google), type: string, required: true }
-          - { name: seoDescription, label: Kurzbeschreibung (Google), type: text, required: true }
-          - { name: heading, label: Überschrift, type: string }
-          - { name: notice, label: Hinweis-Kasten (leer lassen, wenn fertig), type: text }
-          - { name: bodyHtml, label: Inhalt, type: rich-text }
+          - name: seoTitle
+            label: Seitentitel (Google)
+            type: string
+            required: true
+            description: "Ideal 50 bis 60 Zeichen. Erscheint als blauer Link in Google."
+            options:
+              maxlength: 60
+          - name: seoDescription
+            label: Kurzbeschreibung (Google)
+            type: text
+            required: true
+            description: "Ideal 120 bis 155 Zeichen. Erscheint unter dem Titel in Google."
+            options:
+              maxlength: 155
+
+
+      - name: legal
+        label: Rechtliches
+        type: group
+        items:
+          - name: impressum
+            label: Impressum
+            type: file
+            path: src/data/pages/impressum.json
+            format: json
+            fields:
+              - { name: heading, label: Überschrift, type: string }
+              - { name: notice, label: Hinweis-Kasten (leer lassen), type: text }
+              - { name: bodyHtml, label: Inhalt, type: rich-text }
+              - name: seoTitle
+                label: Seitentitel (Google)
+                type: string
+                required: true
+                description: "Ideal 50 bis 60 Zeichen. Erscheint als blauer Link in Google."
+                options:
+                  maxlength: 60
+              - name: seoDescription
+                label: Kurzbeschreibung (Google)
+                type: text
+                required: true
+                description: "Ideal 120 bis 155 Zeichen. Erscheint unter dem Titel in Google."
+                options:
+                  maxlength: 155
+          - name: datenschutz
+            label: Datenschutz
+            type: file
+            path: src/data/pages/datenschutz.json
+            format: json
+            fields:
+              - { name: heading, label: Überschrift, type: string }
+              - { name: notice, label: Hinweis-Kasten (leer lassen, wenn fertig), type: text }
+              - { name: bodyHtml, label: Inhalt, type: rich-text }
+              - name: seoTitle
+                label: Seitentitel (Google)
+                type: string
+                required: true
+                description: "Ideal 50 bis 60 Zeichen. Erscheint als blauer Link in Google."
+                options:
+                  maxlength: 60
+              - name: seoDescription
+                label: Kurzbeschreibung (Google)
+                type: text
+                required: true
+                description: "Ideal 120 bis 155 Zeichen. Erscheint unter dem Titel in Google."
+                options:
+                  maxlength: 155
+          - name: agb
+            label: AGB
+            type: file
+            path: src/data/pages/agb.json
+            format: json
+            fields:
+              - { name: heading, label: Überschrift, type: string }
+              - { name: notice, label: Hinweis-Kasten (leer lassen, wenn fertig), type: text }
+              - { name: bodyHtml, label: Inhalt, type: rich-text }
+              - name: seoTitle
+                label: Seitentitel (Google)
+                type: string
+                required: true
+                description: "Ideal 50 bis 60 Zeichen. Erscheint als blauer Link in Google."
+                options:
+                  maxlength: 60
+              - name: seoDescription
+                label: Kurzbeschreibung (Google)
+                type: text
+                required: true
+                description: "Ideal 120 bis 155 Zeichen. Erscheint unter dem Titel in Google."
+                options:
+                  maxlength: 155
 
   - name: ratgeber
-    label: Ratgeber-Beiträge
+    label: Ratgeber
     type: collection
     path: src/content/ratgeber
     filename: "{primary}.md"
@@ -654,101 +809,117 @@ content:
         label: Kurze Antwort (40 bis 60 Wörter, steht oben im Beitrag)
         type: text
         required: true
-      - { name: seoTitle, label: Seitentitel Google (optional), type: string }
-      - { name: seoDescription, label: Kurzbeschreibung Google (optional), type: text }
-      - { name: ogImage, label: Vorschaubild Social Media (optional), type: image }
       - { name: pubDate, label: Veröffentlicht am, type: date, required: true }
       - { name: updatedDate, label: Aktualisiert am (optional), type: date }
       - { name: draft, label: Entwurf (nicht veröffentlichen), type: boolean }
       - { name: body, label: Inhalt, type: rich-text, options: { format: markdown } }
+      - name: seoTitle
+        label: Seitentitel Google (optional)
+        type: string
+        description: "Ideal 50 bis 60 Zeichen. Leer = Titel wird genutzt."
+        options:
+          maxlength: 60
+      - name: seoDescription
+        label: Kurzbeschreibung Google (optional)
+        type: text
+        description: "Ideal 120 bis 155 Zeichen. Leer = Teaser wird genutzt."
+        options:
+          maxlength: 155
+      - name: ogImage
+        label: Vorschaubild Social Media (optional)
+        type: image
 
-  - name: packages
-    label: Pakete und Preise
-    type: file
-    path: src/data/packages.json
-    format: json
-    fields:
-      - { name: vatNote, label: Hinweis MwSt., type: string }
-      - { name: depositNote, label: Hinweis Anzahlung, type: text }
-      - name: items
+  - name: site-data
+    label: Website-Daten
+    type: group
+    items:
+      - name: packages
         label: Pakete
-        type: object
-        list: true
+        type: file
+        path: src/data/packages.json
+        format: json
         fields:
-          - { name: id, label: Interne ID (nicht ändern), type: string }
-          - { name: name, label: Name, type: string }
-          - { name: price, label: Preis, type: string }
-          - { name: pricePrefix, label: Vor dem Preis (z. B. "ab"), type: string }
-          - { name: deposit, label: Anzahlung, type: string }
-          - { name: tagline, label: Kurzbeschreibung, type: text }
-          - { name: featured, label: Hervorgehoben, type: boolean }
-          - { name: delivery, label: Lieferzeit, type: string }
-          - { name: features, label: Leistungen, type: string, list: true }
-          - { name: ctaLabel, label: Button-Text, type: string }
-      - name: care
-        label: Betreuung
-        type: object
-        fields:
-          - { name: name, label: Name, type: string }
-          - { name: price, label: Preis, type: string }
-          - { name: period, label: Zeitraum, type: string }
-          - { name: tagline, label: Kurzbeschreibung, type: text }
-          - { name: features, label: Leistungen, type: string, list: true }
-      - name: notIncluded
-        label: Hinweis Online-Shops
-        type: object
-        fields:
-          - { name: heading, label: Überschrift, type: string }
-          - { name: text, label: Text, type: text }
+          - { name: vatNote, label: Hinweis MwSt., type: string }
+          - { name: depositNote, label: Hinweis Anzahlung, type: text }
+          - name: items
+            label: Pakete
+            type: object
+            list: true
+            fields:
+              - { name: id, label: Interne ID (nicht ändern), type: string }
+              - { name: name, label: Name, type: string }
+              - { name: price, label: Preis, type: string }
+              - { name: pricePrefix, label: Vor dem Preis (z. B. "ab"), type: string }
+              - { name: deposit, label: Anzahlung, type: string }
+              - { name: tagline, label: Kurzbeschreibung, type: text }
+              - { name: featured, label: Hervorgehoben, type: boolean }
+              - { name: delivery, label: Lieferzeit, type: string }
+              - { name: features, label: Leistungen, type: string, list: true }
+              - { name: ctaLabel, label: Button-Text, type: string }
+          - name: care
+            label: Betreuung
+            type: object
+            fields:
+              - { name: name, label: Name, type: string }
+              - { name: price, label: Preis, type: string }
+              - { name: period, label: Zeitraum, type: string }
+              - { name: tagline, label: Kurzbeschreibung, type: text }
+              - { name: features, label: Leistungen, type: string, list: true }
+          - name: notIncluded
+            label: Hinweis Online-Shops
+            type: object
+            fields:
+              - { name: heading, label: Überschrift, type: string }
+              - { name: text, label: Text, type: text }
 
-  - name: site
-    label: Firmendaten und Links
-    type: file
-    path: src/data/site.json
-    format: json
-    fields:
-      - { name: title, label: Name, type: string, required: true }
-      - { name: legalName, label: Rechtlicher Name, type: string }
-      - { name: claim, label: Claim (Standard-Beschreibung), type: text }
-      - { name: email, label: E-Mail, type: string }
-      - { name: phone, label: Telefon (Anzeige), type: string }
-      - { name: phoneHref, label: Telefon (Link, z. B. +4915678735632), type: string }
-      - { name: logoPath, label: Standard-Vorschaubild, type: string }
-      - name: address
-        label: Adresse
-        type: object
+      - name: site
+        label: Navigation und Footer
+        type: file
+        path: src/data/site.json
+        format: json
         fields:
-          - { name: street, label: Straße, type: string }
-          - { name: postalCode, label: PLZ, type: string }
-          - { name: city, label: Ort, type: string }
-      - name: nav
-        label: Hauptmenü
-        type: object
-        list: true
-        fields:
-          - { name: label, label: Text, type: string }
-          - { name: href, label: Link, type: string }
-      - name: primaryCta
-        label: Button im Menü
-        type: object
-        fields:
-          - { name: label, label: Text, type: string }
-          - { name: href, label: Link, type: string }
-      - name: secondaryCta
-        label: Zweiter Button im Kopfbereich (z. B. Preise ansehen)
-        type: object
-        fields:
-          - { name: label, label: Text, type: string }
-          - { name: href, label: Link, type: string }
-      - name: booking
-        label: Buchung und Formular
-        type: object
-        fields:
-          - { name: calUrl, label: Calendly Erstgespräch (30 Min.), type: string }
-          - { name: calClientUrl, label: Calendly Kunden-Sprechstunde (nicht öffentlich), type: string }
-          - { name: stripeStart, label: Stripe Zahlungslink Anzahlung Start, type: string }
-          - { name: stripeIndividuell, label: Stripe Zahlungslink Anzahlung Individuell, type: string }
-          - { name: formEndpoint, label: Formspree-Adresse Website-Check, type: string }
-          - { name: analyzerUrl, label: Adresse Website-Analyse (leer = Analyse aus), type: string }
-      - { name: footerBlurb, label: Footer-Text, type: text }
-      - { name: copyright, label: Copyright-Zeile, type: string }
+          - { name: title, label: Name, type: string, required: true }
+          - { name: legalName, label: Rechtlicher Name, type: string }
+          - { name: claim, label: Claim (Standard-Beschreibung), type: text }
+          - { name: email, label: E-Mail, type: string }
+          - { name: phone, label: Telefon (Anzeige), type: string }
+          - { name: phoneHref, label: Telefon (Link, z. B. +4915678735632), type: string }
+          - { name: logoPath, label: Standard-Vorschaubild, type: string }
+          - name: address
+            label: Adresse
+            type: object
+            fields:
+              - { name: street, label: Straße, type: string }
+              - { name: postalCode, label: PLZ, type: string }
+              - { name: city, label: Ort, type: string }
+          - name: nav
+            label: Hauptmenü
+            type: object
+            list: true
+            fields:
+              - { name: label, label: Text, type: string }
+              - { name: href, label: Link, type: string }
+          - name: primaryCta
+            label: Button im Menü
+            type: object
+            fields:
+              - { name: label, label: Text, type: string }
+              - { name: href, label: Link, type: string }
+          - name: secondaryCta
+            label: Zweiter Button im Kopfbereich (z. B. Preise ansehen)
+            type: object
+            fields:
+              - { name: label, label: Text, type: string }
+              - { name: href, label: Link, type: string }
+          - name: booking
+            label: Buchung und Formular
+            type: object
+            fields:
+              - { name: calUrl, label: Calendly Erstgespräch (30 Min.), type: string }
+              - { name: calClientUrl, label: Calendly Kunden-Sprechstunde (nicht öffentlich), type: string }
+              - { name: stripeStart, label: Stripe Zahlungslink Anzahlung Start, type: string }
+              - { name: stripeIndividuell, label: Stripe Zahlungslink Anzahlung Individuell, type: string }
+              - { name: formEndpoint, label: Formspree-Adresse Website-Check, type: string }
+              - { name: analyzerUrl, label: Adresse Website-Analyse (leer = Analyse aus), type: string }
+          - { name: footerBlurb, label: Footer-Text, type: text }
+          - { name: copyright, label: Copyright-Zeile, type: string }
