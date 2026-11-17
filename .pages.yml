@@ -375,8 +375,6 @@ content:
               - { name: url, label: Link zur Website, type: string }
               - { name: before, label: Vorher, type: text }
               - { name: after, label: Jetzt, type: text }
-              - { name: quote, label: Zitat, type: text }
-              - { name: quoteName, label: Name zum Zitat, type: string }
               - { name: placeholder, label: Noch Platzhalter, type: boolean }
           - { name: cta, component: cta }
 

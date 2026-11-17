@@ -15,8 +15,6 @@
       "url": "https://intecra.de/",
       "before": "WordPress-Website, jede inhaltliche Änderung lief über einen Entwickler.",
       "after": "Kompletter Neuaufbau mit Ratgeber und Stellenangeboten. Neue Beiträge und Jobs legt das Team selbst an.",
-      "quote": "Früher habe ich für jeden Text und jede Stellenanzeige jemanden gebraucht. Jetzt schreibe ich meiner KI, was sich ändern soll, und die Website ist aktuell. Das spart uns Zeit und Nerven.",
-      "quoteName": "Ahmet, Intecra GmbH",
       "placeholder": false
     },
     {
@@ -27,8 +25,6 @@
       "url": "https://www.lovely-hair.de/",
       "before": "Inhalte und Termine liefen nicht im Salon selbst. Für kleine Änderungen brauchte es immer jemanden mit Zugang zur alten Website.",
       "after": "Neue, schnelle Website. Öffnungszeiten, Leistungen, Team und Galerie pflegt der Salon selbst. Termine buchen Kundinnen online.",
-      "quote": "",
-      "quoteName": "",
       "placeholder": false
     },
     {
@@ -39,8 +35,6 @@
       "url": "",
       "before": "Bestehende WordPress-Website der Agentur.",
       "after": "Neuaufbau ohne WordPress. Noch nicht freigegeben; erscheint hier nach Launch und Freigabe.",
-      "quote": "",
-      "quoteName": "",
       "placeholder": true
     }
   ],
