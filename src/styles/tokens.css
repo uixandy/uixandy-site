@@ -18,9 +18,9 @@
   --ux-on-dark-muted: #b9cdd6;
   --ux-border-dark: rgb(255 255 255 / 0.14);
 
-  /* Type — Manrope (headings) + Source Sans 3 (body). Replaced Sansation/Livvic. */
-  --ux-font-display: "Manrope", "Segoe UI", system-ui, sans-serif;
-  --ux-font-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  /* Type — Sora (headings) + IBM Plex Sans (body). Character without hard-to-read flourish. */
+  --ux-font-display: "Sora", "Segoe UI", system-ui, sans-serif;
+  --ux-font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
   --ux-text-xs: 0.8125rem;
   --ux-text-sm: 0.9375rem;
   --ux-text-base: 1.0625rem;
