@@ -18,8 +18,8 @@
   --ux-on-dark-muted: #b9cdd6;
   --ux-border-dark: rgb(255 255 255 / 0.14);
 
-  /* Type — Fraunces (headings) + IBM Plex Sans (body). Distinct from wowdesign Outfit. */
-  --ux-font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  /* Type — Plus Jakarta Sans (headings) + IBM Plex Sans (body). Distinct from wowdesign Outfit. */
+  --ux-font-display: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
   --ux-font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
   --ux-text-xs: 0.8125rem;
   --ux-text-sm: 0.9375rem;
