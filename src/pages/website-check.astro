@@ -54,8 +54,10 @@ const TOTAL = 5;
             <p class="step__hint">{form.websiteHint}</p>
             <input id="check-website" class="field field--lg" type="text" name="website" placeholder={form.websitePlaceholder} inputmode="url" autocomplete="url" data-website />
             <div class="step__actions">
-              <Button type="button" size="lg" arrow data-url-next>{form.nextLabel}</Button>
-              <button type="button" class="step__link" data-no-website>{form.noWebsiteLabel}</button>
+              <div class="step__actions-end">
+                <Button type="button" size="lg" arrow data-url-next>{form.nextLabel}</Button>
+                <button type="button" class="step__link" data-no-website>{form.noWebsiteLabel}</button>
+              </div>
             </div>
           </div>
 
@@ -81,8 +83,10 @@ const TOTAL = 5;
             <p class="an__unreachable" data-an-unreachable hidden>{analyze.unreachable}</p>
             <p class="an__note">{analyze.disclaimer}</p>
             <div class="step__actions">
-              <Button type="button" size="lg" arrow data-an-continue disabled>{form.nextLabel}</Button>
-              <button type="button" class="step__link" data-an-other>{analyze.otherUrl}</button>
+              <div class="step__actions-end">
+                <Button type="button" size="lg" arrow data-an-continue disabled>{form.nextLabel}</Button>
+                <button type="button" class="step__link" data-an-other>{analyze.otherUrl}</button>
+              </div>
             </div>
           </div>
         </fieldset>
@@ -101,7 +105,9 @@ const TOTAL = 5;
             }
           </div>
           <div class="step__actions">
-            <Button type="button" size="lg" arrow data-next data-pages-next disabled>{form.nextLabel}</Button>
+            <div class="step__actions-end">
+              <Button type="button" size="lg" arrow data-next data-pages-next disabled>{form.nextLabel}</Button>
+            </div>
           </div>
         </fieldset>
 
@@ -120,9 +126,11 @@ const TOTAL = 5;
             }
           </div>
           <div class="step__actions">
-            <Button type="button" size="lg" arrow data-next data-features-next data-none={form.featuresNoneLabel} data-some={form.nextLabel}>
-              {form.featuresNoneLabel}
-            </Button>
+            <div class="step__actions-end">
+              <Button type="button" size="lg" arrow data-next data-features-next data-none={form.featuresNoneLabel} data-some={form.nextLabel}>
+                {form.featuresNoneLabel}
+              </Button>
+            </div>
           </div>
         </fieldset>
 
@@ -138,6 +146,7 @@ const TOTAL = 5;
               ))
             }
           </div>
+          <div class="step__actions step__actions--bare"></div>
         </fieldset>
 
         <fieldset class="step" data-step="5">
@@ -171,7 +180,9 @@ const TOTAL = 5;
           </label>
           <p class="check__error" data-error hidden role="alert"></p>
           <div class="step__actions">
-            <Button type="submit" size="lg" arrow data-submit data-sending={form.sendingLabel}>{form.submitLabel}</Button>
+            <div class="step__actions-end">
+              <Button type="submit" size="lg" arrow data-submit data-sending={form.sendingLabel}>{form.submitLabel}</Button>
+            </div>
           </div>
         </fieldset>
 
@@ -265,7 +276,11 @@ const TOTAL = 5;
         .replace("{n}", String(current + 1))
         .replace("{total}", String(total));
     }
-    if (back) back.hidden = current === 0;
+    if (back) {
+      back.hidden = current === 0;
+      const slot = steps[current]?.querySelector<HTMLElement>(".step__actions");
+      if (slot && back.parentElement !== slot) slot.prepend(back);
+    }
     const focusable = steps[current]?.querySelector<HTMLElement>("input:not([type=hidden]), button");
     if (index > 0) focusable?.focus({ preventScroll: true });
   };
@@ -638,8 +653,23 @@ const TOTAL = 5;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: space-between;
     gap: var(--ux-space-4) var(--ux-space-5);
     margin-top: var(--ux-space-6);
+    width: 100%;
+  }
+
+  .step__actions-end {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--ux-space-4) var(--ux-space-5);
+    margin-left: auto;
+  }
+
+  .step__actions--bare:not(:has(.wiz__back:not([hidden]))) {
+    display: none;
   }
 
   .wiz:not(.is-wizard) :global([data-next]),
@@ -994,7 +1024,7 @@ const TOTAL = 5;
     display: none;
     align-items: center;
     gap: var(--ux-space-2);
-    justify-self: start;
+    flex-shrink: 0;
     padding: 0;
     border: 0;
     background: none;
