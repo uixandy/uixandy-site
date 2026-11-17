@@ -84,6 +84,7 @@ const isActive = (href: string) => href !== "/" && path.startsWith(href);
     document.documentElement.style.overflow = open ? "hidden" : "";
 
     if (open) {
+      header.classList.remove("is-closing");
       menu.hidden = false;
       menu.removeAttribute("inert");
       requestAnimationFrame(() => {
@@ -92,11 +93,13 @@ const isActive = (href: string) => href !== "/" && path.startsWith(href);
       return;
     }
 
+    header.classList.add("is-closing");
     header.classList.remove("is-open");
     menu.setAttribute("inert", "");
 
     const finish = () => {
       if (toggle.getAttribute("aria-expanded") === "true") return;
+      header.classList.remove("is-closing");
       menu.hidden = true;
     };
 
@@ -258,7 +261,7 @@ const isActive = (href: string) => href !== "/" && path.startsWith(href);
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transform: translateX(1.5rem);
+    transform: translateY(-0.85rem);
     transition:
       opacity var(--menu-motion),
       transform var(--menu-motion),
@@ -269,11 +272,22 @@ const isActive = (href: string) => href !== "/" && path.startsWith(href);
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    transform: translateX(0);
+    transform: translateY(0);
     transition:
       opacity var(--menu-motion),
       transform var(--menu-motion),
       visibility 0s linear 0s;
+  }
+
+  .site-header.is-closing .mobile-menu {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateX(1.5rem);
+    transition:
+      opacity var(--menu-motion),
+      transform var(--menu-motion),
+      visibility 0s linear 240ms;
   }
 
   .mobile-menu[hidden] {
@@ -292,7 +306,7 @@ const isActive = (href: string) => href !== "/" && path.startsWith(href);
   .mobile-menu__list li,
   .mobile-menu__cta {
     opacity: 0;
-    transform: translateX(0.75rem);
+    transform: translateY(0.7rem);
     transition:
       opacity var(--menu-motion),
       transform var(--menu-motion);
@@ -301,7 +315,14 @@ const isActive = (href: string) => href !== "/" && path.startsWith(href);
   .site-header.is-open .mobile-menu__list li,
   .site-header.is-open .mobile-menu__cta {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(0);
+  }
+
+  .site-header.is-closing .mobile-menu__list li,
+  .site-header.is-closing .mobile-menu__cta {
+    opacity: 0;
+    transform: translateX(0.75rem);
+    transition-delay: 0s;
   }
 
   .site-header.is-open .mobile-menu__list li:nth-child(1) { transition-delay: 50ms; }
@@ -327,10 +348,13 @@ const isActive = (href: string) => href !== "/" && path.startsWith(href);
     .burger i,
     .mobile-menu,
     .site-header.is-open .mobile-menu,
+    .site-header.is-closing .mobile-menu,
     .mobile-menu__list li,
     .mobile-menu__cta,
     .site-header.is-open .mobile-menu__list li,
-    .site-header.is-open .mobile-menu__cta {
+    .site-header.is-open .mobile-menu__cta,
+    .site-header.is-closing .mobile-menu__list li,
+    .site-header.is-closing .mobile-menu__cta {
       transition: none;
       transition-delay: 0s;
     }
