@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import Section from "../components/Section.astro";
 import Icon from "../components/Icon.astro";
+import BrowserFrame from "../components/BrowserFrame.astro";
 import CtaBand from "../components/CtaBand.astro";
 import page from "../data/pages/beispiele.json";
 import site from "../data/site.json";
@@ -20,14 +21,16 @@ const seo = resolveSeo(page);
         page.cases.map((c, i) => (
           <article class:list={["case", { "case--flip": i % 2 === 1, "case--placeholder": c.placeholder }]} data-reveal>
             <div class="case__media">
-              {c.image ? (
-                <img src={c.image} alt={c.imageAlt} loading="lazy" width="1200" height="800" />
-              ) : (
-                <div class="case__ph">
-                  <Icon name="mobile" size={40} />
-                  <span>[Platzhalter] Screenshot {c.name}</span>
-                </div>
-              )}
+              <BrowserFrame url={c.url || undefined} label={c.url ? undefined : c.name}>
+                {c.image ? (
+                  <img src={c.image} alt={c.imageAlt} loading="lazy" width="1200" height="800" />
+                ) : (
+                  <div class="case__ph">
+                    <Icon name="mobile" size={40} />
+                    <span>[Platzhalter] Screenshot {c.name}</span>
+                  </div>
+                )}
+              </BrowserFrame>
             </div>
             <div class="case__body">
               <p class="case__industry">{c.industry}</p>
@@ -74,26 +77,8 @@ const seo = resolveSeo(page);
     align-items: center;
   }
 
-  .case__media img,
-  .case__ph {
-    width: 100%;
-    aspect-ratio: 3 / 2;
-    border-radius: var(--ux-radius-lg);
-    object-fit: cover;
-    object-position: top center;
-    box-shadow: var(--ux-shadow-md);
-    background: var(--ux-surface);
-  }
-
-  .case__ph {
-    display: grid;
-    place-content: center;
-    justify-items: center;
-    gap: var(--ux-space-3);
-    background: var(--ux-surface);
+  .case__media :global(.case__ph) {
     border: 2px dashed var(--ux-teal);
-    color: var(--ux-muted);
-    box-shadow: none;
   }
 
   .case__industry {

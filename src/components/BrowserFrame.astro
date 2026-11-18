@@ -1,0 +1,95 @@
+---
+/**
+ * Lightweight browser chrome around screenshots / previews.
+ * Matches the ChatDemo traffic-light + URL bar look.
+ */
+export interface Props {
+  url?: string;
+  label?: string;
+}
+
+const { url = "", label = "" } = Astro.props;
+
+let host = label;
+if (!host && url) {
+  try {
+    host = new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    host = url.replace(/^https?:\/\//, "").replace(/\/$/, "");
+  }
+}
+---
+
+<div class="browser">
+  <div class="browser__chrome" aria-hidden="true">
+    <span></span><span></span><span></span>
+    {host && <p class="browser__url">{host}</p>}
+  </div>
+  <div class="browser__body">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .browser {
+    overflow: hidden;
+    border-radius: var(--ux-radius-lg);
+    border: 1px solid var(--ux-border);
+    background: var(--ux-bg);
+    box-shadow: var(--ux-shadow-md);
+  }
+
+  .browser__chrome {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 14px;
+    background: var(--ux-surface);
+    border-bottom: 1px solid var(--ux-border);
+  }
+
+  .browser__chrome > span {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--ux-border);
+    flex-shrink: 0;
+  }
+
+  .browser__url {
+    flex: 1;
+    margin: 0 0 0 8px;
+    padding: 4px 12px;
+    border-radius: var(--ux-radius-pill);
+    background: var(--ux-bg);
+    color: var(--ux-muted);
+    font-size: var(--ux-text-xs);
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .browser__body :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  .browser__body :global(.case__ph) {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: var(--ux-space-3);
+    background: var(--ux-surface);
+    border: none;
+    color: var(--ux-muted);
+    box-shadow: none;
+    border-radius: 0;
+  }
+</style>
