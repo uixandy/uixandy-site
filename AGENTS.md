@@ -35,14 +35,14 @@ GitHub account: `gh auth switch --user uixandy` before push, switch back to `wow
 | Gradient | 120deg navy → teal (`--ux-gradient`) |
 | Fonts | Plus Jakarta Sans (display), IBM Plex Sans (body) via `@fontsource` (`src/styles/fonts.css`). Not Outfit (wowdesign). |
 | Logo | `src/components/Logo.astro` (official paths). No Lottie. CSS arm animation only |
-| Claim | Ihre neue Website. Danach pflegen Sie sie per Chat. |
+| Claim | Ihre neue Website. Danach pflegen per Chat. |
 | Primary CTA | Website-Check → `/website-check/` |
 | Secondary CTA | 30 Min. Gespräch → `site.json > booking.calUrl` |
 | Voice | German, **Sie**, plain language, no jargon (no "MCP", "Git", "Repo" in public copy) |
 | Punctuation | No em dashes anywhere |
 | NAP | Andreas Bittner, Tal 44, 80331 München, +49 156 787 356 32, info@uixandy.com |
 
-Prices: Start 990 € netto (bis 6 Seiten + Formular), Individuell 1.490 € (mehr Seiten oder eine Zusatzfunktion), 2+ Funktionen / unklar = Gespräch. No shops. Change in `packages.json` + Website-Check `recommend()`.
+Prices: Start 990 € netto (bis 6 Seiten + Formular), Individuell 1.490 € (mehr Seiten oder eine Zusatzfunktion), 2+ Funktionen / unklar = Gespräch. Optional Betreuung & Hosting 39 € netto/Monat (Hosting DSGVO-konform, kein Hosternamen in der Kundenkommunikation). No shops. Change in `packages.json` + Website-Check `recommend()`.
 
 ---
 

@@ -22,9 +22,21 @@ import { faqJsonLd, servicesJsonLd } from "../lib/jsonld";
 
 const seo = resolveSeo(home);
 const { hero } = home;
-const [before, after] = hero.headingHighlight && hero.heading.includes(hero.headingHighlight)
-  ? hero.heading.split(hero.headingHighlight)
-  : [hero.heading, undefined];
+const highlight = hero.headingHighlight;
+/** Break after the first sentence so the H1 reads as two clean lines. */
+const headingLines = hero.heading.split(/(?<=\.)\s+/).filter(Boolean);
+
+function renderHeadingLine(line: string) {
+  if (!highlight || !line.includes(highlight)) return line;
+  const [before, after] = line.split(highlight);
+  return (
+    <>
+      {before}
+      <span class="text-gradient">{highlight}</span>
+      {after}
+    </>
+  );
+}
 ---
 
 <BaseLayout
@@ -38,7 +50,12 @@ const [before, after] = hero.headingHighlight && hero.heading.includes(hero.head
       <div class="hero__copy" data-reveal>
         <p class="hero__kicker">{hero.kicker}</p>
         <h1>
-          {before}{after !== undefined && <span class="text-gradient">{hero.headingHighlight}</span>}{after}
+          {headingLines.map((line, i) => (
+            <>
+              {i > 0 && <br />}
+              {renderHeadingLine(line)}
+            </>
+          ))}
         </h1>
         <p class="hero__lead">{hero.lead}</p>
         <div class="hero__actions">
@@ -150,6 +167,10 @@ const [before, after] = hero.headingHighlight && hero.heading.includes(hero.head
 
   .hero h1 {
     color: var(--ux-navy-deep);
+    max-width: 11.5em;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
   }
 
   .hero__lead {

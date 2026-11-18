@@ -44,7 +44,7 @@
       {
         "topic": "Laufende Kosten",
         "old": "Hosting, Premium-Plugins, Wartungsvertrag",
-        "new": "Hosting direkt beim Anbieter, Betreuung optional"
+        "new": "Selbst hosten oder optional Betreuung und Hosting"
       }
     ]
   },
@@ -88,7 +88,7 @@
       },
       {
         "question": "Brauche ich danach noch einen Wartungsvertrag?",
-        "answer": "In der Regel nicht. Es gibt keine Plugins und kein System, das aktualisiert werden muss. Wer trotzdem jemanden an der Seite haben möchte, bucht unsere Betreuung für 39 € im Monat."
+        "answer": "In der Regel nicht. Es gibt keine Plugins und kein System, das aktualisiert werden muss. Wer Hosting und jemanden an der Seite möchte, bucht Betreuung und Hosting für 39 € im Monat."
       }
     ]
   },

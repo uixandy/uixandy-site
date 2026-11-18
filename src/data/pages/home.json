@@ -4,7 +4,7 @@
   "ogImage": "/media/og-default.jpg",
   "hero": {
     "kicker": "Websites für kleine Unternehmen",
-    "heading": "Ihre neue Website. Danach pflegen Sie sie per Chat.",
+    "heading": "Ihre neue Website. Danach pflegen per Chat.",
     "headingHighlight": "per Chat",
     "lead": "Wir bauen Ihre Website. Danach schreiben Sie Ihrer KI, was sich ändern soll, zum Beispiel neue Öffnungszeiten oder ein neues Foto. Wenige Minuten später ist es online. Ohne WordPress, ohne Agentur, ohne Wartezeit.",
     "primaryLabel": "Website-Check starten",
@@ -187,15 +187,15 @@
       },
       {
         "question": "Was, wenn die KI einen Fehler macht?",
-        "answer": "Jede Änderung wird als eigene Version gespeichert. Sie sagen der KI, dass sie die letzte Änderung rückgängig machen soll, und alles ist wie vorher. Mit der Betreuung schauen wir auf Wunsch selbst drauf."
+        "answer": "Jede Änderung wird als eigene Version gespeichert. Sie sagen der KI, dass sie die letzte Änderung rückgängig machen soll, und alles ist wie vorher. Mit Betreuung und Hosting schauen wir auf Wunsch selbst drauf."
       },
       {
         "question": "Wem gehört die Website?",
-        "answer": "Ihnen. Texte, Bilder und die Website selbst liegen in Ihrem eigenen Konto. Wenn Sie irgendwann mit jemand anderem arbeiten möchten, nehmen Sie alles mit."
+        "answer": "Ihnen. Texte, Bilder und die Website gehören Ihnen. Hosting entweder in Ihrem eigenen Konto oder bei uns über Betreuung und Hosting. Wenn Sie wechseln oder kündigen, bekommen Sie alles mit."
       },
       {
         "question": "Was kostet das Hosting?",
-        "answer": "Die Website selbst kann sehr günstig laufen. Bei <a href=\"https://deploybase.eu/\" target=\"_blank\" rel=\"noopener noreferrer\">deploybase</a> ist eine einzelne Site im Free-Tarif oft kostenlos (danach ab 9 € monatlich, siehe Anbieterseite). Bei <a href=\"https://vercel.com/pricing\" target=\"_blank\" rel=\"noopener noreferrer\">Vercel</a> gibt es ebenfalls einen kostenlosen Einstieg; Details stehen unter vercel.com/pricing. Domain und E-Mail-Postfach sind davon getrennt und zahlen Sie direkt beim Domain- bzw. Mail-Anbieter. Wir empfehlen im Projekt, was zu Ihnen passt, ohne Aufschlag."
+        "answer": "Zwei Wege: Sie hosten selbst, zum Beispiel bei <a href=\"https://deploybase.eu/\" target=\"_blank\" rel=\"noopener noreferrer\">deploybase</a> (oft kostenlos bis ab 9 € monatlich) oder <a href=\"https://vercel.com/pricing\" target=\"_blank\" rel=\"noopener noreferrer\">Vercel</a>, ohne Aufschlag von uns. Oder Sie buchen Betreuung und Hosting für 39 € netto pro Monat: wir übernehmen Hosting (DSGVO-konform und sicher) und Support. Domain und E-Mail bleiben in beiden Fällen bei Ihnen."
       },
       {
         "question": "Können Sie meine bestehende Website übernehmen?",

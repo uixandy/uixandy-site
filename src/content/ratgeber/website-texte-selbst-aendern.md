@@ -38,7 +38,7 @@ Fotos hochladen, Texte kürzen, Formulierungen anpassen: Das sind genau die Ding
 
 ## Was weiterhin Hilfe braucht
 
-Neue Funktionen, komplexe Formulare, neue Sprachen oder ein Umbau der Struktur gehören nicht in den Alltagschat. Dafür sind wir da, optional über die Betreuung oder ein kurzes Gespräch.
+Neue Funktionen, komplexe Formulare, neue Sprachen oder ein Umbau der Struktur gehören nicht in den Alltagschat. Dafür sind wir da, optional über Betreuung und Hosting oder ein kurzes Gespräch.
 
 Auch Inhalte, die rechtlich heikel sind (Heilversprechen, Finanzversprechen), sollten Sie bewusst prüfen. Die KI setzt um, was Sie schreiben. Die Verantwortung für den Inhalt bleibt bei Ihnen.
 

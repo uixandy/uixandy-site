@@ -857,7 +857,7 @@ content:
               - { name: features, label: Leistungen, type: string, list: true }
               - { name: ctaLabel, label: Button-Text, type: string }
           - name: care
-            label: Betreuung
+            label: Betreuung und Hosting
             type: object
             fields:
               - { name: name, label: Name, type: string }

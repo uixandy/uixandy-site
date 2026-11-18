@@ -45,15 +45,17 @@
     }
   ],
   "care": {
-    "name": "Betreuung",
+    "name": "Betreuung & Hosting",
     "price": "39 €",
     "period": "pro Monat",
-    "tagline": "Optional. Für alle, die sich um gar nichts kümmern möchten.",
+    "tagline": "Optional. Wir hosten und sind da, wenn etwas hakt. Sie können trotzdem per Chat ändern.",
     "features": [
+      "Hosting der Website, DSGVO-konform und sicher",
       "Monatlicher Technik- und Sicherheits-Check",
       "Hilfe per E-Mail, wenn die KI mal hakt",
       "Eine kleine Änderung pro Monat machen wir für Sie",
-      "Monatlich kündbar"
+      "Domain und E-Mail bleiben bei Ihnen",
+      "Monatlich kündbar, Übergabe auf Wunsch"
     ]
   },
   "notIncluded": {
