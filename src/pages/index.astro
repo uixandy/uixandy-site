@@ -24,19 +24,13 @@ const seo = resolveSeo(home);
 const { hero } = home;
 const highlight = hero.headingHighlight;
 /** Break after the first sentence so the H1 reads as two clean lines. */
-const headingLines = hero.heading.split(/(?<=\.)\s+/).filter(Boolean);
-
-function renderHeadingLine(line: string) {
-  if (!highlight || !line.includes(highlight)) return line;
-  const [before, after] = line.split(highlight);
-  return (
-    <>
-      {before}
-      <span class="text-gradient">{highlight}</span>
-      {after}
-    </>
-  );
-}
+const headingLines = hero.heading.split(/(?<=\.)\s+/).filter(Boolean).map((line) => {
+  if (!highlight || !line.includes(highlight)) {
+    return { before: line, highlight: "", after: "" };
+  }
+  const [before, after = ""] = line.split(highlight);
+  return { before, highlight, after };
+});
 ---
 
 <BaseLayout
@@ -53,7 +47,9 @@ function renderHeadingLine(line: string) {
           {headingLines.map((line, i) => (
             <>
               {i > 0 && <br />}
-              {renderHeadingLine(line)}
+              {line.before}
+              {line.highlight && <span class="text-gradient">{line.highlight}</span>}
+              {line.after}
             </>
           ))}
         </h1>
