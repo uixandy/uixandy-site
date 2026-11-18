@@ -35,7 +35,7 @@ GitHub account: `gh auth switch --user uixandy` before push, switch back to `wow
 | Gradient | 120deg navy → teal (`--ux-gradient`) |
 | Fonts | Plus Jakarta Sans (display), IBM Plex Sans (body) via `@fontsource` (`src/styles/fonts.css`). Not Outfit (wowdesign). |
 | Logo | `src/components/Logo.astro` (official paths). No Lottie. CSS arm animation only |
-| Claim | Ihre Website. Gepflegt per Chat mit Ihrer KI. |
+| Claim | Ihre neue Website. Danach pflegen Sie sie per Chat. |
 | Primary CTA | Website-Check → `/website-check/` |
 | Secondary CTA | 30 Min. Gespräch → `site.json > booking.calUrl` |
 | Voice | German, **Sie**, plain language, no jargon (no "MCP", "Git", "Repo" in public copy) |

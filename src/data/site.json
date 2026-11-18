@@ -1,7 +1,7 @@
 {
   "title": "uixandy",
   "legalName": "uixandy, Andreas Bittner",
-  "claim": "Websites, die Sie per Chat mit Ihrer KI pflegen. Ohne WordPress, ohne Agentur für jede Kleinigkeit.",
+  "claim": "Wir bauen Ihre Website. Danach pflegen Sie sie per Chat mit Ihrer KI. Ohne WordPress, ohne Agentur für jede Kleinigkeit.",
   "email": "info@uixandy.com",
   "phone": "+49 156 787 356 32",
   "phoneHref": "+4915678735632",
@@ -49,6 +49,6 @@
     "formEndpoint": "https://formspree.io/f/mnjybldd",
     "analyzerUrl": "https://uixandy-analyzer.uixandy.workers.dev/"
   },
-  "footerBlurb": "Websites für kleine Unternehmen, die Sie selbst pflegen, indem Sie Ihrer KI schreiben, was sich ändern soll. Gebaut in München.",
+  "footerBlurb": "Wir bauen Websites für kleine Unternehmen. Danach pflegen Sie sie selbst, indem Sie Ihrer KI schreiben, was sich ändern soll. Gebaut in München.",
   "copyright": "© uixandy, Andreas Bittner"
 }
